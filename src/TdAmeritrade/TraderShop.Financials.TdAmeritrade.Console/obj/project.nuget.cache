@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "a47SbzfJFSJThOUOTw46EAu7Cx9pmg2wZ35oIIRcsCI1hYlAWSRP86e6O2iNtJigHq7C70qzmzW/PvG2KXVvLQ==",
+  "dgSpecHash": "uSyeCxrOT2g+4jBtosbIzzXMxYPYppZZMY2yChLb7ieTgMj9vz7XJYn/30VuPBIrrjKSKs66sTQ4txkgt96CWw==",
   "success": true,
   "projectFilePath": "C:\\Users\\ucren\\source\\repos\\TraderShop.Financials\\src\\TdAmeritrade\\TraderShop.Financials.TdAmeritrade.Console\\TraderShop.Financials.TdAmeritrade.Console.csproj",
   "expectedPackageFiles": [
@@ -19,6 +19,7 @@
     "C:\\Users\\ucren\\.nuget\\packages\\microsoft.extensions.filesystemglobbing\\6.0.0\\microsoft.extensions.filesystemglobbing.6.0.0.nupkg.sha512",
     "C:\\Users\\ucren\\.nuget\\packages\\microsoft.extensions.hosting\\6.0.1\\microsoft.extensions.hosting.6.0.1.nupkg.sha512",
     "C:\\Users\\ucren\\.nuget\\packages\\microsoft.extensions.hosting.abstractions\\6.0.0\\microsoft.extensions.hosting.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\ucren\\.nuget\\packages\\microsoft.extensions.http\\6.0.0\\microsoft.extensions.http.6.0.0.nupkg.sha512",
     "C:\\Users\\ucren\\.nuget\\packages\\microsoft.extensions.logging\\6.0.0\\microsoft.extensions.logging.6.0.0.nupkg.sha512",
     "C:\\Users\\ucren\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\6.0.0\\microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
     "C:\\Users\\ucren\\.nuget\\packages\\microsoft.extensions.logging.configuration\\6.0.0\\microsoft.extensions.logging.configuration.6.0.0.nupkg.sha512",
@@ -29,6 +30,7 @@
     "C:\\Users\\ucren\\.nuget\\packages\\microsoft.extensions.options\\6.0.0\\microsoft.extensions.options.6.0.0.nupkg.sha512",
     "C:\\Users\\ucren\\.nuget\\packages\\microsoft.extensions.options.configurationextensions\\6.0.0\\microsoft.extensions.options.configurationextensions.6.0.0.nupkg.sha512",
     "C:\\Users\\ucren\\.nuget\\packages\\microsoft.extensions.primitives\\6.0.0\\microsoft.extensions.primitives.6.0.0.nupkg.sha512",
+    "C:\\Users\\ucren\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\ucren\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.0\\system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",
     "C:\\Users\\ucren\\.nuget\\packages\\system.diagnostics.eventlog\\6.0.0\\system.diagnostics.eventlog.6.0.0.nupkg.sha512",
     "C:\\Users\\ucren\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",

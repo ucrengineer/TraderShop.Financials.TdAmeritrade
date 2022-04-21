@@ -1,15 +1,3 @@
-C:\Users\ucren\source\repos\TraderShop.Financials\TraderShop.Financials.Abstractions\bin\Debug\net6.0\TraderShop.Financials.Abstractions.deps.json
-C:\Users\ucren\source\repos\TraderShop.Financials\TraderShop.Financials.Abstractions\bin\Debug\net6.0\TraderShop.Financials.Abstractions.dll
-C:\Users\ucren\source\repos\TraderShop.Financials\TraderShop.Financials.Abstractions\bin\Debug\net6.0\TraderShop.Financials.Abstractions.pdb
-C:\Users\ucren\source\repos\TraderShop.Financials\TraderShop.Financials.Abstractions\obj\Debug\net6.0\TraderShop.Financials.Abstractions.csproj.AssemblyReference.cache
-C:\Users\ucren\source\repos\TraderShop.Financials\TraderShop.Financials.Abstractions\obj\Debug\net6.0\TraderShop.Financials.Abstractions.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\ucren\source\repos\TraderShop.Financials\TraderShop.Financials.Abstractions\obj\Debug\net6.0\TraderShop.Financials.Abstractions.AssemblyInfoInputs.cache
-C:\Users\ucren\source\repos\TraderShop.Financials\TraderShop.Financials.Abstractions\obj\Debug\net6.0\TraderShop.Financials.Abstractions.AssemblyInfo.cs
-C:\Users\ucren\source\repos\TraderShop.Financials\TraderShop.Financials.Abstractions\obj\Debug\net6.0\TraderShop.Financials.Abstractions.csproj.CoreCompileInputs.cache
-C:\Users\ucren\source\repos\TraderShop.Financials\TraderShop.Financials.Abstractions\obj\Debug\net6.0\TraderShop.Financials.Abstractions.dll
-C:\Users\ucren\source\repos\TraderShop.Financials\TraderShop.Financials.Abstractions\obj\Debug\net6.0\refint\TraderShop.Financials.Abstractions.dll
-C:\Users\ucren\source\repos\TraderShop.Financials\TraderShop.Financials.Abstractions\obj\Debug\net6.0\TraderShop.Financials.Abstractions.pdb
-C:\Users\ucren\source\repos\TraderShop.Financials\TraderShop.Financials.Abstractions\obj\Debug\net6.0\ref\TraderShop.Financials.Abstractions.dll
 C:\Users\ucren\source\repos\TraderShop.Financials\src\TraderShop.Financials.Abstractions\bin\Debug\net6.0\TraderShop.Financials.Abstractions.deps.json
 C:\Users\ucren\source\repos\TraderShop.Financials\src\TraderShop.Financials.Abstractions\bin\Debug\net6.0\TraderShop.Financials.Abstractions.dll
 C:\Users\ucren\source\repos\TraderShop.Financials\src\TraderShop.Financials.Abstractions\bin\Debug\net6.0\TraderShop.Financials.Abstractions.pdb

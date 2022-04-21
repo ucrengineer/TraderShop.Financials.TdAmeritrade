@@ -1,19 +1,25 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Worker">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+	<TargetFramework>net6.0</TargetFramework>
+	<ImplicitUsings>enable</ImplicitUsings>
+	<Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
+	<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+	<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
+	<PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
   </ItemGroup>
 
+	<!-- <ItemGroup>
+		<Content Include="appsettings.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup> -->
+
   <ItemGroup>
-    <ProjectReference Include="..\TraderShop.Financials.TdAmeritrade.Abstractions\TraderShop.Financials.TdAmeritrade.Abstractions.csproj" />
+	<ProjectReference Include="..\TraderShop.Financials.TdAmeritrade.Abstractions\TraderShop.Financials.TdAmeritrade.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>
