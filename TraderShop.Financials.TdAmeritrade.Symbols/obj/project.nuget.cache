@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "GUM/ZXmBp9A5yCc59XzfaZlCiXrpc842gd7vh1RpUWGfSRKfB5Zb7i6Y1w0iSsj16gD+9CHvVXoa+uNCr57RqQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\ucren\\source\\repos\\TraderShop.Financials\\TraderShop.Financials.TdAmeritrade.Symbols\\TraderShop.Financials.TdAmeritrade.Symbols.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\ucren\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\6.0.0\\microsoft.extensions.dependencyinjection.6.0.0.nupkg.sha512",
+    "C:\\Users\\ucren\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\ucren\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
