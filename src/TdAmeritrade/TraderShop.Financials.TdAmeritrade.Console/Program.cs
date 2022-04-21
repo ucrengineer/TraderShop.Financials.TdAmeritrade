@@ -18,8 +18,8 @@ internal sealed class Program
                     hostContext.Configuration.GetSection("TdAmeritradeOptions")
                         );
             })
+            .UseEnvironment("development")
             .RunConsoleAsync();
-
     }
 
     internal sealed class ConsoleHostService : IHostedService
@@ -52,11 +52,12 @@ internal sealed class Program
                 {
                     try
                     {
-                        var result = await _tdClient.GetAccessToken();
-                        _logger.LogError($"{result.access_token}");
-                        _logger.LogCritical($"{_tdOptions.CurrentValue.url}");
+                        _logger.LogInformation($"{_tdOptions.CurrentValue.access_token}");
 
-                        await Task.Delay(1000);
+                        var result = await _tdClient.SetAccessToken();
+
+                        _logger.LogInformation($"{_tdOptions.CurrentValue.access_token}");
+
 
                     }
                     catch (Exception ex)

@@ -2,10 +2,12 @@ namespace TraderShop.Financials.TdAmeritrade.Abstractions.Options
 {
     public class TdAmeritradeOptions
     {
-        public string url { get; set; }
-        public string grant_type { get; set; }
-        public string client_id { get; set; }
-        public string refresh_token { get; set; }
-        public string redirect_uri { get; set; }
+        public string url { get; set; } = string.Empty;
+        public string grant_type { get; set; } = string.Empty;
+        public string client_id { get; set; } = string.Empty;
+
+        public string access_token { get; set; } = string.Empty;
+        public string refresh_token { get; set; } = string.Empty;
+        public string redirect_uri { get; set; } = string.Empty;
     }
 }

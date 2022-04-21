@@ -17,10 +17,9 @@ namespace TraderShop.Financials.TdAmeritrade.Abstractions.Services.Impl
             _tdAmeritradeOptions = tdAmeritradeOptions.CurrentValue;
         }
 
-        public async Task<PostAccessTokenResponse> GetAccessToken()
+        public async Task<int> SetAccessToken()
         {
             var PostAccessTokenRequest = _httpClient.BaseAddress + "oauth2/token";
-
 
             var content = new FormUrlEncodedContent(new[]
             {
@@ -31,13 +30,10 @@ namespace TraderShop.Financials.TdAmeritrade.Abstractions.Services.Impl
 
             var response = await _httpClient.PostAsync(PostAccessTokenRequest, content);
 
+            var result = JsonConvert.DeserializeObject<PostAccessTokenResponse>(await response.Content.ReadAsStringAsync()) ?? new PostAccessTokenResponse() { error = $"Response Status Code : {response.StatusCode}" };
 
-            if (response.IsSuccessStatusCode)
-            {
-                var stringResult = await response.Content.ReadAsStringAsync();
-                return JsonConvert.DeserializeObject<PostAccessTokenResponse>(stringResult) ?? new PostAccessTokenResponse() { access_token = await response.Content.ReadAsStringAsync() };
-            }
-            return new PostAccessTokenResponse() { access_token = await response.Content.ReadAsStringAsync() };
+            _tdAmeritradeOptions.access_token = result.access_token;
+            return 0;
         }
     }
 }

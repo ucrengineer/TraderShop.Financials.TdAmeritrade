@@ -9,10 +9,8 @@ namespace TraderShop.Financials.TdAmeritrade.Abstractions.DependencyInjection
         public static IServiceCollection AddTdAmeritradeClient(
             this IServiceCollection services)
         {
-            //services.TryAddScoped<ITdAmeritradeClientService, TdAmeritradeClientService>();
             services.AddHttpClient<ITdAmeritradeClientService, TdAmeritradeClientService>(client =>
             {
-                // set up options pattern
                 client.BaseAddress = new Uri("https://api.tdameritrade.com/v1/");
             });
             return services;
