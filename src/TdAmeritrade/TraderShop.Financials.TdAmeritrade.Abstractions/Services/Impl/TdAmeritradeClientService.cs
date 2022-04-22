@@ -19,7 +19,6 @@ namespace TraderShop.Financials.TdAmeritrade.Abstractions.Services.Impl
 
         public async Task<int> SetAccessToken()
         {
-            var PostAccessTokenRequest = _httpClient.BaseAddress + "oauth2/token";
 
             var content = new FormUrlEncodedContent(new[]
             {
@@ -28,7 +27,7 @@ namespace TraderShop.Financials.TdAmeritrade.Abstractions.Services.Impl
                 new KeyValuePair<string, string>("client_id",_tdAmeritradeOptions.client_id)
             });
 
-            var response = await _httpClient.PostAsync(PostAccessTokenRequest, content);
+            var response = await _httpClient.PostAsync(_httpClient.BaseAddress, content);
 
             var result = JsonConvert.DeserializeObject<PostAccessTokenResponse>(await response.Content.ReadAsStringAsync()) ?? new PostAccessTokenResponse() { error = $"Response Status Code : {response.StatusCode}" };
 

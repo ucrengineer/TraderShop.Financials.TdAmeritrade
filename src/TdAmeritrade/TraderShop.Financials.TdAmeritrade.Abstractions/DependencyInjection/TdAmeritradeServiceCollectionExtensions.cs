@@ -11,7 +11,7 @@ namespace TraderShop.Financials.TdAmeritrade.Abstractions.DependencyInjection
         {
             services.AddHttpClient<ITdAmeritradeClientService, TdAmeritradeClientService>(client =>
             {
-                client.BaseAddress = new Uri("https://api.tdameritrade.com/v1/");
+                client.BaseAddress = new Uri("https://api.tdameritrade.com/v1/oauth2/token");
             });
             return services;
         }
