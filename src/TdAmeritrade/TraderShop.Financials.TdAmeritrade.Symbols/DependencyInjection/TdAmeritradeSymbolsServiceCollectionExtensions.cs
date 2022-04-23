@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using TraderShop.Financials.TdAmeritrade.Symbols.Services;
 using TraderShop.Financials.TdAmeritrade.Symbols.Services.Impl;
-
 namespace TraderShop.Financials.TdAmeritrade.Symbols.DependencyInjection
 {
     public static class TdAmeritradeSymbolsServiceCollectionExtensions

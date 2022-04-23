@@ -2,7 +2,7 @@ namespace TraderShop.Financials.TdAmeritrade.Abstractions.Options
 {
     public class TdAmeritradeOptions
     {
-        public string url { get; set; } = string.Empty;
+        public string auth_url { get; set; } = string.Empty;
         public string grant_type { get; set; } = string.Empty;
         public string client_id { get; set; } = string.Empty;
 

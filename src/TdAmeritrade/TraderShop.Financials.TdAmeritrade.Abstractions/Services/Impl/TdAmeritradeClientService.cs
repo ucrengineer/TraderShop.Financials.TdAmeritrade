@@ -5,16 +5,17 @@ using TraderShop.Financials.TdAmeritrade.Abstractions.Options;
 
 namespace TraderShop.Financials.TdAmeritrade.Abstractions.Services.Impl
 {
-    public class TdAmeritradeClientService : ITdAmeritradeClientService
+    public abstract class TdAmeritradeClientService : ITdAmeritradeClientService
     {
         private readonly HttpClient _httpClient;
-        TdAmeritradeOptions _tdAmeritradeOptions;
+        private TdAmeritradeOptions _tdAmeritradeOptions;
 
 
         public TdAmeritradeClientService(HttpClient httpClient, IOptionsMonitor<TdAmeritradeOptions> tdAmeritradeOptions)
         {
             _httpClient = httpClient;
             _tdAmeritradeOptions = tdAmeritradeOptions.CurrentValue;
+            tdAmeritradeOptions.OnChange(x => _tdAmeritradeOptions = x);
         }
 
         public async Task<int> SetAccessToken()
@@ -27,7 +28,7 @@ namespace TraderShop.Financials.TdAmeritrade.Abstractions.Services.Impl
                 new KeyValuePair<string, string>("client_id",_tdAmeritradeOptions.client_id)
             });
 
-            var response = await _httpClient.PostAsync(_httpClient.BaseAddress, content);
+            var response = await _httpClient.PostAsync(_tdAmeritradeOptions.auth_url, content);
 
             var result = JsonConvert.DeserializeObject<PostAccessTokenResponse>(await response.Content.ReadAsStringAsync()) ?? new PostAccessTokenResponse() { error = $"Response Status Code : {response.StatusCode}" };
 

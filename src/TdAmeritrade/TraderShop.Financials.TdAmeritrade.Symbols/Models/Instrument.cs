@@ -2,7 +2,7 @@
 {
     public class Instrument
     {
-        public int Cuspid { get; set; }
+        public string Cusip { get; set; } = String.Empty;
         public string Symbol { get; set; } = string.Empty;
 
         public string Description { get; set; } = string.Empty;

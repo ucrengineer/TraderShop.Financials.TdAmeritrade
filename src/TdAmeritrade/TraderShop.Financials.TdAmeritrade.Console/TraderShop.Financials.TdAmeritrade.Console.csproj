@@ -20,6 +20,7 @@
 
   <ItemGroup>
 	<ProjectReference Include="..\TraderShop.Financials.TdAmeritrade.Abstractions\TraderShop.Financials.TdAmeritrade.Abstractions.csproj" />
+	<ProjectReference Include="..\TraderShop.Financials.TdAmeritrade.Symbols\TraderShop.Financials.TdAmeritrade.Symbols.csproj" />
   </ItemGroup>
 
 </Project>

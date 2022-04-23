@@ -4,6 +4,8 @@ using Microsoft.Extensions.Options;
 using TraderShop.Financials.TdAmeritrade.Abstractions.DependencyInjection;
 using TraderShop.Financials.TdAmeritrade.Abstractions.Options;
 using TraderShop.Financials.TdAmeritrade.Abstractions.Services;
+using TraderShop.Financials.TdAmeritrade.Symbols.DependencyInjection;
+using TraderShop.Financials.TdAmeritrade.Symbols.Services;
 
 internal sealed class Program
 {
@@ -17,6 +19,8 @@ internal sealed class Program
                 services.Configure<TdAmeritradeOptions>(
                     hostContext.Configuration.GetSection("TdAmeritradeOptions")
                         );
+                services.AddTdAmeritradeSymbolProvider();
+
             })
             .UseEnvironment("development")
             .RunConsoleAsync();
@@ -27,6 +31,7 @@ internal sealed class Program
         private readonly ILogger _logger;
         private readonly IHostApplicationLifetime _applicationLifetime;
         private readonly ITdAmeritradeClientService _tdClient;
+        private readonly ITdAmeritradeSymbolProvider _tdSymbolProvider;
         private readonly IOptionsMonitor<TdAmeritradeOptions> _tdOptions;
 
 
@@ -34,12 +39,14 @@ internal sealed class Program
             ILogger<ConsoleHostService> logger,
             IOptionsMonitor<TdAmeritradeOptions> tdAmeritradeOptions,
             IHostApplicationLifetime appLifetime,
+            ITdAmeritradeSymbolProvider tdClient,
             ITdAmeritradeClientService tdAmeritradeClientService)
         {
             _logger = logger;
             _tdOptions = tdAmeritradeOptions;
             _applicationLifetime = appLifetime;
             _tdClient = tdAmeritradeClientService;
+            _tdSymbolProvider = tdClient;
         }
 
         public Task StartAsync(CancellationToken cancellationToken)
@@ -54,11 +61,13 @@ internal sealed class Program
                     {
                         _logger.LogInformation($"{_tdOptions.CurrentValue.access_token}");
 
-                        var result = await _tdClient.SetAccessToken();
+                        //var result = await _tdClient.SetAccessToken();
+
+                        var instrument = await _tdSymbolProvider.GetEquityInstrument("AAPL");
 
                         _logger.LogInformation($"{_tdOptions.CurrentValue.access_token}");
 
-
+                        _logger.LogInformation($"{instrument.Description}");
                     }
                     catch (Exception ex)
                     {
