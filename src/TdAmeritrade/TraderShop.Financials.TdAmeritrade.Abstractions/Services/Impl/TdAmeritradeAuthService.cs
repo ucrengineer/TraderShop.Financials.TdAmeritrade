@@ -5,13 +5,13 @@ using TraderShop.Financials.TdAmeritrade.Abstractions.Options;
 
 namespace TraderShop.Financials.TdAmeritrade.Abstractions.Services.Impl
 {
-    public abstract class TdAmeritradeClientService : ITdAmeritradeClientService
+    public class TdAmeritradeAuthService : ITdAmeritradeAuthService
     {
         private readonly HttpClient _httpClient;
         private TdAmeritradeOptions _tdAmeritradeOptions;
 
 
-        public TdAmeritradeClientService(HttpClient httpClient, IOptionsMonitor<TdAmeritradeOptions> tdAmeritradeOptions)
+        public TdAmeritradeAuthService(HttpClient httpClient, IOptionsMonitor<TdAmeritradeOptions> tdAmeritradeOptions)
         {
             _httpClient = httpClient;
             _tdAmeritradeOptions = tdAmeritradeOptions.CurrentValue;

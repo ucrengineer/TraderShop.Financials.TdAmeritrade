@@ -30,7 +30,7 @@ internal sealed class Program
     {
         private readonly ILogger _logger;
         private readonly IHostApplicationLifetime _applicationLifetime;
-        private readonly ITdAmeritradeClientService _tdClient;
+        private readonly ITdAmeritradeAuthService _tdClient;
         private readonly ITdAmeritradeSymbolProvider _tdSymbolProvider;
         private readonly IOptionsMonitor<TdAmeritradeOptions> _tdOptions;
 
@@ -40,12 +40,12 @@ internal sealed class Program
             IOptionsMonitor<TdAmeritradeOptions> tdAmeritradeOptions,
             IHostApplicationLifetime appLifetime,
             ITdAmeritradeSymbolProvider tdClient,
-            ITdAmeritradeClientService tdAmeritradeClientService)
+            ITdAmeritradeAuthService TdAmeritradeAuthService)
         {
             _logger = logger;
             _tdOptions = tdAmeritradeOptions;
             _applicationLifetime = appLifetime;
-            _tdClient = tdAmeritradeClientService;
+            _tdClient = TdAmeritradeAuthService;
             _tdSymbolProvider = tdClient;
         }
 

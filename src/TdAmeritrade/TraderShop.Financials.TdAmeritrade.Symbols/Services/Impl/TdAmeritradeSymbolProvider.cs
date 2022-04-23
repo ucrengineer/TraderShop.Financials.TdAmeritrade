@@ -4,25 +4,27 @@ using Newtonsoft.Json;
 using System.Net.Http.Headers;
 using TraderShop.Financials.TdAmeritrade.Abstractions.Models;
 using TraderShop.Financials.TdAmeritrade.Abstractions.Options;
-using TraderShop.Financials.TdAmeritrade.Abstractions.Services.Impl;
+using TraderShop.Financials.TdAmeritrade.Abstractions.Services;
 using TraderShop.Financials.TdAmeritrade.Symbols.Models;
 
 namespace TraderShop.Financials.TdAmeritrade.Symbols.Services.Impl
 {
-    public class TdAmeritradeSymbolProvider : TdAmeritradeClientService, ITdAmeritradeSymbolProvider
+    public class TdAmeritradeSymbolProvider : ITdAmeritradeSymbolProvider
     {
         private readonly HttpClient _httpClient;
+        private readonly ITdAmeritradeAuthService _authService;
         private TdAmeritradeOptions _tdAmeritradeOptions;
 
-        public TdAmeritradeSymbolProvider(HttpClient httpClient, IOptionsMonitor<TdAmeritradeOptions> tdAmeritradeOptions) : base(httpClient, tdAmeritradeOptions)
+        public TdAmeritradeSymbolProvider(HttpClient httpClient, ITdAmeritradeAuthService tdAmeritradeAuthService, IOptionsMonitor<TdAmeritradeOptions> tdAmeritradeOptions)
         {
             _httpClient = httpClient;
+            _authService = tdAmeritradeAuthService;
             _tdAmeritradeOptions = tdAmeritradeOptions.CurrentValue;
             tdAmeritradeOptions.OnChange(x => _tdAmeritradeOptions = x);
         }
         public async Task<Instrument> GetEquityInstrument(string symbol)
         {
-            await SetAccessToken();
+            await _authService.SetAccessToken();
 
             var query = new Dictionary<string, string>
             {

@@ -1,6 +1,6 @@
 ﻿namespace TraderShop.Financials.TdAmeritrade.Abstractions.Services
 {
-    public interface ITdAmeritradeClientService
+    public interface ITdAmeritradeAuthService
     {
         Task<int> SetAccessToken();
     }
