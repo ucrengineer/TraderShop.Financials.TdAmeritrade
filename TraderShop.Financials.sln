@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TraderShop.Financials.TdAme
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TraderShop.Financials.TdAmeritrade.Abstractions", "src\TdAmeritrade\TraderShop.Financials.TdAmeritrade.Abstractions\TraderShop.Financials.TdAmeritrade.Abstractions.csproj", "{DCDBD44B-DF22-4983-9F85-11599727C3BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraderShop.Finacials.TdAmeritrade.PriceHistory", "TraderShop.Finacials.TdAmeritrade.PriceHistory\TraderShop.Finacials.TdAmeritrade.PriceHistory.csproj", "{E1D99887-0A36-4426-A68A-A81AF95BE68C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraderShop.Finacials.TdAmeritrade.PriceHistory", "src\TdAmeritrade\TraderShop.Finacials.TdAmeritrade.PriceHistory\TraderShop.Finacials.TdAmeritrade.PriceHistory.csproj", "{E1D99887-0A36-4426-A68A-A81AF95BE68C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
