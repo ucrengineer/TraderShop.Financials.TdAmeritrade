@@ -3,5 +3,7 @@
     public interface ITdAmeritradeAuthService
     {
         Task<int> SetAccessToken();
+
+        Task<int> SetAuthToken();
     }
 }

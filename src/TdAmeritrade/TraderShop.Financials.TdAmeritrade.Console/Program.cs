@@ -61,13 +61,16 @@ internal sealed class Program
                     {
                         _logger.LogInformation($"{_tdOptions.CurrentValue.access_token}");
 
-                        //var result = await _tdClient.SetAccessToken();
-
-                        var instrument = await _tdSymbolProvider.GetEquityInstrument("AAPL");
-
                         _logger.LogInformation($"{_tdOptions.CurrentValue.access_token}");
 
-                        _logger.LogInformation($"{instrument.Description}");
+                        var instruments = await _tdSymbolProvider.GetInstruments();
+
+                        _logger.LogInformation($"{instruments.Count}");
+
+                        var futures = await _tdSymbolProvider.GetAllFuturesInstruments();
+
+                        _logger.LogInformation($"{futures.Count}");
+
                     }
                     catch (Exception ex)
                     {

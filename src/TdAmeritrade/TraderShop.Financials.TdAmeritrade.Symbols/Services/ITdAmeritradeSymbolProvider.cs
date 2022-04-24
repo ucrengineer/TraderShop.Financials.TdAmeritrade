@@ -13,17 +13,12 @@ namespace TraderShop.Financials.TdAmeritrade.Symbols.Services
     /// </summary>
     public interface ITdAmeritradeSymbolProvider
     {
-        Task<IList<Instrument>> GetEquityInstruments(string? symbol);
+        Task<Instrument> GetInstrument(string symbol);
 
-        Task<Instrument> GetEquityInstrument(string symbol);
+        Task<IList<Instrument>> GetInstruments(string[]? symbol = null);
 
-        Task<IList<Instrument>> GetFutureInstruments(string? symbol);
+        Task<IList<Instrument>> GetAllFuturesInstruments();
 
-        Task<Instrument> GetFutureInstrument(string symbol);
-
-        Task<IList<Instrument>> GetForexInstruments(string? symbol);
-
-        Task<Instrument> GetForexInstrument(string symbol);
-
+        Task<IList<Instrument>> GetAllForexInstruments();
     }
 }

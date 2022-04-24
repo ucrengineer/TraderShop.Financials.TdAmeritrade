@@ -35,5 +35,10 @@ namespace TraderShop.Financials.TdAmeritrade.Abstractions.Services.Impl
             _tdAmeritradeOptions.access_token = result.access_token;
             return 0;
         }
+
+        public Task<int> SetAuthToken()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

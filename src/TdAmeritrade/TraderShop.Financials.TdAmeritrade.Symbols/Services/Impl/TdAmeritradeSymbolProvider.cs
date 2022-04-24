@@ -22,7 +22,12 @@ namespace TraderShop.Financials.TdAmeritrade.Symbols.Services.Impl
             _tdAmeritradeOptions = tdAmeritradeOptions.CurrentValue;
             tdAmeritradeOptions.OnChange(x => _tdAmeritradeOptions = x);
         }
-        public async Task<Instrument> GetEquityInstrument(string symbol)
+        /// <summary>
+        /// returns a single instrument.
+        /// </summary>
+        /// <param name="symbol"></param>
+        /// <returns></returns>
+        public async Task<Instrument> GetInstrument(string symbol)
         {
             await _authService.SetAccessToken();
 
@@ -38,37 +43,88 @@ namespace TraderShop.Financials.TdAmeritrade.Symbols.Services.Impl
 
             var response = await _httpClient.GetAsync(uri);
 
-            var view = await response.Content.ReadAsStringAsync();
+            var responseObject = await response.Content.ReadAsStringAsync();
 
-            var instrument = JsonConvert.DeserializeObject<Dictionary<string, Instrument>>(view);
+            var instrument = JsonConvert.DeserializeObject<Dictionary<string, Instrument>>(responseObject);
 
-            return instrument?.Values?.FirstOrDefault();
+            return instrument?.Values.FirstOrDefault() ?? new Instrument();
 
         }
-        public Task<IList<Instrument>> GetEquityInstruments(string? symbol)
+        /// <summary>
+        /// Default will result in all equities returned.
+        /// If array of symbols are provided, instruments will be returned.
+        /// </summary>
+        /// <param name="symbols"></param>
+        /// <returns></returns>
+        public async Task<IList<Instrument>> GetInstruments(string[]? symbols = null)
+        {
+            await _authService.SetAccessToken();
+
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _tdAmeritradeOptions.access_token);
+
+            var query = new Dictionary<string, string>();
+
+            var uri = string.Empty;
+
+            query = symbols switch
+            {
+                null => new Dictionary<string, string>
+                {
+                    ["symbol"] = "[A-Za-z.]*",
+                    ["projection"] = Projection.SymbolRegex
+                },
+                _ => new Dictionary<string, string>
+                {
+                    ["symbol"] = string.Join(",", symbols).ToString(),
+                    ["projection"] = Projection.SymbolSearch
+                }
+            };
+
+            uri = QueryHelpers.AddQueryString(_httpClient.BaseAddress?.ToString(), query);
+
+            var response = await _httpClient.GetAsync(uri);
+
+            var responseObject = await response.Content.ReadAsStringAsync();
+
+            var instrument = JsonConvert.DeserializeObject<Dictionary<string, Instrument>>(responseObject);
+
+            return instrument?.ToList().Select(x => x.Value).ToList() ?? new List<Instrument>();
+        }
+        /// <summary>
+        /// Returns all of continuous futures markets
+        /// </summary>
+        /// <returns></returns>
+        public async Task<IList<Instrument>> GetAllFuturesInstruments()
+        {
+            await _authService.SetAccessToken();
+
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _tdAmeritradeOptions.access_token);
+
+            var query = new Dictionary<string, string>();
+
+            var uri = string.Empty;
+
+            query = new Dictionary<string, string>
+            {
+                ["symbol"] = string.Join(",", Futures.Symbols),
+                ["projection"] = Projection.SymbolSearch
+            };
+
+
+            uri = QueryHelpers.AddQueryString(_httpClient.BaseAddress?.ToString(), query);
+
+            var response = await _httpClient.GetAsync(uri);
+
+            var responseObject = await response.Content.ReadAsStringAsync();
+
+            var instrument = JsonConvert.DeserializeObject<Dictionary<string, Instrument>>(responseObject);
+
+            return instrument?.ToList().Select(x => x.Value).ToList() ?? new List<Instrument>();
+        }
+
+        public Task<IList<Instrument>> GetAllForexInstruments()
         {
             throw new NotImplementedException();
         }
-
-        public Task<Instrument> GetForexInstrument(string symbol)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IList<Instrument>> GetForexInstruments(string? symbol)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Instrument> GetFutureInstrument(string symbol)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IList<Instrument>> GetFutureInstruments(string? symbol)
-        {
-            throw new NotImplementedException();
-        }
-
     }
 }
