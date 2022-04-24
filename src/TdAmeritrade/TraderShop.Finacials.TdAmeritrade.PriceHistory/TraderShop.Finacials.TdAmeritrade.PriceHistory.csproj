@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\TraderShop.Financials.Abstractions\TraderShop.Financials.Abstractions.csproj" />
+    <ProjectReference Include="..\TraderShop.Financials.TdAmeritrade.Abstractions\TraderShop.Financials.TdAmeritrade.Abstractions.csproj" />
+  </ItemGroup>
+
 </Project>

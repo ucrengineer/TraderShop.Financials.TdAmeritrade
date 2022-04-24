@@ -1,5 +1,5 @@
 ﻿
-namespace TraderShop.Financials.TdAmeritrade.Abstractions.Models
+namespace TraderShop.Financials.TdAmeritrade.Symbols.Models
 {
     public static class Projection
     {
