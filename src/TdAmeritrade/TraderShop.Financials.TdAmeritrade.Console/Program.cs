@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using Microsoft.Extensions.Options;
+using TraderShop.Finacials.TdAmeritrade.PriceHistory.Models;
 using TraderShop.Financials.TdAmeritrade.Abstractions.DependencyInjection;
 using TraderShop.Financials.TdAmeritrade.Abstractions.Options;
 using TraderShop.Financials.TdAmeritrade.Abstractions.Services;
@@ -59,6 +60,17 @@ internal sealed class Program
                 {
                     try
                     {
+                        var test = new PriceHistorySpecs()
+                        {
+                            PeriodType = PeriodType.Day,
+                            Period = 14,
+                            FrequecyType = FrequecyType.Daily,
+                            Frequency = 3,
+                            StartDate = DateTime.Now,
+                            EndDate = DateTime.Now,
+                            NeedExtendedHoursData = false,
+                        };
+
                         _logger.LogInformation($"{_tdOptions.CurrentValue.access_token}");
 
                         _logger.LogInformation($"{_tdOptions.CurrentValue.access_token}");

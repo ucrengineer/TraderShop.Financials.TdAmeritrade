@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Options;
+using TraderShop.Finacials.TdAmeritrade.PriceHistory.Models;
 using TraderShop.Financials.TdAmeritrade.Abstractions.Options;
 using TraderShop.Financials.TdAmeritrade.Abstractions.Services;
 
@@ -17,6 +18,9 @@ namespace TraderShop.Finacials.TdAmeritrade.PriceHistory.Services.Impl
             tdAmeritradeOptions.OnChange(x => _tdAmeritradeOptions = x);
         }
 
-
+        private bool PriceHistorySpecsValidator(PriceHistorySpecs specs)
+        {
+            return true;
+        }
     }
 }
