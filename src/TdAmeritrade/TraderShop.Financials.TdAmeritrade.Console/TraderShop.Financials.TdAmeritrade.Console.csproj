@@ -13,9 +13,9 @@
   </ItemGroup>
 
   <ItemGroup>
-	<ProjectReference Include="..\..\..\TraderShop.Financials.TdAmeritrade.Accounts\TraderShop.Financials.TdAmeritrade.Accounts.csproj" />
 	<ProjectReference Include="..\TraderShop.Finacials.TdAmeritrade.PriceHistory\TraderShop.Finacials.TdAmeritrade.PriceHistory.csproj" />
 	<ProjectReference Include="..\TraderShop.Financials.TdAmeritrade.Abstractions\TraderShop.Financials.TdAmeritrade.Abstractions.csproj" />
+	<ProjectReference Include="..\TraderShop.Financials.TdAmeritrade.Accounts\TraderShop.Financials.TdAmeritrade.Accounts.csproj" />
 	<ProjectReference Include="..\TraderShop.Financials.TdAmeritrade.Symbols\TraderShop.Financials.TdAmeritrade.Symbols.csproj" />
   </ItemGroup>
 
