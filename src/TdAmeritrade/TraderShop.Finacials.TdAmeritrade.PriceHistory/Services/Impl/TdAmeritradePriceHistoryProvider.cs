@@ -8,7 +8,7 @@ using TraderShop.Financials.TdAmeritrade.Abstractions.Services;
 
 namespace TraderShop.Finacials.TdAmeritrade.PriceHistory.Services.Impl
 {
-    public class TdAmeritradePriceHistoryProvider : ITdAmeriradePriceHistoryProvider
+    public class TdAmeritradePriceHistoryProvider : ITdAmeritradePriceHistoryProvider
     {
         private readonly HttpClient _httpClient;
         private readonly ITdAmeritradeAuthService _authService;

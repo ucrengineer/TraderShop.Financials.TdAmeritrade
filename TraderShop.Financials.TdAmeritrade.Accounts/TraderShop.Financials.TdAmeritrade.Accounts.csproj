@@ -1,15 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+	<TargetFramework>net6.0</TargetFramework>
+	<ImplicitUsings>enable</ImplicitUsings>
+	<Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="DependencyInjection\" />
-    <Folder Include="Models\" />
-    <Folder Include="Services\Impl\" />
+	  <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="2.2.0" />
+	  <ProjectReference Include="..\src\TdAmeritrade\TraderShop.Financials.TdAmeritrade.Abstractions\TraderShop.Financials.TdAmeritrade.Abstractions.csproj" />
+	<ProjectReference Include="..\src\TraderShop.Financials.Abstractions\TraderShop.Financials.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>

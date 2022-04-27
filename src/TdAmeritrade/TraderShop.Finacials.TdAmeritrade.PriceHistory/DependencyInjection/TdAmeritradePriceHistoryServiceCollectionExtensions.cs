@@ -9,7 +9,7 @@ namespace TraderShop.Finacials.TdAmeritrade.PriceHistory.DependencyInjection
         public static IServiceCollection AddTdAmeritradePriceHistoryProvider(
             this IServiceCollection services)
         {
-            services.AddHttpClient<ITdAmeriradePriceHistoryProvider, TdAmeritradePriceHistoryProvider>(client =>
+            services.AddHttpClient<ITdAmeritradePriceHistoryProvider, TdAmeritradePriceHistoryProvider>(client =>
           {
               client.BaseAddress = new Uri("https://api.tdameritrade.com/v1/marketdata/");
           });

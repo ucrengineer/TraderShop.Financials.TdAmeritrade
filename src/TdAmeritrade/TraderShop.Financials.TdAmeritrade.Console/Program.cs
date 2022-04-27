@@ -7,6 +7,8 @@ using TraderShop.Finacials.TdAmeritrade.PriceHistory.Services;
 using TraderShop.Financials.TdAmeritrade.Abstractions.DependencyInjection;
 using TraderShop.Financials.TdAmeritrade.Abstractions.Options;
 using TraderShop.Financials.TdAmeritrade.Abstractions.Services;
+using TraderShop.Financials.TdAmeritrade.Accounts.DependencyInjection;
+using TraderShop.Financials.TdAmeritrade.Accounts.Services;
 using TraderShop.Financials.TdAmeritrade.Symbols.DependencyInjection;
 using TraderShop.Financials.TdAmeritrade.Symbols.Services;
 
@@ -24,6 +26,7 @@ internal sealed class Program
                         );
                 services.AddTdAmeritradeSymbolProvider();
                 services.AddTdAmeritradePriceHistoryProvider();
+                services.AddTdAmeritradeAccountProvider();
 
             })
             .UseEnvironment("development")
@@ -36,7 +39,8 @@ internal sealed class Program
         private readonly IHostApplicationLifetime _applicationLifetime;
         private readonly ITdAmeritradeAuthService _tdClient;
         private readonly ITdAmeritradeSymbolProvider _tdSymbolProvider;
-        private readonly ITdAmeriradePriceHistoryProvider _tdPriceHistoryProvider;
+        private readonly ITdAmeritradePriceHistoryProvider _tdPriceHistoryProvider;
+        private readonly ITdAmeritradeAccountProvider _tdAccountProvider;
         private readonly IOptionsMonitor<TdAmeritradeOptions> _tdOptions;
 
 
@@ -45,7 +49,8 @@ internal sealed class Program
             IOptionsMonitor<TdAmeritradeOptions> tdAmeritradeOptions,
             IHostApplicationLifetime appLifetime,
             ITdAmeritradeSymbolProvider tdClient,
-            ITdAmeriradePriceHistoryProvider tdPriceHistory,
+            ITdAmeritradePriceHistoryProvider tdPriceHistory,
+            ITdAmeritradeAccountProvider tdAccountProvider,
             ITdAmeritradeAuthService TdAmeritradeAuthService)
         {
             _logger = logger;
@@ -54,6 +59,7 @@ internal sealed class Program
             _tdClient = TdAmeritradeAuthService;
             _tdSymbolProvider = tdClient;
             _tdPriceHistoryProvider = tdPriceHistory;
+            _tdAccountProvider = tdAccountProvider;
         }
 
         public Task StartAsync(CancellationToken cancellationToken)
@@ -82,6 +88,11 @@ internal sealed class Program
                         var priceHistory = await _tdPriceHistoryProvider.GetPriceHistory(new PriceHistorySpecs());
 
                         _logger.LogInformation($"{priceHistory[0].Volume.ToString()}");
+
+                        var account = await _tdAccountProvider.GetAccount(new string[] { "positions", "orders" });
+
+                        _logger.LogInformation($"{account.CurrentBalances.LiquidationValue}");
+
                     }
                     catch (Exception ex)
                     {

@@ -2,7 +2,7 @@
 
 namespace TraderShop.Finacials.TdAmeritrade.PriceHistory.Services
 {
-    public interface ITdAmeriradePriceHistoryProvider
+    public interface ITdAmeritradePriceHistoryProvider
     {
         Task<Candle[]> GetPriceHistory(PriceHistorySpecs priceHistorySpecs);
     }
