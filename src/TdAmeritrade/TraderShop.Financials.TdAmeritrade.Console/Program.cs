@@ -1,7 +1,9 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using Microsoft.Extensions.Options;
+using TraderShop.Finacials.TdAmeritrade.PriceHistory.DependencyInjection;
 using TraderShop.Finacials.TdAmeritrade.PriceHistory.Models;
+using TraderShop.Finacials.TdAmeritrade.PriceHistory.Services;
 using TraderShop.Financials.TdAmeritrade.Abstractions.DependencyInjection;
 using TraderShop.Financials.TdAmeritrade.Abstractions.Options;
 using TraderShop.Financials.TdAmeritrade.Abstractions.Services;
@@ -21,6 +23,7 @@ internal sealed class Program
                     hostContext.Configuration.GetSection("TdAmeritradeOptions")
                         );
                 services.AddTdAmeritradeSymbolProvider();
+                services.AddTdAmeritradePriceHistoryProvider();
 
             })
             .UseEnvironment("development")
@@ -33,6 +36,7 @@ internal sealed class Program
         private readonly IHostApplicationLifetime _applicationLifetime;
         private readonly ITdAmeritradeAuthService _tdClient;
         private readonly ITdAmeritradeSymbolProvider _tdSymbolProvider;
+        private readonly ITdAmeriradePriceHistoryProvider _tdPriceHistoryProvider;
         private readonly IOptionsMonitor<TdAmeritradeOptions> _tdOptions;
 
 
@@ -41,6 +45,7 @@ internal sealed class Program
             IOptionsMonitor<TdAmeritradeOptions> tdAmeritradeOptions,
             IHostApplicationLifetime appLifetime,
             ITdAmeritradeSymbolProvider tdClient,
+            ITdAmeriradePriceHistoryProvider tdPriceHistory,
             ITdAmeritradeAuthService TdAmeritradeAuthService)
         {
             _logger = logger;
@@ -48,6 +53,7 @@ internal sealed class Program
             _applicationLifetime = appLifetime;
             _tdClient = TdAmeritradeAuthService;
             _tdSymbolProvider = tdClient;
+            _tdPriceHistoryProvider = tdPriceHistory;
         }
 
         public Task StartAsync(CancellationToken cancellationToken)
@@ -60,22 +66,12 @@ internal sealed class Program
                 {
                     try
                     {
-                        var test = new PriceHistorySpecs()
-                        {
-                            PeriodType = PeriodType.Day,
-                            Period = 14,
-                            FrequecyType = FrequecyType.Daily,
-                            Frequency = 3,
-                            StartDate = DateTime.Now,
-                            EndDate = DateTime.Now,
-                            NeedExtendedHoursData = false,
-                        };
 
-                        _logger.LogInformation($"{_tdOptions.CurrentValue.access_token}");
 
-                        _logger.LogInformation($"{_tdOptions.CurrentValue.access_token}");
 
                         var instruments = await _tdSymbolProvider.GetInstruments();
+
+                        _logger.LogCritical($"{_tdOptions.CurrentValue.access_token}");
 
                         _logger.LogInformation($"{instruments.Count}");
 
@@ -83,6 +79,9 @@ internal sealed class Program
 
                         _logger.LogInformation($"{futures.Count}");
 
+                        var priceHistory = await _tdPriceHistoryProvider.GetPriceHistory(new PriceHistorySpecs());
+
+                        _logger.LogInformation($"{priceHistory[0].Volume.ToString()}");
                     }
                     catch (Exception ex)
                     {

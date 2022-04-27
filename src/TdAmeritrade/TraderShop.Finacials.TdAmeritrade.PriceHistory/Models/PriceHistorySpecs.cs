@@ -3,6 +3,11 @@
     public class PriceHistorySpecs
     {
         /// <summary>
+        /// Instrument symbol. Default is AAPL.
+        /// </summary>
+        public string Symbol { get; set; } = "AAPL";
+
+        /// <summary>
         /// The type of period to show. Default is day.
         /// <list type="bullet">
         /// <item>
@@ -20,7 +25,7 @@
         /// </item>
         /// </list>
         /// </summary>
-        public PeriodType PeriodType { get; set; } = PeriodType.Day;
+        public PeriodType PeriodType { get; set; } = PeriodType.year;
 
         /// <summary>
         /// The number of periods to show. Valid periods by periodType (defaults marked with an asterisk):
@@ -42,7 +47,7 @@
         /// </item>
         /// </list>
         /// </summary>
-        public int Period { get; set; } = 10;
+        public int Period { get; set; } = 1;
 
         /// <summary>
         /// The type of frequency with which a new candle is formed.
@@ -65,7 +70,7 @@
         /// <description>daily, weekly*</description>
         /// </item></list>
         /// </summary>
-        public FrequecyType FrequecyType { get; set; } = FrequecyType.Minute;
+        public FrequecyType FrequecyType { get; set; } = FrequecyType.daily;
         /// <summary>
         /// The number of the frequencyType to be included in each candle.
         /// Valid frequencies by frequencyType (defaults marked with an asterisk):
@@ -93,12 +98,12 @@
         /// If startDate and endDate are provided, period should not be provided.
         /// Default is previous trading day.
         /// </summary>
-        public DateTime EndDate { get; set; }
+        public DateTimeOffset EndDate { get; set; } = DateTimeOffset.Now.AddDays(-1);
 
         /// <summary>
         /// Start date as milliseconds since epoch. If startDate and endDate are provided, period should not be provided.
         /// </summary>
-        public DateTime StartDate { get; set; }
+        public DateTimeOffset StartDate { get; set; } = DateTimeOffset.Now.AddYears(-1);
 
         /// <summary>
         /// <b>true</b> to return <b>extended hours data</b>,<b>false</b> for <b>regular market hours</b> only.<b>Default</b>  is <b>true</b>.
@@ -109,17 +114,17 @@
 
     public enum PeriodType
     {
-        Day,
-        Month,
-        Year,
-        Ytd
+        day,
+        month,
+        year,
+        ytd
     }
 
     public enum FrequecyType
     {
-        Minute,
-        Daily,
-        Weekly,
-        Monthly
+        minute,
+        daily,
+        weekly,
+        monthly
     }
 }

@@ -1,9 +1,11 @@
 ﻿namespace TraderShop.Finacials.TdAmeritrade.PriceHistory.Models
 {
-    public class Candles
+    public class Candle
     {
         public decimal Close { get; set; }
-        public DateTime DateTime { get; set; }
+
+        public long DateTime { get; set; }
+
         public decimal High { get; set; }
 
         public decimal Low { get; set; }
@@ -15,7 +17,7 @@
 
     public class PriceHistoryRoot
     {
-        public Candles[] Candles = new Candles[0];
+        public Candle[] Candles { get; set; } = new Candle[0];
 
         public bool Empty { get; set; }
 
