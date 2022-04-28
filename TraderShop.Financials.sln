@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TraderShop.Financials.TdAme
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TraderShop.Financials.Abstractions", "src\TraderShop.Financials.Abstractions\TraderShop.Financials.Abstractions.csproj", "{2B50F73F-74AA-46CA-80B6-184E739CA497}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TraderShop.Financials.TdAmeritrade.Symbols", "src\TdAmeritrade\TraderShop.Financials.TdAmeritrade.Symbols\TraderShop.Financials.TdAmeritrade.Symbols.csproj", "{E13A749B-3553-446E-93AC-23EBC59285C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TraderShop.Financials.TdAmeritrade.Instruments", "src\TdAmeritrade\TraderShop.Financials.TdAmeritrade.Instruments\TraderShop.Financials.TdAmeritrade.Instruments.csproj", "{E13A749B-3553-446E-93AC-23EBC59285C7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TraderShop.Financials.TdAmeritrade.Abstractions", "src\TdAmeritrade\TraderShop.Financials.TdAmeritrade.Abstractions\TraderShop.Financials.TdAmeritrade.Abstractions.csproj", "{DCDBD44B-DF22-4983-9F85-11599727C3BF}"
 EndProject

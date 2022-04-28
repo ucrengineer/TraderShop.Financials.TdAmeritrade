@@ -1,4 +1,4 @@
-﻿namespace TraderShop.Financials.TdAmeritrade.Symbols.Models
+﻿namespace TraderShop.Financials.TdAmeritrade.Instruments.Models
 {
     public class Instrument
     {
