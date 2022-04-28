@@ -93,6 +93,9 @@ internal sealed class Program
 
                         _logger.LogInformation($"{account.CurrentBalances.LiquidationValue}");
 
+                        var accounts = await _tdAccountProvider.GetAccounts(new string[] { "positions", "orders" });
+
+                        _logger.LogInformation($"{accounts.Length}");
                     }
                     catch (Exception ex)
                     {
