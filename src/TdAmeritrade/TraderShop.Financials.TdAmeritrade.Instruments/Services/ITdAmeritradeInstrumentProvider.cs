@@ -1,6 +1,6 @@
-﻿using TraderShop.Financials.TdAmeritrade.Symbols.Models;
+﻿using TraderShop.Financials.TdAmeritrade.Instruments.Models;
 
-namespace TraderShop.Financials.TdAmeritrade.Symbols.Services
+namespace TraderShop.Financials.TdAmeritrade.Instruments.Services
 {
     /// <summary>
     /// [A-Za-z.]*
@@ -11,7 +11,7 @@ namespace TraderShop.Financials.TdAmeritrade.Symbols.Services
     /// https://www.tdameritrade.com/investment-products/forex-trading.html
     /// for forex
     /// </summary>
-    public interface ITdAmeritradeSymbolProvider
+    public interface ITdAmeritradeInstrumentProvider
     {
         Task<Instrument> GetInstrument(string symbol);
 

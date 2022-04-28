@@ -2,20 +2,19 @@
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
-using TraderShop.Financials.TdAmeritrade.Abstractions.Models;
 using TraderShop.Financials.TdAmeritrade.Abstractions.Options;
 using TraderShop.Financials.TdAmeritrade.Abstractions.Services;
-using TraderShop.Financials.TdAmeritrade.Symbols.Models;
+using TraderShop.Financials.TdAmeritrade.Instruments.Models;
 
-namespace TraderShop.Financials.TdAmeritrade.Symbols.Services.Impl
+namespace TraderShop.Financials.TdAmeritrade.Instruments.Services.Impl
 {
-    public class TdAmeritradeSymbolProvider : ITdAmeritradeSymbolProvider
+    public class TdAmeritradeInstrumentProvider : ITdAmeritradeInstrumentProvider
     {
         private readonly HttpClient _httpClient;
         private readonly ITdAmeritradeAuthService _authService;
         private TdAmeritradeOptions _tdAmeritradeOptions;
 
-        public TdAmeritradeSymbolProvider(HttpClient httpClient, ITdAmeritradeAuthService tdAmeritradeAuthService, IOptionsMonitor<TdAmeritradeOptions> tdAmeritradeOptions)
+        public TdAmeritradeInstrumentProvider(HttpClient httpClient, ITdAmeritradeAuthService tdAmeritradeAuthService, IOptionsMonitor<TdAmeritradeOptions> tdAmeritradeOptions)
         {
             _httpClient = httpClient;
             _authService = tdAmeritradeAuthService;

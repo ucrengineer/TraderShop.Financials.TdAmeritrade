@@ -26,7 +26,7 @@ namespace TraderShop.Financials.TdAmeritrade.Accounts.Services.Impl
         {
             await _authService.SetAccessToken();
 
-            string? uri = default;
+            var uri = new Uri($"{_httpClient.BaseAddress}").ToString();
 
             if (fields != null)
             {
@@ -35,12 +35,12 @@ namespace TraderShop.Financials.TdAmeritrade.Accounts.Services.Impl
                     ["fields"] = String.Join(",", fields),
                 };
 
-                uri = QueryHelpers.AddQueryString(_httpClient.BaseAddress?.ToString(), query);
+                uri = QueryHelpers.AddQueryString(uri, query);
             }
 
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _tdAmeritradeOptions.access_token);
 
-            var response = await _httpClient.GetAsync(uri ?? _httpClient?.BaseAddress?.ToString());
+            var response = await _httpClient.GetAsync(uri);
 
             var responseObject = await response.Content.ReadAsStringAsync();
 
@@ -56,11 +56,11 @@ namespace TraderShop.Financials.TdAmeritrade.Accounts.Services.Impl
             return securitiesAccounts;
 
         }
-        public async Task<SecuritiesAccount> GetAccount(string[]? fields)
+        public async Task<SecuritiesAccount> GetAccount(string accountNumber, string[]? fields)
         {
             await _authService.SetAccessToken();
 
-            var uri = new Uri($"{_httpClient.BaseAddress}{_tdAmeritradeOptions.account_number}").ToString();
+            var uri = new Uri($"{_httpClient.BaseAddress}{accountNumber}").ToString();
 
             if (fields != null)
             {

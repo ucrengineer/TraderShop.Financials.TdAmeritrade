@@ -9,8 +9,8 @@ using TraderShop.Financials.TdAmeritrade.Abstractions.Options;
 using TraderShop.Financials.TdAmeritrade.Abstractions.Services;
 using TraderShop.Financials.TdAmeritrade.Accounts.DependencyInjection;
 using TraderShop.Financials.TdAmeritrade.Accounts.Services;
+using TraderShop.Financials.TdAmeritrade.Instruments.Services;
 using TraderShop.Financials.TdAmeritrade.Symbols.DependencyInjection;
-using TraderShop.Financials.TdAmeritrade.Symbols.Services;
 
 internal sealed class Program
 {
@@ -24,7 +24,7 @@ internal sealed class Program
                 services.Configure<TdAmeritradeOptions>(
                     hostContext.Configuration.GetSection("TdAmeritradeOptions")
                         );
-                services.AddTdAmeritradeSymbolProvider();
+                services.AddTdAmeritradeInstrumentProvider();
                 services.AddTdAmeritradePriceHistoryProvider();
                 services.AddTdAmeritradeAccountProvider();
 
@@ -38,7 +38,7 @@ internal sealed class Program
         private readonly ILogger _logger;
         private readonly IHostApplicationLifetime _applicationLifetime;
         private readonly ITdAmeritradeAuthService _tdClient;
-        private readonly ITdAmeritradeSymbolProvider _tdSymbolProvider;
+        private readonly ITdAmeritradeInstrumentProvider _tdInstrumentProvider;
         private readonly ITdAmeritradePriceHistoryProvider _tdPriceHistoryProvider;
         private readonly ITdAmeritradeAccountProvider _tdAccountProvider;
         private readonly IOptionsMonitor<TdAmeritradeOptions> _tdOptions;
@@ -48,7 +48,7 @@ internal sealed class Program
             ILogger<ConsoleHostService> logger,
             IOptionsMonitor<TdAmeritradeOptions> tdAmeritradeOptions,
             IHostApplicationLifetime appLifetime,
-            ITdAmeritradeSymbolProvider tdClient,
+            ITdAmeritradeInstrumentProvider tdClient,
             ITdAmeritradePriceHistoryProvider tdPriceHistory,
             ITdAmeritradeAccountProvider tdAccountProvider,
             ITdAmeritradeAuthService TdAmeritradeAuthService)
@@ -57,7 +57,7 @@ internal sealed class Program
             _tdOptions = tdAmeritradeOptions;
             _applicationLifetime = appLifetime;
             _tdClient = TdAmeritradeAuthService;
-            _tdSymbolProvider = tdClient;
+            _tdInstrumentProvider = tdClient;
             _tdPriceHistoryProvider = tdPriceHistory;
             _tdAccountProvider = tdAccountProvider;
         }
@@ -75,13 +75,13 @@ internal sealed class Program
 
 
 
-                        var instruments = await _tdSymbolProvider.GetInstruments();
+                        var instruments = await _tdInstrumentProvider.GetInstruments();
 
                         _logger.LogCritical($"{_tdOptions.CurrentValue.access_token}");
 
                         _logger.LogInformation($"{instruments.Count}");
 
-                        var futures = await _tdSymbolProvider.GetAllFuturesInstruments();
+                        var futures = await _tdInstrumentProvider.GetAllFuturesInstruments();
 
                         _logger.LogInformation($"{futures.Count}");
 
@@ -89,7 +89,7 @@ internal sealed class Program
 
                         _logger.LogInformation($"{priceHistory[0].Volume.ToString()}");
 
-                        var account = await _tdAccountProvider.GetAccount(new string[] { "positions", "orders" });
+                        var account = await _tdAccountProvider.GetAccount("***REMOVED***", new string[] { "positions", "orders" });
 
                         _logger.LogInformation($"{account.CurrentBalances.LiquidationValue}");
 
