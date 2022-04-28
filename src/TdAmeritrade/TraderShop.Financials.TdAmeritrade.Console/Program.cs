@@ -89,7 +89,7 @@ internal sealed class Program
 
                         _logger.LogInformation($"{priceHistory[0].Volume.ToString()}");
 
-                        var account = await _tdAccountProvider.GetAccount("***REMOVED***", new string[] { "positions", "orders" });
+                        var account = await _tdAccountProvider.GetAccount("", new string[] { "positions", "orders" });
 
                         _logger.LogInformation($"{account.CurrentBalances.LiquidationValue}");
 
