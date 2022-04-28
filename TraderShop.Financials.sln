@@ -23,9 +23,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TraderShop.Finacials.TdAmer
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TraderShop.Financials.TdAmeritrade.Accounts", "src\TdAmeritrade\TraderShop.Financials.TdAmeritrade.Accounts\TraderShop.Financials.TdAmeritrade.Accounts.csproj", "{F4A24BAD-E01C-4869-B462-E571F0AC216B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraderShop.Financials.TdAmeritrade.Orders", "TraderShop.Financials.TdAmeritrade.Orders\TraderShop.Financials.TdAmeritrade.Orders.csproj", "{9B1DEBD8-A39C-4365-95EE-2C57369709D7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraderShop.Financials.TdAmeritrade.Orders", "src\TdAmeritrade\TraderShop.Financials.TdAmeritrade.Orders\TraderShop.Financials.TdAmeritrade.Orders.csproj", "{9B1DEBD8-A39C-4365-95EE-2C57369709D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraderShop.Financials.TdAmeritrade.SavedOrders", "TraderShop.Financials.TdAmeritrade.SavedOrders\TraderShop.Financials.TdAmeritrade.SavedOrders.csproj", "{52B955E6-0549-4F49-8CD1-4247834ABD91}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraderShop.Financials.TdAmeritrade.SavedOrders", "src\TdAmeritrade\TraderShop.Financials.TdAmeritrade.SavedOrders\TraderShop.Financials.TdAmeritrade.SavedOrders.csproj", "{52B955E6-0549-4F49-8CD1-4247834ABD91}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
