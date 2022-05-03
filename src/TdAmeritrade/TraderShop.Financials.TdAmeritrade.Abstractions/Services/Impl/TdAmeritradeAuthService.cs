@@ -21,18 +21,25 @@ namespace TraderShop.Financials.TdAmeritrade.Abstractions.Services.Impl
         public async Task<int> SetAccessToken()
         {
 
-            var content = new FormUrlEncodedContent(new[]
+            // will cache the token
+            // possible set access token from
+            if (DateTime.Now > DateTime.Now.AddSeconds(_tdAmeritradeOptions.expirers_in))
             {
-                new KeyValuePair<string, string>("grant_type",_tdAmeritradeOptions.grant_type),
-                new KeyValuePair<string, string>("refresh_token",_tdAmeritradeOptions.refresh_token),
-                new KeyValuePair<string, string>("client_id",_tdAmeritradeOptions.client_id)
-            });
+                var content = new FormUrlEncodedContent(
+                    new[]
+                        {
+                            new KeyValuePair<string, string>("grant_type",_tdAmeritradeOptions.grant_type),
+                            new KeyValuePair<string, string>("refresh_token",_tdAmeritradeOptions.refresh_token),
+                            new KeyValuePair<string, string>("client_id",_tdAmeritradeOptions.client_id)
+                        });
 
-            var response = await _httpClient.PostAsync(_tdAmeritradeOptions.auth_url, content);
+                var response = await _httpClient.PostAsync(_tdAmeritradeOptions.auth_url, content);
 
-            var result = JsonConvert.DeserializeObject<PostAccessTokenResponse>(await response.Content.ReadAsStringAsync()) ?? new PostAccessTokenResponse() { error = $"Response Status Code : {response.StatusCode}" };
+                var result = JsonConvert.DeserializeObject<PostAccessTokenResponse>(await response.Content.ReadAsStringAsync()) ?? new PostAccessTokenResponse() { error = $"Response Status Code : {response.StatusCode}" };
 
-            _tdAmeritradeOptions.access_token = result.access_token;
+                _tdAmeritradeOptions.access_token = result.access_token;
+            }
+
             return 0;
         }
 

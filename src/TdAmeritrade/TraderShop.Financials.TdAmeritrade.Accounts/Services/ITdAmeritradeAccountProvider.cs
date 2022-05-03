@@ -11,10 +11,10 @@ namespace TraderShop.Financials.TdAmeritrade.Accounts.Services
         /// Balances displayed by default, additional fields can be added here by adding positions or orders
         /// Example: fields=positions,orders
         /// </summary>
-        /// <param name="accountNumber"></param>
+        /// <param name="accountId"></param>
         /// <param name="fields"></param>
         /// <returns></returns>
-        Task<SecuritiesAccount> GetAccount(string accountNumber, string[]? fields = null);
+        Task<SecuritiesAccount> GetAccount(string accountId, string[]? fields = null);
 
         /// <summary>
         /// Balances displayed by default, additional fields can be added here by adding positions or orders

@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-	  <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="2.2.0" />
 	  <ProjectReference Include="..\..\TraderShop.Financials.Abstractions\TraderShop.Financials.Abstractions.csproj" />
 	  <ProjectReference Include="..\TraderShop.Financials.TdAmeritrade.Abstractions\TraderShop.Financials.TdAmeritrade.Abstractions.csproj" />
   </ItemGroup>

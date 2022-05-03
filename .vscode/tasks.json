@@ -1,0 +1,41 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/src/TdAmeritrade/TraderShop.Financials.TdAmeritrade.Console/TraderShop.Financials.TdAmeritrade.Console.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "publish",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "${workspaceFolder}/src/TdAmeritrade/TraderShop.Financials.TdAmeritrade.Console/TraderShop.Financials.TdAmeritrade.Console.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "watch",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "watch",
+                "run",
+                "--project",
+                "${workspaceFolder}/src/TdAmeritrade/TraderShop.Financials.TdAmeritrade.Console/TraderShop.Financials.TdAmeritrade.Console.csproj"
+            ],
+            "problemMatcher": "$msCompile"
+        }
+    ]
+}

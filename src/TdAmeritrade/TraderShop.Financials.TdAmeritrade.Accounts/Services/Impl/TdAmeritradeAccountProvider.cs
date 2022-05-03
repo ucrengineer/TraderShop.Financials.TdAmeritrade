@@ -56,11 +56,11 @@ namespace TraderShop.Financials.TdAmeritrade.Accounts.Services.Impl
             return securitiesAccounts;
 
         }
-        public async Task<SecuritiesAccount> GetAccount(string accountNumber, string[]? fields)
+        public async Task<SecuritiesAccount> GetAccount(string accountId, string[]? fields)
         {
             await _authService.SetAccessToken();
 
-            var uri = new Uri($"{_httpClient.BaseAddress}{accountNumber}").ToString();
+            var uri = new Uri($"{_httpClient.BaseAddress}{accountId}").ToString();
 
             if (fields != null)
             {
