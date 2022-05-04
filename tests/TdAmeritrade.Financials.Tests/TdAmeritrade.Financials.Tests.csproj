@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0" />
+    <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="coverlet.collector" Version="3.1.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\TdAmeritrade\TraderShop.Finacials.TdAmeritrade.PriceHistory\TraderShop.Finacials.TdAmeritrade.PriceHistory.csproj" />
+    <ProjectReference Include="..\..\src\TdAmeritrade\TraderShop.Financials.TdAmeritrade.Abstractions\TraderShop.Financials.TdAmeritrade.Abstractions.csproj" />
+    <ProjectReference Include="..\..\src\TdAmeritrade\TraderShop.Financials.TdAmeritrade.Accounts\TraderShop.Financials.TdAmeritrade.Accounts.csproj" />
+    <ProjectReference Include="..\..\src\TdAmeritrade\TraderShop.Financials.TdAmeritrade.Console\TraderShop.Financials.TdAmeritrade.Console.csproj" />
+    <ProjectReference Include="..\..\src\TdAmeritrade\TraderShop.Financials.TdAmeritrade.Instruments\TraderShop.Financials.TdAmeritrade.Instruments.csproj" />
+    <ProjectReference Include="..\..\src\TdAmeritrade\TraderShop.Financials.TdAmeritrade.Orders\TraderShop.Financials.TdAmeritrade.Orders.csproj" />
+    <ProjectReference Include="..\..\src\TdAmeritrade\TraderShop.Financials.TdAmeritrade.SavedOrders\TraderShop.Financials.TdAmeritrade.SavedOrders.csproj" />
+    <ProjectReference Include="..\..\src\TraderShop.Financials.Abstractions\TraderShop.Financials.Abstractions.csproj" />
+  </ItemGroup>
+
+</Project>
