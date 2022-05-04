@@ -77,7 +77,7 @@ internal sealed class Program
 
                         var instruments = await _tdInstrumentProvider.GetInstruments();
 
-                        _logger.LogCritical($"{_tdOptions.CurrentValue.access_token}");
+                        _logger.LogCritical($"{await _tdClient.GetBearerToken()}");
 
                         _logger.LogInformation($"{instruments.Count}");
 

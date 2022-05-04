@@ -47,7 +47,7 @@ namespace TraderShop.Financials.TdAmeritrade.Abstractions.Services.Impl
             var content = new FormUrlEncodedContent(
                 new[]
                     {
-                            new KeyValuePair<string, string>("grant_type",_tdAmeritradeOptions.grant_type),
+                            new KeyValuePair<string, string>("grant_type","refresh_token"),
                             new KeyValuePair<string, string>("refresh_token",_tdAmeritradeOptions.refresh_token),
                             new KeyValuePair<string, string>("client_id",_tdAmeritradeOptions.client_id)
                     });
