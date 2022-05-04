@@ -28,7 +28,7 @@ namespace TraderShop.Financials.TdAmeritrade.Instruments.Services.Impl
         /// <returns></returns>
         public async Task<Instrument> GetInstrument(string symbol)
         {
-            await _authService.SetAccessToken();
+            //await _authService.SetAccessToken();
 
             var query = new Dictionary<string, string>
             {
@@ -38,7 +38,7 @@ namespace TraderShop.Financials.TdAmeritrade.Instruments.Services.Impl
 
             var uri = QueryHelpers.AddQueryString(_httpClient.BaseAddress?.ToString(), query);
 
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _tdAmeritradeOptions.access_token);
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await _authService.GetBearerToken());
 
             var response = await _httpClient.GetAsync(uri);
 
@@ -57,9 +57,7 @@ namespace TraderShop.Financials.TdAmeritrade.Instruments.Services.Impl
         /// <returns></returns>
         public async Task<IList<Instrument>> GetInstruments(string[]? symbols = null)
         {
-            await _authService.SetAccessToken();
-
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _tdAmeritradeOptions.access_token);
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await _authService.GetBearerToken());
 
             var query = new Dictionary<string, string>();
 
@@ -95,9 +93,7 @@ namespace TraderShop.Financials.TdAmeritrade.Instruments.Services.Impl
         /// <returns></returns>
         public async Task<IList<Instrument>> GetAllFuturesInstruments()
         {
-            await _authService.SetAccessToken();
-
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _tdAmeritradeOptions.access_token);
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await _authService.GetBearerToken());
 
             var query = new Dictionary<string, string>();
 

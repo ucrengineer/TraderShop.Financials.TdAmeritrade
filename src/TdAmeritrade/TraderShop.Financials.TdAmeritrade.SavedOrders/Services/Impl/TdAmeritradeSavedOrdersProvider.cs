@@ -23,11 +23,9 @@ namespace TraderShop.Financials.TdAmeritrade.SavedOrders.Services.Impl
         }
         async Task<SavedOrder> ITdAmeritradeSavedOrdersProvider.GetSavedOrder(string accountId, string savedOrderId)
         {
-            await _authService.SetAccessToken();
-
             var uri = new Uri($"{_httpClient.BaseAddress}{accountId}/savedorders/{savedOrderId}").ToString();
 
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _tdAmeritradeOptions.access_token);
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await _authService.GetBearerToken());
 
             var response = await _httpClient.GetAsync(uri);
 
@@ -40,11 +38,9 @@ namespace TraderShop.Financials.TdAmeritrade.SavedOrders.Services.Impl
 
         async Task<SavedOrder[]> ITdAmeritradeSavedOrdersProvider.GetSavedOrdersByAccountId(string accountId)
         {
-            await _authService.SetAccessToken();
-
             var uri = new Uri($"{_httpClient.BaseAddress}{accountId}/savedorders").ToString();
 
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _tdAmeritradeOptions.access_token);
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await _authService.GetBearerToken());
 
             var response = await _httpClient.GetAsync(uri);
 

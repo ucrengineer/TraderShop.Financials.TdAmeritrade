@@ -23,9 +23,7 @@ namespace TraderShop.Finacials.TdAmeritrade.PriceHistory.Services.Impl
 
         public async Task<Candle[]> GetPriceHistory(PriceHistorySpecs priceHistorySpecs)
         {
-            await _authService.SetAccessToken();
-
-
+            //await _authService.SetAccessToken();
             _httpClient.BaseAddress = new Uri($"{_httpClient.BaseAddress}{priceHistorySpecs.Symbol}/pricehistory");
 
             var query = new Dictionary<string, string>
@@ -41,7 +39,7 @@ namespace TraderShop.Finacials.TdAmeritrade.PriceHistory.Services.Impl
 
             var uri = QueryHelpers.AddQueryString(_httpClient.BaseAddress?.ToString(), query);
 
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _tdAmeritradeOptions.access_token);
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await _authService.GetBearerToken());
 
             var response = await _httpClient.GetAsync(uri);
 

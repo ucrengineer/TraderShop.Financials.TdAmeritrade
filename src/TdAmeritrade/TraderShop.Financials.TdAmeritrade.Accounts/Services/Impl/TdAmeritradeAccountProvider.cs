@@ -24,7 +24,6 @@ namespace TraderShop.Financials.TdAmeritrade.Accounts.Services.Impl
         }
         public async Task<SecuritiesAccount[]> GetAccounts(string[]? fields)
         {
-            await _authService.SetAccessToken();
 
             var uri = new Uri($"{_httpClient.BaseAddress}").ToString();
 
@@ -38,7 +37,7 @@ namespace TraderShop.Financials.TdAmeritrade.Accounts.Services.Impl
                 uri = QueryHelpers.AddQueryString(uri, query);
             }
 
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _tdAmeritradeOptions.access_token);
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await _authService.GetBearerToken());
 
             var response = await _httpClient.GetAsync(uri);
 
@@ -58,7 +57,6 @@ namespace TraderShop.Financials.TdAmeritrade.Accounts.Services.Impl
         }
         public async Task<SecuritiesAccount> GetAccount(string accountId, string[]? fields)
         {
-            await _authService.SetAccessToken();
 
             var uri = new Uri($"{_httpClient.BaseAddress}{accountId}").ToString();
 
@@ -72,7 +70,7 @@ namespace TraderShop.Financials.TdAmeritrade.Accounts.Services.Impl
                 uri = QueryHelpers.AddQueryString(uri, query);
             }
 
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _tdAmeritradeOptions.access_token);
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await _authService.GetBearerToken());
 
             var response = await _httpClient.GetAsync(uri);
 
