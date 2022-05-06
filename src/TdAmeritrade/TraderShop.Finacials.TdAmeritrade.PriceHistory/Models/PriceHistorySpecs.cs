@@ -8,8 +8,13 @@
         public string Symbol { get; set; } = "AAPL";
 
         /// <summary>
-        /// The type of period to show. Default is day.
+        /// The type of period to show. Default is <b>day</b>.
         /// <list type="bullet">
+        /// <item>
+        /// <description>
+        /// day
+        /// </description>
+        /// </item>
         /// <item>
         /// <description>
         /// month

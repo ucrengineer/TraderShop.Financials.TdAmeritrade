@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using TraderShop.Financials.Abstractions.Model;
+using TraderShop.Financials.Abstractions.Services;
 using TraderShop.Financials.TdAmeritrade.Abstractions.Models;
 using TraderShop.Financials.TdAmeritrade.Abstractions.Options;
 
@@ -12,15 +13,18 @@ namespace TraderShop.Financials.TdAmeritrade.Abstractions.Services.Impl
         private readonly HttpClient _httpClient;
         private readonly IMemoryCache _memoryCache;
         private TdAmeritradeOptions _tdAmeritradeOptions;
+        private readonly IErrorHandler _errorHandler;
 
 
         public TdAmeritradeAuthService(
             HttpClient httpClient,
             IMemoryCache memoryCache,
+            IErrorHandler errorHandler,
             IOptionsMonitor<TdAmeritradeOptions> tdAmeritradeOptions)
         {
             _httpClient = httpClient;
             _memoryCache = memoryCache;
+            _errorHandler = errorHandler;
             _tdAmeritradeOptions = tdAmeritradeOptions.CurrentValue;
             tdAmeritradeOptions.OnChange(x => _tdAmeritradeOptions = x);
         }
@@ -53,6 +57,8 @@ namespace TraderShop.Financials.TdAmeritrade.Abstractions.Services.Impl
                     });
 
             var response = await _httpClient.PostAsync(_tdAmeritradeOptions.auth_url, content);
+
+            await _errorHandler.CheckForErrorsAsync(response);
 
             return JsonConvert.DeserializeObject<PostAccessTokenResponse>(await response.Content.ReadAsStringAsync()) ?? new PostAccessTokenResponse() { error = $"Response Status Code : {response.StatusCode}" };
         }

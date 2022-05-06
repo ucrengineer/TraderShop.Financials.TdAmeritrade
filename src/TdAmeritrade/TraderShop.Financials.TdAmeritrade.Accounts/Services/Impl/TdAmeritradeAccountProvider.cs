@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.WebUtilities;
-using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
-using TraderShop.Financials.TdAmeritrade.Abstractions.Options;
+using TraderShop.Financials.Abstractions.Services;
 using TraderShop.Financials.TdAmeritrade.Abstractions.Services;
 using TraderShop.Financials.TdAmeritrade.Accounts.Models;
 
@@ -12,15 +11,12 @@ namespace TraderShop.Financials.TdAmeritrade.Accounts.Services.Impl
     {
         private readonly ITdAmeritradeAuthService _authService;
         private readonly HttpClient _httpClient;
-        private TdAmeritradeOptions _tdAmeritradeOptions;
-
-
-        public TdAmeritradeAccountProvider(ITdAmeritradeAuthService authService, HttpClient httpClient, IOptionsMonitor<TdAmeritradeOptions> tdAmeritradeOptions)
+        private readonly IErrorHandler _errorHandler;
+        public TdAmeritradeAccountProvider(ITdAmeritradeAuthService authService, HttpClient httpClient, IErrorHandler errorHandler)
         {
             _authService = authService;
             _httpClient = httpClient;
-            _tdAmeritradeOptions = tdAmeritradeOptions.CurrentValue;
-            tdAmeritradeOptions.OnChange(x => _tdAmeritradeOptions = x);
+            _errorHandler = errorHandler;
         }
         public async Task<SecuritiesAccount[]> GetAccounts(string[]? fields)
         {
@@ -41,6 +37,8 @@ namespace TraderShop.Financials.TdAmeritrade.Accounts.Services.Impl
 
             var response = await _httpClient.GetAsync(uri);
 
+            await _errorHandler.CheckForErrorsAsync(response);
+
             var responseObject = await response.Content.ReadAsStringAsync();
 
             var securitesAccountRoots = JsonConvert.DeserializeObject<SecuritiesAccountRoot[]>(responseObject);
@@ -57,6 +55,7 @@ namespace TraderShop.Financials.TdAmeritrade.Accounts.Services.Impl
         }
         public async Task<SecuritiesAccount> GetAccount(string accountId, string[]? fields)
         {
+            _errorHandler.CheckForNullOrEmpty(new string[] { accountId });
 
             var uri = new Uri($"{_httpClient.BaseAddress}{accountId}").ToString();
 
@@ -73,6 +72,8 @@ namespace TraderShop.Financials.TdAmeritrade.Accounts.Services.Impl
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await _authService.GetBearerToken());
 
             var response = await _httpClient.GetAsync(uri);
+
+            await _errorHandler.CheckForErrorsAsync(response);
 
             var responseObject = await response.Content.ReadAsStringAsync();
 

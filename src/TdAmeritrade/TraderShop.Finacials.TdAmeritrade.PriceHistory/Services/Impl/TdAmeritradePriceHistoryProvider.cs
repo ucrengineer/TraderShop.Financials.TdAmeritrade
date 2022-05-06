@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.WebUtilities;
-using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
 using TraderShop.Finacials.TdAmeritrade.PriceHistory.Models;
-using TraderShop.Financials.TdAmeritrade.Abstractions.Options;
+using TraderShop.Financials.Abstractions.Services;
 using TraderShop.Financials.TdAmeritrade.Abstractions.Services;
 
 namespace TraderShop.Finacials.TdAmeritrade.PriceHistory.Services.Impl
@@ -12,18 +11,16 @@ namespace TraderShop.Finacials.TdAmeritrade.PriceHistory.Services.Impl
     {
         private readonly HttpClient _httpClient;
         private readonly ITdAmeritradeAuthService _authService;
-        private TdAmeritradeOptions _tdAmeritradeOptions;
-        public TdAmeritradePriceHistoryProvider(HttpClient httpClient, ITdAmeritradeAuthService tdAmeritradeAuthService, IOptionsMonitor<TdAmeritradeOptions> tdAmeritradeOptions)
+        private readonly IErrorHandler _errorHandler;
+        public TdAmeritradePriceHistoryProvider(HttpClient httpClient, ITdAmeritradeAuthService tdAmeritradeAuthService, IErrorHandler errorHandler)
         {
             _httpClient = httpClient;
             _authService = tdAmeritradeAuthService;
-            _tdAmeritradeOptions = tdAmeritradeOptions.CurrentValue;
-            tdAmeritradeOptions.OnChange(x => _tdAmeritradeOptions = x);
+            _errorHandler = errorHandler;
         }
 
         public async Task<Candle[]> GetPriceHistory(PriceHistorySpecs priceHistorySpecs)
         {
-            //await _authService.SetAccessToken();
             _httpClient.BaseAddress = new Uri($"{_httpClient.BaseAddress}{priceHistorySpecs.Symbol}/pricehistory");
 
             var query = new Dictionary<string, string>
@@ -34,7 +31,6 @@ namespace TraderShop.Finacials.TdAmeritrade.PriceHistory.Services.Impl
                 ["frequency"] = priceHistorySpecs.Frequency.ToString(),
                 ["endDate"] = priceHistorySpecs.EndDate.ToUnixTimeMilliseconds().ToString(),
                 ["startDate"] = priceHistorySpecs.StartDate.ToUnixTimeMilliseconds().ToString()
-
             };
 
             var uri = QueryHelpers.AddQueryString(_httpClient.BaseAddress?.ToString(), query);
@@ -43,13 +39,13 @@ namespace TraderShop.Finacials.TdAmeritrade.PriceHistory.Services.Impl
 
             var response = await _httpClient.GetAsync(uri);
 
+            await _errorHandler.CheckForErrorsAsync(response);
+
             var responseObject = await response.Content.ReadAsStringAsync();
 
             var candles = JsonConvert.DeserializeObject<PriceHistoryRoot>(responseObject);
 
             return candles?.Candles;
         }
-
     }
 }
-

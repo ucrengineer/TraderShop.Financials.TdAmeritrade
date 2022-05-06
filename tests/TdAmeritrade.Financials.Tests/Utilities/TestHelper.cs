@@ -4,9 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using TraderShop.Finacials.TdAmeritrade.PriceHistory.DependencyInjection;
+using TraderShop.Financials.Abstractions.DependencyInjection;
 using TraderShop.Financials.TdAmeritrade.Abstractions.DependencyInjection;
 using TraderShop.Financials.TdAmeritrade.Abstractions.Options;
 using TraderShop.Financials.TdAmeritrade.Accounts.DependencyInjection;
+using TraderShop.Financials.TdAmeritrade.SavedOrders.DependencyInjection;
 using TraderShop.Financials.TdAmeritrade.Symbols.DependencyInjection;
 
 namespace TdAmeritrade.Financials.Tests.Utilities
@@ -29,6 +31,8 @@ namespace TdAmeritrade.Financials.Tests.Utilities
                 x.refresh_token = options[nameof(TdAmeritradeOptions)].refresh_token;
             });
 
+            services.AddFinancialsAbstractionsServices();
+
             services.AddTdAmeritradeClient();
 
             services.AddTdAmeritradeInstrumentProvider();
@@ -36,6 +40,8 @@ namespace TdAmeritrade.Financials.Tests.Utilities
             services.AddTdAmeritradePriceHistoryProvider();
 
             services.AddTdAmeritradeAccountProvider();
+
+            services.AddTdAmeritradeSavedOrdersProvider();
 
             return services.BuildServiceProvider();
         }

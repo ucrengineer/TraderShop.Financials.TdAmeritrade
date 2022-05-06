@@ -1,7 +1,6 @@
-﻿using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System.Net.Http.Headers;
-using TraderShop.Financials.TdAmeritrade.Abstractions.Options;
+using TraderShop.Financials.Abstractions.Services;
 using TraderShop.Financials.TdAmeritrade.Abstractions.Services;
 using TraderShop.Financials.TdAmeritrade.SavedOrders.Models;
 
@@ -11,23 +10,26 @@ namespace TraderShop.Financials.TdAmeritrade.SavedOrders.Services.Impl
     {
         private readonly ITdAmeritradeAuthService _authService;
         private readonly HttpClient _httpClient;
-        private TdAmeritradeOptions _tdAmeritradeOptions;
+        private readonly IErrorHandler _errorHandler;
 
-        public TdAmeritradeSavedOrdersProvider(ITdAmeritradeAuthService tdAmeritradeAuthService, HttpClient httpClient, IOptionsMonitor<TdAmeritradeOptions> tdAmeritradeOptions)
+        public TdAmeritradeSavedOrdersProvider(ITdAmeritradeAuthService tdAmeritradeAuthService, HttpClient httpClient, IErrorHandler errorHandler)
         {
             _authService = tdAmeritradeAuthService;
             _httpClient = httpClient;
-            _tdAmeritradeOptions = tdAmeritradeOptions.CurrentValue;
-            tdAmeritradeOptions.OnChange(x => _tdAmeritradeOptions = x);
+            _errorHandler = errorHandler;
 
         }
         async Task<SavedOrder> ITdAmeritradeSavedOrdersProvider.GetSavedOrder(string accountId, string savedOrderId)
         {
+            _errorHandler.CheckForNullOrEmpty(new string[] { accountId, savedOrderId });
+
             var uri = new Uri($"{_httpClient.BaseAddress}{accountId}/savedorders/{savedOrderId}").ToString();
 
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await _authService.GetBearerToken());
 
             var response = await _httpClient.GetAsync(uri);
+
+            await _errorHandler.CheckForErrorsAsync(response);
 
             var responseObject = await response.Content.ReadAsStringAsync();
 
@@ -38,11 +40,15 @@ namespace TraderShop.Financials.TdAmeritrade.SavedOrders.Services.Impl
 
         async Task<SavedOrder[]> ITdAmeritradeSavedOrdersProvider.GetSavedOrdersByAccountId(string accountId)
         {
+            _errorHandler.CheckForNullOrEmpty(new string[] { accountId });
+
             var uri = new Uri($"{_httpClient.BaseAddress}{accountId}/savedorders").ToString();
 
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await _authService.GetBearerToken());
 
             var response = await _httpClient.GetAsync(uri);
+
+            await _errorHandler.CheckForErrorsAsync(response);
 
             var responseObject = await response.Content.ReadAsStringAsync();
 

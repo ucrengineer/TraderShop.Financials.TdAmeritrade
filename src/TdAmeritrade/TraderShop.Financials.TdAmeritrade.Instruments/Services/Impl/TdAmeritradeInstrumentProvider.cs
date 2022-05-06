@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.WebUtilities;
-using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
-using TraderShop.Financials.TdAmeritrade.Abstractions.Options;
+using TraderShop.Financials.Abstractions.Services;
 using TraderShop.Financials.TdAmeritrade.Abstractions.Services;
 using TraderShop.Financials.TdAmeritrade.Instruments.Models;
 
@@ -12,14 +11,13 @@ namespace TraderShop.Financials.TdAmeritrade.Instruments.Services.Impl
     {
         private readonly HttpClient _httpClient;
         private readonly ITdAmeritradeAuthService _authService;
-        private TdAmeritradeOptions _tdAmeritradeOptions;
+        private readonly IErrorHandler _errorHandler;
 
-        public TdAmeritradeInstrumentProvider(HttpClient httpClient, ITdAmeritradeAuthService tdAmeritradeAuthService, IOptionsMonitor<TdAmeritradeOptions> tdAmeritradeOptions)
+        public TdAmeritradeInstrumentProvider(HttpClient httpClient, ITdAmeritradeAuthService tdAmeritradeAuthService, IErrorHandler errorHandler)
         {
             _httpClient = httpClient;
             _authService = tdAmeritradeAuthService;
-            _tdAmeritradeOptions = tdAmeritradeOptions.CurrentValue;
-            tdAmeritradeOptions.OnChange(x => _tdAmeritradeOptions = x);
+            _errorHandler = errorHandler;
         }
         /// <summary>
         /// returns a single instrument.
@@ -28,8 +26,6 @@ namespace TraderShop.Financials.TdAmeritrade.Instruments.Services.Impl
         /// <returns></returns>
         public async Task<Instrument> GetInstrument(string symbol)
         {
-            //await _authService.SetAccessToken();
-
             var query = new Dictionary<string, string>
             {
                 ["symbol"] = symbol,
@@ -41,6 +37,8 @@ namespace TraderShop.Financials.TdAmeritrade.Instruments.Services.Impl
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await _authService.GetBearerToken());
 
             var response = await _httpClient.GetAsync(uri);
+
+            await _errorHandler.CheckForErrorsAsync(response);
 
             var responseObject = await response.Content.ReadAsStringAsync();
 
@@ -81,6 +79,8 @@ namespace TraderShop.Financials.TdAmeritrade.Instruments.Services.Impl
 
             var response = await _httpClient.GetAsync(uri);
 
+            await _errorHandler.CheckForErrorsAsync(response);
+
             var responseObject = await response.Content.ReadAsStringAsync();
 
             var instrument = JsonConvert.DeserializeObject<Dictionary<string, Instrument>>(responseObject);
@@ -109,6 +109,8 @@ namespace TraderShop.Financials.TdAmeritrade.Instruments.Services.Impl
             uri = QueryHelpers.AddQueryString(_httpClient.BaseAddress?.ToString(), query);
 
             var response = await _httpClient.GetAsync(uri);
+
+            await _errorHandler.CheckForErrorsAsync(response);
 
             var responseObject = await response.Content.ReadAsStringAsync();
 

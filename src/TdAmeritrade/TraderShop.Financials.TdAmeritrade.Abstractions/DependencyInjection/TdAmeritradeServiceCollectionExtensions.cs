@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using TraderShop.Financials.Abstractions.DependencyInjection;
 using TraderShop.Financials.TdAmeritrade.Abstractions.Services;
 using TraderShop.Financials.TdAmeritrade.Abstractions.Services.Impl;
 
@@ -10,6 +11,8 @@ namespace TraderShop.Financials.TdAmeritrade.Abstractions.DependencyInjection
             this IServiceCollection services)
         {
             services.AddMemoryCache();
+
+            services.AddFinancialsAbstractionsServices();
 
             services.AddHttpClient<ITdAmeritradeAuthService, TdAmeritradeAuthService>(client =>
             {
