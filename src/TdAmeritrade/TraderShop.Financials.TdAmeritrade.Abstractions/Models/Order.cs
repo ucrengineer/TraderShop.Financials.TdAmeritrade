@@ -20,9 +20,9 @@ namespace TraderShop.Financials.TdAmeritrade.Abstractions.Models
         public string StopPriceLinkType { get; set; } = string.Empty;
         public double StopPriceOffset { get; set; }
         public string StopType { get; set; } = string.Empty;
+        public string Price { get; set; } = string.Empty;
         public string PriceLinkBasis { get; set; } = string.Empty;
         public string PriceLinkType { get; set; } = string.Empty;
-        public double Price { get; set; }
         public string TaxLotMethod { get; set; } = string.Empty;
         public OrderLeg[] OrderLegCollection { get; set; } = new OrderLeg[0];
         public double ActivationPrice { get; set; }
@@ -89,6 +89,7 @@ namespace TraderShop.Financials.TdAmeritrade.Abstractions.Models
         public string ExecutionType { get; set; } = string.Empty;
         public double Quantity { get; set; }
         public double OrderRemainingQuantity { get; set; }
+        public ExecutionLeg[] ExecutionLegs { get; set; } = new ExecutionLeg[0];
 
 
     }

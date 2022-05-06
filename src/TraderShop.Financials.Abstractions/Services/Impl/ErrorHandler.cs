@@ -8,6 +8,11 @@
 
             if (httpResponseMessage.IsSuccessStatusCode && !responseObject.Any())
             {
+                if (httpResponseMessage?.RequestMessage?.Method == HttpMethod.Post)
+                {
+                    return;
+                }
+
                 throw new Exception($"Http Code : {httpResponseMessage.StatusCode} but no content is returned");
             }
             if (!httpResponseMessage.IsSuccessStatusCode)

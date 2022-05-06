@@ -19,7 +19,6 @@ namespace TraderShop.Financials.TdAmeritrade.Abstractions.DependencyInjection
                 client.BaseAddress = new Uri("https://api.tdameritrade.com/v1/oauth2/token");
             });
 
-
             return services;
         }
     }

@@ -1,22 +1,22 @@
-﻿using Microsoft.Extensions.Caching.Memory;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using System.Threading.Tasks;
 using TdAmeritrade.Financials.Tests.Utilities;
 using TraderShop.Financials.TdAmeritrade.Abstractions.Services;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace TdAmeritrade.Financials.Tests
 {
     public class AuthService
     {
         private readonly ITdAmeritradeAuthService _authService;
-        private readonly IMemoryCache _cache;
 
-        public AuthService()
+        private readonly ITestOutputHelper _output;
+
+        public AuthService(ITestOutputHelper output)
         {
             _authService = TestHelper.GetServiceProvider().GetRequiredService<ITdAmeritradeAuthService>();
-            _cache = TestHelper.GetServiceProvider().GetRequiredService<IMemoryCache>();
-
+            _output = output;
         }
 
         [Fact]
@@ -26,6 +26,7 @@ namespace TdAmeritrade.Financials.Tests
 
             Assert.NotNull(token);
 
+            _output.WriteLine(token);
         }
     }
 }
