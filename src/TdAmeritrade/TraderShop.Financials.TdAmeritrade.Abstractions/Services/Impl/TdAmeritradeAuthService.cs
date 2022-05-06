@@ -29,11 +29,11 @@ namespace TraderShop.Financials.TdAmeritrade.Abstractions.Services.Impl
             tdAmeritradeOptions.OnChange(x => _tdAmeritradeOptions = x);
         }
 
-        public async Task<string> GetBearerToken()
+        public async Task<string> GetBearerToken(CancellationToken cancellationToken)
         {
             if (!_memoryCache.TryGetValue("tdAmeritrade-bearer", out Token cacheValue))
             {
-                var tokenResponse = await SetAccessToken();
+                var tokenResponse = await SetAccessToken(cancellationToken);
 
                 cacheValue = new Token() { Value = tokenResponse.access_token, Expires_In = tokenResponse.expires_in };
 
@@ -46,7 +46,7 @@ namespace TraderShop.Financials.TdAmeritrade.Abstractions.Services.Impl
             return cacheValue.Value;
         }
 
-        private async Task<PostAccessTokenResponse> SetAccessToken()
+        private async Task<PostAccessTokenResponse> SetAccessToken(CancellationToken cancellationToken)
         {
             var content = new FormUrlEncodedContent(
                 new[]
@@ -56,7 +56,7 @@ namespace TraderShop.Financials.TdAmeritrade.Abstractions.Services.Impl
                             new KeyValuePair<string, string>("client_id",_tdAmeritradeOptions.client_id)
                     });
 
-            var response = await _httpClient.PostAsync(_tdAmeritradeOptions.auth_url, content);
+            var response = await _httpClient.PostAsync(_tdAmeritradeOptions.auth_url, content, cancellationToken);
 
             await _errorHandler.CheckForErrorsAsync(response);
 

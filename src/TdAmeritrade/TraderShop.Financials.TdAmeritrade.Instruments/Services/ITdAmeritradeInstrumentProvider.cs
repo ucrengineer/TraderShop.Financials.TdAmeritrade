@@ -13,12 +13,12 @@ namespace TraderShop.Financials.TdAmeritrade.Instruments.Services
     /// </summary>
     public interface ITdAmeritradeInstrumentProvider
     {
-        Task<Instrument> GetInstrument(string symbol);
+        Task<Instrument> GetInstrument(string symbol, CancellationToken cancellationToken = default);
 
-        Task<IList<Instrument>> GetInstruments(string[]? symbol = null);
+        Task<IList<Instrument>> GetInstruments(CancellationToken cancellationToken = default, string[]? symbols = null);
 
-        Task<IList<Instrument>> GetAllFuturesInstruments();
+        Task<IList<Instrument>> GetAllFuturesInstruments(CancellationToken cancellationToken = default);
 
-        Task<IList<Instrument>> GetAllForexInstruments();
+        Task<IList<Instrument>> GetAllForexInstruments(CancellationToken cancellationToken = default);
     }
 }

@@ -4,6 +4,6 @@ namespace TraderShop.Finacials.TdAmeritrade.PriceHistory.Services
 {
     public interface ITdAmeritradePriceHistoryProvider
     {
-        Task<Candle[]> GetPriceHistory(PriceHistorySpecs priceHistorySpecs);
+        Task<Candle[]> GetPriceHistory(PriceHistorySpecs priceHistorySpecs, CancellationToken cancellationToken = default);
     }
 }

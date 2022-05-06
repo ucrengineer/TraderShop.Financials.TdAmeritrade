@@ -1,11 +1,11 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System.Threading.Tasks;
-using TdAmeritrade.Financials.Tests.Utilities;
+using TdAmeritrade.Financials.Functional.Tests.Utilities;
 using TraderShop.Financials.TdAmeritrade.Abstractions.Services;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace TdAmeritrade.Financials.Tests
+namespace TdAmeritrade.Financials.Functional.Tests
 {
     public class AuthService
     {

@@ -10,13 +10,13 @@ namespace TraderShop.Financials.TdAmeritrade.SavedOrders.Services
         /// <param name="accountId"></param>
         /// <param name="savedOrderId"></param>
         /// <returns></returns>
-        Task<SavedOrder> GetSavedOrder(string accountId, string savedOrderId);
+        Task<SavedOrder> GetSavedOrder(string accountId, string savedOrderId, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Saved orders for a specific account.
         /// </summary>
         /// <param name="accountId"></param>
         /// <returns></returns>
-        Task<SavedOrder[]> GetSavedOrdersByAccountId(string accountId);
+        Task<SavedOrder[]> GetSavedOrdersByAccountId(string accountId, CancellationToken cancellationToken = default);
     }
 }

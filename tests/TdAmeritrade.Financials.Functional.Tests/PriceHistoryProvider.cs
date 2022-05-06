@@ -1,12 +1,12 @@
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Threading.Tasks;
-using TdAmeritrade.Financials.Tests.Utilities;
+using TdAmeritrade.Financials.Functional.Tests.Utilities;
 using TraderShop.Finacials.TdAmeritrade.PriceHistory.Models;
 using TraderShop.Finacials.TdAmeritrade.PriceHistory.Services;
 using Xunit;
 
-namespace TdAmeritrade.Financials.Tests
+namespace TdAmeritrade.Financials.Functional.Tests
 {
     public class PriceHistoryProvider
     {

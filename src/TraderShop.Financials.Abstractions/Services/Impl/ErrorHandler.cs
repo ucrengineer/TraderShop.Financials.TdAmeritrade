@@ -13,7 +13,7 @@
                     return;
                 }
 
-                throw new Exception($"Http Code : {httpResponseMessage.StatusCode} but no content is returned");
+                throw new Exception($"Http Code : {httpResponseMessage?.StatusCode} but no content is returned");
             }
             if (!httpResponseMessage.IsSuccessStatusCode)
             {

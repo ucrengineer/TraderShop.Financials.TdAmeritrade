@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System.Threading.Tasks;
-using TdAmeritrade.Financials.Tests.Utilities;
+using TdAmeritrade.Financials.Functional.Tests.Utilities;
 using TraderShop.Financials.TdAmeritrade.Instruments.Services;
 using Xunit;
 
-namespace TdAmeritrade.Financials.Tests
+namespace TdAmeritrade.Financials.Functional.Tests
 {
     public class InstrumentProvider
     {
@@ -29,7 +29,7 @@ namespace TdAmeritrade.Financials.Tests
         [Fact]
         public async Task Return_Instruments_Successfully()
         {
-            var result = await _instrumentProvider.GetInstruments(new string[] { "TIGR", "AAPL" });
+            var result = await _instrumentProvider.GetInstruments(symbols: new string[] { "TIGR", "AAPL" });
 
             Assert.NotNull(result);
 

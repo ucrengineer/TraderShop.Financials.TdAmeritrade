@@ -24,7 +24,7 @@ namespace TraderShop.Financials.TdAmeritrade.Instruments.Services.Impl
         /// </summary>
         /// <param name="symbol"></param>
         /// <returns></returns>
-        public async Task<Instrument> GetInstrument(string symbol)
+        public async Task<Instrument> GetInstrument(string symbol, CancellationToken cancellationToken)
         {
             var query = new Dictionary<string, string>
             {
@@ -36,7 +36,7 @@ namespace TraderShop.Financials.TdAmeritrade.Instruments.Services.Impl
 
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await _authService.GetBearerToken());
 
-            var response = await _httpClient.GetAsync(uri);
+            var response = await _httpClient.GetAsync(uri, cancellationToken);
 
             await _errorHandler.CheckForErrorsAsync(response);
 
@@ -53,7 +53,7 @@ namespace TraderShop.Financials.TdAmeritrade.Instruments.Services.Impl
         /// </summary>
         /// <param name="symbols"></param>
         /// <returns></returns>
-        public async Task<IList<Instrument>> GetInstruments(string[]? symbols = null)
+        public async Task<IList<Instrument>> GetInstruments(CancellationToken cancellationToken, string[]? symbols = null)
         {
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await _authService.GetBearerToken());
 
@@ -77,7 +77,7 @@ namespace TraderShop.Financials.TdAmeritrade.Instruments.Services.Impl
 
             uri = QueryHelpers.AddQueryString(_httpClient.BaseAddress?.ToString(), query);
 
-            var response = await _httpClient.GetAsync(uri);
+            var response = await _httpClient.GetAsync(uri, cancellationToken);
 
             await _errorHandler.CheckForErrorsAsync(response);
 
@@ -91,7 +91,7 @@ namespace TraderShop.Financials.TdAmeritrade.Instruments.Services.Impl
         /// Returns all of continuous futures markets
         /// </summary>
         /// <returns></returns>
-        public async Task<IList<Instrument>> GetAllFuturesInstruments()
+        public async Task<IList<Instrument>> GetAllFuturesInstruments(CancellationToken cancellationToken)
         {
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await _authService.GetBearerToken());
 
@@ -108,7 +108,7 @@ namespace TraderShop.Financials.TdAmeritrade.Instruments.Services.Impl
 
             uri = QueryHelpers.AddQueryString(_httpClient.BaseAddress?.ToString(), query);
 
-            var response = await _httpClient.GetAsync(uri);
+            var response = await _httpClient.GetAsync(uri, cancellationToken);
 
             await _errorHandler.CheckForErrorsAsync(response);
 
@@ -119,7 +119,7 @@ namespace TraderShop.Financials.TdAmeritrade.Instruments.Services.Impl
             return instrument?.ToList().Select(x => x.Value).ToList() ?? new List<Instrument>();
         }
 
-        public Task<IList<Instrument>> GetAllForexInstruments()
+        public Task<IList<Instrument>> GetAllForexInstruments(CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }

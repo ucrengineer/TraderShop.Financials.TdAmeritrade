@@ -12,7 +12,7 @@ using TraderShop.Financials.TdAmeritrade.Orders.DependencyInjection;
 using TraderShop.Financials.TdAmeritrade.SavedOrders.DependencyInjection;
 using TraderShop.Financials.TdAmeritrade.Symbols.DependencyInjection;
 
-namespace TdAmeritrade.Financials.Tests.Utilities
+namespace TdAmeritrade.Financials.Functional.Tests.Utilities
 {
     public static class TestHelper
     {

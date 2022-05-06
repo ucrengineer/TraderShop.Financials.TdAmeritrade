@@ -19,7 +19,7 @@ namespace TraderShop.Finacials.TdAmeritrade.PriceHistory.Services.Impl
             _errorHandler = errorHandler;
         }
 
-        public async Task<Candle[]> GetPriceHistory(PriceHistorySpecs priceHistorySpecs)
+        public async Task<Candle[]> GetPriceHistory(PriceHistorySpecs priceHistorySpecs, CancellationToken cancellationToken)
         {
             _httpClient.BaseAddress = new Uri($"{_httpClient.BaseAddress}{priceHistorySpecs.Symbol}/pricehistory");
 
@@ -37,7 +37,7 @@ namespace TraderShop.Finacials.TdAmeritrade.PriceHistory.Services.Impl
 
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await _authService.GetBearerToken());
 
-            var response = await _httpClient.GetAsync(uri);
+            var response = await _httpClient.GetAsync(uri, cancellationToken);
 
             await _errorHandler.CheckForErrorsAsync(response);
 

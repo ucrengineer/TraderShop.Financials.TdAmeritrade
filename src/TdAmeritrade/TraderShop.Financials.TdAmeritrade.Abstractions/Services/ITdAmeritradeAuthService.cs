@@ -2,6 +2,6 @@
 {
     public interface ITdAmeritradeAuthService
     {
-        Task<string> GetBearerToken();
+        Task<string> GetBearerToken(CancellationToken cancellationToken = default);
     }
 }

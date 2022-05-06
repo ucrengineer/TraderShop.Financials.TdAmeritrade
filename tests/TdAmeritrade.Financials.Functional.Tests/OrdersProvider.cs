@@ -3,13 +3,13 @@ using Microsoft.Extensions.Options;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using TdAmeritrade.Financials.Tests.Utilities;
+using TdAmeritrade.Financials.Functional.Tests.Utilities;
 using TraderShop.Financials.TdAmeritrade.Abstractions.Options;
 using TraderShop.Financials.TdAmeritrade.Orders.Models;
 using TraderShop.Financials.TdAmeritrade.Orders.Services;
 using Xunit;
 
-namespace TdAmeritrade.Financials.Tests
+namespace TdAmeritrade.Financials.Functional.Tests
 {
     public class OrdersProvider
     {
@@ -34,7 +34,7 @@ namespace TdAmeritrade.Financials.Tests
         [Fact]
         public async Task Return_Orders_By_Path_Successfully()
         {
-            var result = await _ordersProvider.GetOrdersByPath(_options.account_number, new OrderQuery { FromEnteredTime = DateTime.Now.AddYears(-10) });
+            var result = await _ordersProvider.GetOrdersByPath(_options.account_number, orderQuery: new OrderQuery { FromEnteredTime = DateTime.Now.AddYears(-10) });
 
             var orderAPT = result.FirstOrDefault(x => x.OrderId == 5198538993);
 

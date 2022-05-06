@@ -18,7 +18,7 @@ namespace TraderShop.Financials.TdAmeritrade.Accounts.Services.Impl
             _httpClient = httpClient;
             _errorHandler = errorHandler;
         }
-        public async Task<SecuritiesAccount[]> GetAccounts(string[]? fields)
+        public async Task<SecuritiesAccount[]> GetAccounts(string[]? fields, CancellationToken cancellationToken)
         {
 
             var uri = new Uri($"{_httpClient.BaseAddress}").ToString();
@@ -35,7 +35,7 @@ namespace TraderShop.Financials.TdAmeritrade.Accounts.Services.Impl
 
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await _authService.GetBearerToken());
 
-            var response = await _httpClient.GetAsync(uri);
+            var response = await _httpClient.GetAsync(uri, cancellationToken);
 
             await _errorHandler.CheckForErrorsAsync(response);
 
@@ -53,7 +53,7 @@ namespace TraderShop.Financials.TdAmeritrade.Accounts.Services.Impl
             return securitiesAccounts;
 
         }
-        public async Task<SecuritiesAccount> GetAccount(string accountId, string[]? fields)
+        public async Task<SecuritiesAccount> GetAccount(string accountId, string[]? fields, CancellationToken cancellationToken)
         {
             _errorHandler.CheckForNullOrEmpty(new string[] { accountId });
 
@@ -71,7 +71,7 @@ namespace TraderShop.Financials.TdAmeritrade.Accounts.Services.Impl
 
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await _authService.GetBearerToken());
 
-            var response = await _httpClient.GetAsync(uri);
+            var response = await _httpClient.GetAsync(uri, cancellationToken);
 
             await _errorHandler.CheckForErrorsAsync(response);
 

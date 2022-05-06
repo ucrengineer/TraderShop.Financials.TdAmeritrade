@@ -3,12 +3,12 @@ using Microsoft.Extensions.Options;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using TdAmeritrade.Financials.Tests.Utilities;
+using TdAmeritrade.Financials.Functional.Tests.Utilities;
 using TraderShop.Financials.TdAmeritrade.Abstractions.Options;
 using TraderShop.Financials.TdAmeritrade.Accounts.Services;
 using Xunit;
 
-namespace TdAmeritrade.Financials.Tests
+namespace TdAmeritrade.Financials.Functional.Tests
 {
     public class AccountsProvider
     {
