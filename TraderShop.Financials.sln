@@ -29,17 +29,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{87FA964E
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TdAmeritrade.Financials.Functional.Tests", "tests\TdAmeritrade.Financials.Functional.Tests\TdAmeritrade.Financials.Functional.Tests.csproj", "{1D60987C-8489-491B-BAF2-197DBF4E6FA0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraderShop.Financials.TdAmeritrade.Quotes", "TraderShop.Financials.TdAmeritrade.Quotes\TraderShop.Financials.TdAmeritrade.Quotes.csproj", "{EDF0048D-27E2-40F3-BE99-0A51C92B6FDA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraderShop.Financials.TdAmeritrade.Quotes", "src\TdAmeritrade\TraderShop.Financials.TdAmeritrade.Quotes\TraderShop.Financials.TdAmeritrade.Quotes.csproj", "{EDF0048D-27E2-40F3-BE99-0A51C92B6FDA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraderShop.Financials.TdAmeritrade.MarketHours", "TraderShop.Financials.TdAmeritrade.MarketHours\TraderShop.Financials.TdAmeritrade.MarketHours.csproj", "{71E8C0FB-38A3-4061-941F-B8A0B535BB67}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraderShop.Financials.TdAmeritrade.MarketHours", "src\TdAmeritrade\TraderShop.Financials.TdAmeritrade.MarketHours\TraderShop.Financials.TdAmeritrade.MarketHours.csproj", "{71E8C0FB-38A3-4061-941F-B8A0B535BB67}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraderShop.Financials.TdAmeritrade.UserInfo", "TraderShop.Financials.TdAmeritrade.UserInfo\TraderShop.Financials.TdAmeritrade.UserInfo.csproj", "{82D97787-9E2E-48DC-B843-502DDA9BABCB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraderShop.Financials.TdAmeritrade.UserInfo", "src\TdAmeritrade\TraderShop.Financials.TdAmeritrade.UserInfo\TraderShop.Financials.TdAmeritrade.UserInfo.csproj", "{82D97787-9E2E-48DC-B843-502DDA9BABCB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraderShop.Financials.TdAmeritrade.WatchList", "TraderShop.Financials.TdAmeritrade.WatchList\TraderShop.Financials.TdAmeritrade.WatchList.csproj", "{A0344A36-0184-4877-B5B2-6B2E374836EA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraderShop.Financials.TdAmeritrade.WatchList", "src\TdAmeritrade\TraderShop.Financials.TdAmeritrade.WatchList\TraderShop.Financials.TdAmeritrade.WatchList.csproj", "{A0344A36-0184-4877-B5B2-6B2E374836EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraderShop.Financials.TdAmeritrade.TransactionHistory", "TraderShop.Financials.TdAmeritrade.TransactionHistory\TraderShop.Financials.TdAmeritrade.TransactionHistory.csproj", "{CE67BFA6-3887-4F20-A940-5E95012125B8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraderShop.Financials.TdAmeritrade.TransactionHistory", "src\TdAmeritrade\TraderShop.Financials.TdAmeritrade.TransactionHistory\TraderShop.Financials.TdAmeritrade.TransactionHistory.csproj", "{CE67BFA6-3887-4F20-A940-5E95012125B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraderShop.Financials.TdAmeritrade.OptionChains", "TraderShop.Financials.TdAmeritrade.OptionChains\TraderShop.Financials.TdAmeritrade.OptionChains.csproj", "{1231C43A-F8E7-447E-A421-283D52C117DA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraderShop.Financials.TdAmeritrade.OptionChains", "src\TdAmeritrade\TraderShop.Financials.TdAmeritrade.OptionChains\TraderShop.Financials.TdAmeritrade.OptionChains.csproj", "{1231C43A-F8E7-447E-A421-283D52C117DA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
