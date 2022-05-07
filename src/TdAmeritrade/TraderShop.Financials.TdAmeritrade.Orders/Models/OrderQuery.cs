@@ -8,17 +8,17 @@
         public double MaxResults { get; set; }
 
         /// <summary>
-        /// Specifies that no orders entered before this time should be returned. If 'toEnteredTime' is not sent, the default `toEnteredTime` would be 30 days from the current day.
+        /// Specifies that no orders entered before this time should be returned. If 'fromEnteredTime' is not sent, the default 'fromEnteredTime` would be 30 days from the current day.
         /// </summary>
         public DateTime FromEnteredTime { get; set; } = DateTime.Now.AddDays(-30);
 
         /// <summary>
-        /// Specifies that no orders entered after this time should be returned. If 'fromEnteredTime' is not sent, the default `fromEnteredTime` would be the current day.
+        /// Specifies that no orders entered after this time should be returned. If 'toEnteredTime' is not sent, the default `toEnteredTime` would be the current day.
         /// </summary>
         public DateTime ToEnteredTime { get; set; } = DateTime.Now;
 
         /// <summary>
-        /// Specifies that only orders of this status should be returned. Default is <b>FILLED</b>
+        /// Specifies that only orders of this status should be returned. Default is <b>ALL</b>
         /// <list type="bullet">
         /// <item><description>AWAITING_PARENT_ORDER</description></item>
         /// <item><description>AWAITING_CONDITION</description></item>
@@ -36,14 +36,15 @@
         /// <item><description>REPLACED</description></item>
         /// <item><description>FILLED</description></item>
         /// <item><description>EXPIRED</description></item>
+        /// <item><description>EXPIRED</description></item>
         /// </list>
         /// </summary>
-        /// </summary>
-        public Status Status { get; set; } = Status.FILLED;
+        public Status Status { get; set; } = Status.ALL;
     }
 
     public enum Status
     {
+        ALL,
         AWAITING_PARENT_ORDER,
         AWAITING_CONDITION,
         AWAITING_MANUAL_REVIEW,

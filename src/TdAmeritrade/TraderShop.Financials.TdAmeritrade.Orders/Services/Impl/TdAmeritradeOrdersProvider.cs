@@ -15,7 +15,6 @@ namespace TraderShop.Financials.TdAmeritrade.Orders.Services.Impl
         private readonly HttpClient _httpClient;
         private readonly ITdAmeritradeAuthService _authService;
 
-
         public TdAmeritradeOrdersProvider(
             IErrorHandler errorHandler,
             HttpClient httpClient,
@@ -50,17 +49,18 @@ namespace TraderShop.Financials.TdAmeritrade.Orders.Services.Impl
 
             var uri = new Uri($"{_httpClient.BaseAddress}{accountId}/orders").ToString();
 
-            orderQuery = orderQuery ?? new OrderQuery();
-
-            var query = new Dictionary<string, string>
+            if (orderQuery != null)
             {
-                ["maxResults"] = orderQuery.MaxResults.ToString(),
-                ["fromEnteredTime"] = orderQuery.FromEnteredTime.ToString("yyyy-MM-dd"),
-                ["toEnteredTime"] = orderQuery.ToEnteredTime.ToString("yyyy-MM-dd"),
-                ["status"] = orderQuery.Status.ToString()
-            };
+                var query = new Dictionary<string, string>
+                {
+                    ["maxResults"] = orderQuery.MaxResults.ToString(),
+                    ["fromEnteredTime"] = orderQuery.FromEnteredTime.ToString("yyyy-MM-dd"),
+                    ["toEnteredTime"] = orderQuery.ToEnteredTime.ToString("yyyy-MM-dd"),
+                    ["status"] = orderQuery.Status == Status.ALL ? "" : orderQuery.Status.ToString()
+                };
 
-            uri = QueryHelpers.AddQueryString(uri, query);
+                uri = QueryHelpers.AddQueryString(uri, query);
+            }
 
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await _authService.GetBearerToken());
 
@@ -79,18 +79,20 @@ namespace TraderShop.Financials.TdAmeritrade.Orders.Services.Impl
         {
             var uri = new Uri($"{_httpClient.BaseAddress.ToString().Split("/accounts").FirstOrDefault()}/orders").ToString();
 
-            orderQuery = orderQuery ?? new OrderQuery();
-
-            var query = new Dictionary<string, string>
+            if (orderQuery != null)
             {
-                ["accountId"] = accountId ?? string.Empty,
-                ["maxResults"] = orderQuery.MaxResults.ToString(),
-                ["fromEnteredTime"] = orderQuery.FromEnteredTime.ToString("yyyy-MM-dd"),
-                ["toEnteredTime"] = orderQuery.ToEnteredTime.ToString("yyyy-MM-dd"),
-                ["status"] = orderQuery.Status.ToString()
-            };
+                var query = new Dictionary<string, string>
+                {
+                    ["accountId"] = accountId ?? string.Empty,
+                    ["maxResults"] = orderQuery.MaxResults.ToString(),
+                    ["fromEnteredTime"] = orderQuery.FromEnteredTime.ToString("yyyy-MM-dd"),
+                    ["toEnteredTime"] = orderQuery.ToEnteredTime.ToString("yyyy-MM-dd"),
+                    ["status"] = orderQuery.Status.ToString()
+                };
 
-            uri = QueryHelpers.AddQueryString(uri, query);
+                uri = QueryHelpers.AddQueryString(uri, query);
+            }
+
 
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await _authService.GetBearerToken());
 
@@ -119,7 +121,41 @@ namespace TraderShop.Financials.TdAmeritrade.Orders.Services.Impl
 
             var response = await _httpClient.PostAsync(uri, content, cancellationToken);
 
-            await _errorHandler.CheckForErrorsAsync(response);
+            response.EnsureSuccessStatusCode();
+
+            return 0;
+        }
+
+        public async Task<int> ReplaceOrder(string accountId, string orderId, object order, CancellationToken cancellationToken)
+        {
+            _errorHandler.CheckForNullOrEmpty(new string[] { accountId, orderId });
+
+            var uri = new Uri($"{_httpClient.BaseAddress}{accountId}/orders/{orderId}").ToString();
+
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await _authService.GetBearerToken());
+
+            var orderJson = JsonConvert.SerializeObject(order);
+
+            var content = new StringContent(orderJson, Encoding.UTF8, "application/json");
+
+            var response = await _httpClient.PutAsync(uri, content, cancellationToken);
+
+            response.EnsureSuccessStatusCode();
+
+            return 0;
+        }
+
+        public async Task<int> CancelOrder(string accountId, string orderId, CancellationToken cancellationToken)
+        {
+            _errorHandler.CheckForNullOrEmpty(new string[] { accountId, orderId });
+
+            var uri = new Uri($"{_httpClient.BaseAddress}{accountId}/orders/{orderId}").ToString();
+
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await _authService.GetBearerToken());
+
+            var response = await _httpClient.DeleteAsync(uri, cancellationToken);
+
+            response.EnsureSuccessStatusCode();
 
             return 0;
         }

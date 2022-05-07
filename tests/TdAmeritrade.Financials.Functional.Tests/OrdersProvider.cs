@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Options;
 using System;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using TdAmeritrade.Financials.Functional.Tests.Utilities;
 using TraderShop.Financials.TdAmeritrade.Abstractions.Options;
@@ -36,8 +37,6 @@ namespace TdAmeritrade.Financials.Functional.Tests
         {
             var result = await _ordersProvider.GetOrdersByPath(_options.account_number, orderQuery: new OrderQuery { FromEnteredTime = DateTime.Now.AddYears(-10) });
 
-            var orderAPT = result.FirstOrDefault(x => x.OrderId == 5198538993);
-
             Assert.NotNull(result);
 
             Assert.True(result.Length > 0);
@@ -46,13 +45,103 @@ namespace TdAmeritrade.Financials.Functional.Tests
         [Fact]
         public async Task Return_Orders_By_Query_Successfully()
         {
-            var result = await _ordersProvider.GetOrdersByQuery();
+            var result = await _ordersProvider.GetOrdersByQuery(orderQuery: new OrderQuery() { FromEnteredTime = DateTime.Now.AddYears(-1) });
 
             Assert.NotNull(result);
+
+            Assert.NotNull(result.Select(x => x.OrderId == 5561127802));
         }
 
         [Fact]
-        public async Task Place_Orders_Successfully()
+        public async Task Place_Order_Successfully()
+        {
+            /*
+             * will have to create objects for order creation, it is a sensitive process.
+             * possibly use premade json files for order placement
+            */
+            var order = new
+            {
+                orderType = "LIMIT",
+                session = "NORMAL",
+                price = "150",
+                duration = "DAY",
+                orderStrategyType = "SINGLE",
+                orderLegCollection = new object[]
+                {
+                    new
+                    {
+                        instruction = "BUY",
+                        quantity = 1,
+                        instrument = new
+                        {
+                            symbol = "MSFT",
+                            assetType = "EQUITY"
+                        }
+                    }
+                }
+            };
+
+            var result = await _ordersProvider.PlaceOrder(_options.account_number, order);
+
+            Assert.Equal(0, result);
+
+        }
+
+        [Fact]
+        public async Task Replace_Order_Successfully()
+        {
+            /*
+             * will have to create objects for order creation, it is a sensitive process.
+             * possibly use premade json files for order placement
+            */
+            var order = new
+            {
+                orderType = "LIMIT",
+                session = "NORMAL",
+                price = "100",
+                duration = "DAY",
+                orderStrategyType = "SINGLE",
+                orderLegCollection = new object[]
+                {
+                    new
+                    {
+                        instruction = "BUY",
+                        quantity = 1,
+                        instrument = new
+                        {
+                            symbol = "MSFT",
+                            assetType = "EQUITY"
+                        }
+                    }
+                }
+            };
+
+            var result = await _ordersProvider.ReplaceOrder(_options.account_number, "5561451864", order);
+
+            Assert.Equal(0, result);
+
+        }
+
+        [Fact]
+        public async Task Cancel_Order_Successfully()
+        {
+            var orders = await _ordersProvider.GetOrdersByQuery();
+
+            var order = orders.FirstOrDefault(x => x.Status != "CANCELED");
+
+            var result = await _ordersProvider.CancelOrder(_options.account_number, order.OrderId.ToString());
+
+            Assert.Equal(0, result);
+        }
+
+        [Fact]
+        public async Task Cancel_Order_Throws_Exception()
+        {
+            await Assert.ThrowsAsync<HttpRequestException>(async () => await _ordersProvider.CancelOrder(_options.account_number, "111"));
+        }
+
+        [Fact]
+        public async Task Place_Order_Throws_Exception()
         {
             /*
              * will have to create objects for order creation, it is a sensitive process.
@@ -80,12 +169,40 @@ namespace TdAmeritrade.Financials.Functional.Tests
                 }
             };
 
-            var exception = await Assert.ThrowsAsync<Exception>(async () => await _ordersProvider.PlaceOrder(_options.account_number, order));
+            await Assert.ThrowsAsync<HttpRequestException>(async () => await _ordersProvider.PlaceOrder(_options.account_number, order));
 
-            var message = "{\n  \"error\" : \"Please enter a valid symbol.\"\n}";
+        }
 
-            Assert.Equal(message, exception.Message);
+        [Fact]
+        public async Task Replace_Order_Throws_Exception()
+        {
+            /*
+             * will have to create objects for order creation, it is a sensitive process.
+             * possibly use premade json files for order placement
+            */
+            var order = new
+            {
+                orderType = "LIMIT",
+                session = "NORMAL",
+                price = "100",
+                duration = "DAY",
+                orderStrategyType = "SINGLE",
+                orderLegCollection = new object[]
+                {
+                    new
+                    {
+                        instruction = "BUY",
+                        quantity = 1,
+                        instrument = new
+                        {
+                            symbol = "MSFT",
+                            assetType = "EQUITY"
+                        }
+                    }
+                }
+            };
 
+            await Assert.ThrowsAsync<HttpRequestException>(async () => await _ordersProvider.ReplaceOrder(_options.account_number, "12345", order));
         }
     }
 }

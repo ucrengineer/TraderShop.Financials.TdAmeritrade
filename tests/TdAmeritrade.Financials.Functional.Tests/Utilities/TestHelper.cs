@@ -23,7 +23,6 @@ namespace TdAmeritrade.Financials.Functional.Tests.Utilities
             var options = JsonConvert.DeserializeObject<Dictionary<string, TdAmeritradeOptions>>
                 (File.ReadAllText(@"C:\Users\ucren\source\repos\TraderShop.Financials\src\TdAmeritrade\TraderShop.Financials.TdAmeritrade.Console\appsettings.development.json"));
 
-
             services.Configure<TdAmeritradeOptions>(x =>
             {
                 x.auth_url = options[nameof(TdAmeritradeOptions)].auth_url;

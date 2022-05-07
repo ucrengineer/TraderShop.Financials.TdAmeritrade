@@ -15,7 +15,6 @@ namespace TdAmeritrade.Financials.Functional.Tests
         public PriceHistoryProvider()
         {
             _priceHistoryProvider = TestHelper.GetServiceProvider().GetRequiredService<ITdAmeritradePriceHistoryProvider>();
-
         }
 
         [Fact]
@@ -30,7 +29,6 @@ namespace TdAmeritrade.Financials.Functional.Tests
         public async Task Throws_Exception()
         {
             await Assert.ThrowsAsync<Exception>(async () => await _priceHistoryProvider.GetPriceHistory(new PriceHistorySpecs() { PeriodType = PeriodType.ytd, Period = 20 }));
-
         }
     }
 }
