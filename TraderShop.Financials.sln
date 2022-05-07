@@ -27,7 +27,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TraderShop.Financials.TdAme
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{87FA964E-673D-47C6-BCBC-087D0FC5611D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TdAmeritrade.Financials.Functional.Tests", "tests\TdAmeritrade.Financials.Functional.Tests\TdAmeritrade.Financials.Functional.Tests.csproj", "{1D60987C-8489-491B-BAF2-197DBF4E6FA0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TdAmeritrade.Financials.Functional.Tests", "tests\TdAmeritrade.Financials.Functional.Tests\TdAmeritrade.Financials.Functional.Tests.csproj", "{1D60987C-8489-491B-BAF2-197DBF4E6FA0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraderShop.Financials.TdAmeritrade.Quotes", "TraderShop.Financials.TdAmeritrade.Quotes\TraderShop.Financials.TdAmeritrade.Quotes.csproj", "{EDF0048D-27E2-40F3-BE99-0A51C92B6FDA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraderShop.Financials.TdAmeritrade.MarketHours", "TraderShop.Financials.TdAmeritrade.MarketHours\TraderShop.Financials.TdAmeritrade.MarketHours.csproj", "{71E8C0FB-38A3-4061-941F-B8A0B535BB67}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraderShop.Financials.TdAmeritrade.UserInfo", "TraderShop.Financials.TdAmeritrade.UserInfo\TraderShop.Financials.TdAmeritrade.UserInfo.csproj", "{82D97787-9E2E-48DC-B843-502DDA9BABCB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraderShop.Financials.TdAmeritrade.WatchList", "TraderShop.Financials.TdAmeritrade.WatchList\TraderShop.Financials.TdAmeritrade.WatchList.csproj", "{A0344A36-0184-4877-B5B2-6B2E374836EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraderShop.Financials.TdAmeritrade.TransactionHistory", "TraderShop.Financials.TdAmeritrade.TransactionHistory\TraderShop.Financials.TdAmeritrade.TransactionHistory.csproj", "{CE67BFA6-3887-4F20-A940-5E95012125B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraderShop.Financials.TdAmeritrade.OptionChains", "TraderShop.Financials.TdAmeritrade.OptionChains\TraderShop.Financials.TdAmeritrade.OptionChains.csproj", "{1231C43A-F8E7-447E-A421-283D52C117DA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,6 +83,30 @@ Global
 		{1D60987C-8489-491B-BAF2-197DBF4E6FA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D60987C-8489-491B-BAF2-197DBF4E6FA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D60987C-8489-491B-BAF2-197DBF4E6FA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDF0048D-27E2-40F3-BE99-0A51C92B6FDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDF0048D-27E2-40F3-BE99-0A51C92B6FDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDF0048D-27E2-40F3-BE99-0A51C92B6FDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDF0048D-27E2-40F3-BE99-0A51C92B6FDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71E8C0FB-38A3-4061-941F-B8A0B535BB67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71E8C0FB-38A3-4061-941F-B8A0B535BB67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71E8C0FB-38A3-4061-941F-B8A0B535BB67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71E8C0FB-38A3-4061-941F-B8A0B535BB67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82D97787-9E2E-48DC-B843-502DDA9BABCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82D97787-9E2E-48DC-B843-502DDA9BABCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82D97787-9E2E-48DC-B843-502DDA9BABCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82D97787-9E2E-48DC-B843-502DDA9BABCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0344A36-0184-4877-B5B2-6B2E374836EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0344A36-0184-4877-B5B2-6B2E374836EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0344A36-0184-4877-B5B2-6B2E374836EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0344A36-0184-4877-B5B2-6B2E374836EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE67BFA6-3887-4F20-A940-5E95012125B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE67BFA6-3887-4F20-A940-5E95012125B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE67BFA6-3887-4F20-A940-5E95012125B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE67BFA6-3887-4F20-A940-5E95012125B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1231C43A-F8E7-447E-A421-283D52C117DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1231C43A-F8E7-447E-A421-283D52C117DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1231C43A-F8E7-447E-A421-283D52C117DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1231C43A-F8E7-447E-A421-283D52C117DA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -86,6 +122,12 @@ Global
 		{9B1DEBD8-A39C-4365-95EE-2C57369709D7} = {D8D3F09C-DC86-4DF6-A883-025602CDDBF2}
 		{52B955E6-0549-4F49-8CD1-4247834ABD91} = {D8D3F09C-DC86-4DF6-A883-025602CDDBF2}
 		{1D60987C-8489-491B-BAF2-197DBF4E6FA0} = {87FA964E-673D-47C6-BCBC-087D0FC5611D}
+		{EDF0048D-27E2-40F3-BE99-0A51C92B6FDA} = {D8D3F09C-DC86-4DF6-A883-025602CDDBF2}
+		{71E8C0FB-38A3-4061-941F-B8A0B535BB67} = {D8D3F09C-DC86-4DF6-A883-025602CDDBF2}
+		{82D97787-9E2E-48DC-B843-502DDA9BABCB} = {D8D3F09C-DC86-4DF6-A883-025602CDDBF2}
+		{A0344A36-0184-4877-B5B2-6B2E374836EA} = {D8D3F09C-DC86-4DF6-A883-025602CDDBF2}
+		{CE67BFA6-3887-4F20-A940-5E95012125B8} = {D8D3F09C-DC86-4DF6-A883-025602CDDBF2}
+		{1231C43A-F8E7-447E-A421-283D52C117DA} = {D8D3F09C-DC86-4DF6-A883-025602CDDBF2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {93A5C3AC-E451-4E9E-A904-0E2463299D17}
