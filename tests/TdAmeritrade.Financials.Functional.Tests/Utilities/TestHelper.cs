@@ -9,6 +9,7 @@ using TraderShop.Financials.TdAmeritrade.Abstractions.DependencyInjection;
 using TraderShop.Financials.TdAmeritrade.Abstractions.Options;
 using TraderShop.Financials.TdAmeritrade.Accounts.DependencyInjection;
 using TraderShop.Financials.TdAmeritrade.Orders.DependencyInjection;
+using TraderShop.Financials.TdAmeritrade.Quotes.DependencyInjection;
 using TraderShop.Financials.TdAmeritrade.SavedOrders.DependencyInjection;
 using TraderShop.Financials.TdAmeritrade.Symbols.DependencyInjection;
 
@@ -44,6 +45,8 @@ namespace TdAmeritrade.Financials.Functional.Tests.Utilities
             services.AddTdAmeritradeSavedOrdersProvider();
 
             services.AddTdAmeritradeOrdersProvider();
+
+            services.AddTdAmeritradeQuotesProvider();
 
             return services.BuildServiceProvider();
         }

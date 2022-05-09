@@ -26,8 +26,14 @@
     <ProjectReference Include="..\..\src\TdAmeritrade\TraderShop.Financials.TdAmeritrade.Accounts\TraderShop.Financials.TdAmeritrade.Accounts.csproj" />
     <ProjectReference Include="..\..\src\TdAmeritrade\TraderShop.Financials.TdAmeritrade.Console\TraderShop.Financials.TdAmeritrade.Console.csproj" />
     <ProjectReference Include="..\..\src\TdAmeritrade\TraderShop.Financials.TdAmeritrade.Instruments\TraderShop.Financials.TdAmeritrade.Instruments.csproj" />
+    <ProjectReference Include="..\..\src\TdAmeritrade\TraderShop.Financials.TdAmeritrade.MarketHours\TraderShop.Financials.TdAmeritrade.MarketHours.csproj" />
+    <ProjectReference Include="..\..\src\TdAmeritrade\TraderShop.Financials.TdAmeritrade.OptionChains\TraderShop.Financials.TdAmeritrade.OptionChains.csproj" />
     <ProjectReference Include="..\..\src\TdAmeritrade\TraderShop.Financials.TdAmeritrade.Orders\TraderShop.Financials.TdAmeritrade.Orders.csproj" />
+    <ProjectReference Include="..\..\src\TdAmeritrade\TraderShop.Financials.TdAmeritrade.Quotes\TraderShop.Financials.TdAmeritrade.Quotes.csproj" />
     <ProjectReference Include="..\..\src\TdAmeritrade\TraderShop.Financials.TdAmeritrade.SavedOrders\TraderShop.Financials.TdAmeritrade.SavedOrders.csproj" />
+    <ProjectReference Include="..\..\src\TdAmeritrade\TraderShop.Financials.TdAmeritrade.TransactionHistory\TraderShop.Financials.TdAmeritrade.TransactionHistory.csproj" />
+    <ProjectReference Include="..\..\src\TdAmeritrade\TraderShop.Financials.TdAmeritrade.UserInfo\TraderShop.Financials.TdAmeritrade.UserInfo.csproj" />
+    <ProjectReference Include="..\..\src\TdAmeritrade\TraderShop.Financials.TdAmeritrade.WatchList\TraderShop.Financials.TdAmeritrade.WatchList.csproj" />
     <ProjectReference Include="..\..\src\TraderShop.Financials.Abstractions\TraderShop.Financials.Abstractions.csproj" />
   </ItemGroup>
 
