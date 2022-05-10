@@ -12,10 +12,10 @@ namespace TraderShop.Financials.TdAmeritrade.Quotes.Models
         public double WeekHigh52 { get; set; }
         [JsonProperty("52WkLow")]
         public double WeekLow52 { get; set; }
-        public double nAV { get; set; }
-        public double peRatio { get; set; }
-        public double divAmount { get; set; }
-        public double divYield { get; set; }
-        public string divDate { get; set; } = string.Empty;
+        public double NAV { get; set; }
+        public double PeRatio { get; set; }
+        public double PivAmount { get; set; }
+        public double DivYield { get; set; }
+        public string DivDate { get; set; } = string.Empty;
     }
 }

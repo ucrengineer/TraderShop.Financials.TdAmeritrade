@@ -7,11 +7,6 @@ namespace TraderShop.Financials.TdAmeritrade.Quotes.Services
         /// <summary>
         /// <para>
         /// Get quote for a symbol.
-        /// Currently no support for :
-        /// <list type="bullet">
-        /// <item><description>futures</description></item>
-        /// <item><description>forex</description></item>
-        /// </list>
         /// </para>
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -19,6 +14,12 @@ namespace TraderShop.Financials.TdAmeritrade.Quotes.Services
         /// <returns></returns>
         Task<T> GetQuote<T>(string symbol, CancellationToken cancellationToken = default) where T : Quote;
 
+        /// <summary>
+        /// Get quote for one or more symbols.
+        /// </summary>
+        /// <param name="symbols"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         Task<Quote[]> GetQuotes(string[] symbols, CancellationToken cancellationToken = default);
     }
 }
