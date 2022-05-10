@@ -75,19 +75,17 @@ namespace TraderShop.Financials.TdAmeritrade.Quotes.Services.Impl
                     {
                         "FUTURE" => JsonConvert.DeserializeObject<Future>(quotesResult?[symbol]?.ToString()),
                         "EQUITY" => JsonConvert.DeserializeObject<Equity>(quotesResult?[symbol]?.ToString()),
-                        "ETF" => JsonConvert.DeserializeObject<ETF>(quotesResult?[symbol]?.ToString()),
+                        "ETF" => JsonConvert.DeserializeObject<Equity>(quotesResult?[symbol]?.ToString()),
                         "FOREX" => JsonConvert.DeserializeObject<Forex>(quotesResult?[symbol]?.ToString()),
                         "OPTION" => JsonConvert.DeserializeObject<Option>(quotesResult?[symbol]?.ToString()),
                         "INDEX" => JsonConvert.DeserializeObject<Models.Index>(quotesResult?[symbol]?.ToString()),
                         "FUTURE_OPTION" => JsonConvert.DeserializeObject<FutureOptions>(quotesResult?[symbol]?.ToString()),
                         "MUTUTAL_FUND" => JsonConvert.DeserializeObject<MutualFund>(quotesResult?[symbol]?.ToString()),
                         _ => JsonConvert.DeserializeObject<Quote>(quotesResult?[symbol]?.ToString()),
-                    }
+                    } ?? new Quote()
                     ).ToArray();
             }
-
             return quotes;
-
         }
     }
 }
