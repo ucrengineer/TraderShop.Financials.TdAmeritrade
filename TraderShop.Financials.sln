@@ -41,7 +41,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TraderShop.Financials.TdAme
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TraderShop.Financials.TdAmeritrade.OptionChains", "src\TdAmeritrade\TraderShop.Financials.TdAmeritrade.OptionChains\TraderShop.Financials.TdAmeritrade.OptionChains.csproj", "{1231C43A-F8E7-447E-A421-283D52C117DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraderShop.Financials.TdAmeritrade.Movers", "TraderShop.Financials.TdAmeritrade.Movers\TraderShop.Financials.TdAmeritrade.Movers.csproj", "{C6B9A2DC-D4C7-4512-B447-2A822BB5E245}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraderShop.Financials.TdAmeritrade.Movers", "src\TdAmeritrade\TraderShop.Financials.TdAmeritrade.Movers\TraderShop.Financials.TdAmeritrade.Movers.csproj", "{C6B9A2DC-D4C7-4512-B447-2A822BB5E245}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
