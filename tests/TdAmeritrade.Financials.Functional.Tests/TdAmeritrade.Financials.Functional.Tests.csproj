@@ -35,6 +35,7 @@
     <ProjectReference Include="..\..\src\TdAmeritrade\TraderShop.Financials.TdAmeritrade.UserInfo\TraderShop.Financials.TdAmeritrade.UserInfo.csproj" />
     <ProjectReference Include="..\..\src\TdAmeritrade\TraderShop.Financials.TdAmeritrade.WatchList\TraderShop.Financials.TdAmeritrade.WatchList.csproj" />
     <ProjectReference Include="..\..\src\TraderShop.Financials.Abstractions\TraderShop.Financials.Abstractions.csproj" />
+    <ProjectReference Include="..\..\TraderShop.Financials.TdAmeritrade.Movers\TraderShop.Financials.TdAmeritrade.Movers.csproj" />
   </ItemGroup>
 
 </Project>
