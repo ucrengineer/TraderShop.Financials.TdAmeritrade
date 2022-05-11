@@ -7,9 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\TdAmeritrade\TraderShop.Financials.TdAmeritrade.Abstractions\TraderShop.Financials.TdAmeritrade.Abstractions.csproj" />
-    <ProjectReference Include="..\src\TdAmeritrade\TraderShop.Financials.TdAmeritrade.Quotes\TraderShop.Financials.TdAmeritrade.Quotes.csproj" />
-    <ProjectReference Include="..\src\TraderShop.Financials.Abstractions\TraderShop.Financials.Abstractions.csproj" />
+    <ProjectReference Include="..\..\TraderShop.Financials.Abstractions\TraderShop.Financials.Abstractions.csproj" />
+    <ProjectReference Include="..\TraderShop.Financials.TdAmeritrade.Abstractions\TraderShop.Financials.TdAmeritrade.Abstractions.csproj" />
   </ItemGroup>
+
+
 
 </Project>
