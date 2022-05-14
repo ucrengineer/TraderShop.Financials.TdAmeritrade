@@ -33,7 +33,7 @@ namespace TraderShop.Financials.TdAmeritrade.Quotes.Models
         public double PeRatio { get; set; }
         public double DivAmount { get; set; }
         public double DivYield { get; set; }
-        public string DivDate { get; set; } = string.Empty;
+        public DateTime DivDate { get; set; }
         public double RegularMarketLastPrice { get; set; }
         public double RegularMarketLastSize { get; set; }
 

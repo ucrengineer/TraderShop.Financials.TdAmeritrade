@@ -20,6 +20,8 @@ namespace TdAmeritrade.Financials.Functional.Tests
             var movers = await _moverProvider.GetMovers(new MoverQuery());
 
             Assert.NotNull(movers);
+
+            Assert.True(movers.Length == 10);
         }
     }
 }

@@ -20,7 +20,7 @@
         public double Tick { get; set; }
         public double TickAmount { get; set; }
         public double Mark { get; set; }
-        public string FutureExpirationDate { get; set; } = string.Empty;
+        public DateTime FutureExpirationDate { get; set; }
         public bool FutureIsActive { get; set; }
         public bool FutureIsTradable { get; set; }
         public double FuturePercentageChange { get; set; }
