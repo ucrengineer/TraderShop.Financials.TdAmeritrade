@@ -15,6 +15,7 @@ using TraderShop.Financials.TdAmeritrade.Quotes.DependencyInjection;
 using TraderShop.Financials.TdAmeritrade.SavedOrders.DependencyInjection;
 using TraderShop.Financials.TdAmeritrade.Symbols.DependencyInjection;
 using TraderShop.Financials.TdAmeritrade.TransactionHistory.DependencyInjection;
+using TraderShop.Financials.TdAmeritrade.UserInfo.DependencyInjection;
 
 namespace TdAmeritrade.Financials.Functional.Tests.Utilities
 {
@@ -56,6 +57,8 @@ namespace TdAmeritrade.Financials.Functional.Tests.Utilities
             services.AddTdAmeritradeMarketHoursProvider();
 
             services.AddTdAmeritradeTransactionHistoryProvider();
+
+            services.AddTdAmeritradeUserInfoProvider();
 
             return services.BuildServiceProvider();
         }
