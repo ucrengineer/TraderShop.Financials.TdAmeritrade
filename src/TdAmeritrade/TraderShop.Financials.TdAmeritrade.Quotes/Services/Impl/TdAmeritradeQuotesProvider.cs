@@ -23,7 +23,7 @@ namespace TraderShop.Financials.TdAmeritrade.Quotes.Services.Impl
 
         public async Task<T> GetQuote<T>(string symbol, CancellationToken cancellationToken = default) where T : Quote
         {
-            _errorHandler.CheckForNullOrEmpty(new string[] { symbol });
+            _errorHandler.CheckForNullOrEmpty(new string[] { symbol }, new string[] { "symbol" });
 
             var uri = new Uri($"{_httpClient.BaseAddress}{symbol}/quotes").ToString();
 
@@ -42,7 +42,11 @@ namespace TraderShop.Financials.TdAmeritrade.Quotes.Services.Impl
 
         public async Task<Quote[]> GetQuotes(string[] symbols, CancellationToken cancellationToken = default)
         {
-            _errorHandler.CheckForNullOrEmpty(symbols);
+            var array = new string[symbols.Length];
+
+            Array.Fill<string>(array, "symbol");
+
+            _errorHandler.CheckForNullOrEmpty(symbols, array);
 
             var uri = new Uri($"{_httpClient.BaseAddress}/quotes").ToString();
 

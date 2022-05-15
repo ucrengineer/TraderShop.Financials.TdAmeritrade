@@ -24,7 +24,7 @@ namespace TraderShop.Financials.TdAmeritrade.UserInfo.Services.Impl
 
         async Task<Preferences> ITdAmeritradeUserInfoProvider.GetPreferences(string accountId, CancellationToken cancellationToken)
         {
-            _errorHandler.CheckForNullOrEmpty(new string[] { accountId });
+            _errorHandler.CheckForNullOrEmpty(new string[] { accountId }, new string[] { "accountId" });
 
             var uri = new Uri($"{_httpClient.BaseAddress}{accountId}/preferences").ToString();
 
@@ -97,7 +97,7 @@ namespace TraderShop.Financials.TdAmeritrade.UserInfo.Services.Impl
 
         public async Task<int> UpdatePreferences(string accountId, Preferences preferences, CancellationToken cancellationToken = default)
         {
-            _errorHandler.CheckForNullOrEmpty(new string[] { accountId });
+            _errorHandler.CheckForNullOrEmpty(new string[] { accountId }, new string[] { "accountId" });
 
             var uri = new Uri($"{_httpClient.BaseAddress}{accountId}/preferences").ToString();
 

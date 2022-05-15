@@ -23,7 +23,7 @@ namespace TraderShop.Financials.TdAmeritrade.TransactionHistory.Services.Impl
 
         public async Task<Transaction> GetTransaction(string accountId, string transactionId, CancellationToken cancellationToken = default)
         {
-            _errorHandler.CheckForNullOrEmpty(new string[] { accountId, transactionId });
+            _errorHandler.CheckForNullOrEmpty(new string[] { accountId, transactionId }, new string[] { "accountId", "transactionId" });
 
             var uri = new Uri($"{_httpClient.BaseAddress}{accountId}/transactions/{transactionId}").ToString();
 
@@ -42,7 +42,7 @@ namespace TraderShop.Financials.TdAmeritrade.TransactionHistory.Services.Impl
 
         public async Task<Transaction[]> GetTransactions(string accountId, TransactionQuery transactionQuery, CancellationToken cancellationToken = default)
         {
-            _errorHandler.CheckForNullOrEmpty(new string[] { accountId });
+            _errorHandler.CheckForNullOrEmpty(new string[] { accountId }, new string[] { "accountId" });
 
             var uri = new Uri($"{_httpClient.BaseAddress}{accountId}/transactions").ToString();
 

@@ -26,7 +26,7 @@ namespace TraderShop.Financials.TdAmeritrade.Orders.Services.Impl
         }
         public async Task<Order> GetOrder(string accountId, string OrderId, CancellationToken cancellationToken)
         {
-            _errorHandler.CheckForNullOrEmpty(new string[] { accountId, OrderId });
+            _errorHandler.CheckForNullOrEmpty(new string[] { accountId, OrderId }, new string[]{"accountId", "OrderId"});
 
             var uri = new Uri($"{_httpClient.BaseAddress}{accountId}/orders/{OrderId}").ToString();
 
@@ -45,7 +45,7 @@ namespace TraderShop.Financials.TdAmeritrade.Orders.Services.Impl
 
         public async Task<Order[]> GetOrdersByPath(string accountId, CancellationToken cancellationToken, OrderQuery? orderQuery)
         {
-            _errorHandler.CheckForNullOrEmpty(new string[] { accountId });
+            _errorHandler.CheckForNullOrEmpty(new string[] { accountId }, new string[]{"accountId"});
 
             var uri = new Uri($"{_httpClient.BaseAddress}{accountId}/orders").ToString();
 
@@ -109,7 +109,7 @@ namespace TraderShop.Financials.TdAmeritrade.Orders.Services.Impl
 
         public async Task<int> PlaceOrder(string accountId, object order, CancellationToken cancellationToken)
         {
-            _errorHandler.CheckForNullOrEmpty(new string[] { accountId });
+            _errorHandler.CheckForNullOrEmpty(new string[] { accountId }, new string[]{"accountId"});
 
             var uri = new Uri($"{_httpClient.BaseAddress}{accountId}/orders").ToString();
 
@@ -128,7 +128,7 @@ namespace TraderShop.Financials.TdAmeritrade.Orders.Services.Impl
 
         public async Task<int> ReplaceOrder(string accountId, string orderId, object order, CancellationToken cancellationToken)
         {
-            _errorHandler.CheckForNullOrEmpty(new string[] { accountId, orderId });
+            _errorHandler.CheckForNullOrEmpty(new string[] { accountId, orderId }, new string[]{"accountId", "orderId"});
 
             var uri = new Uri($"{_httpClient.BaseAddress}{accountId}/orders/{orderId}").ToString();
 
@@ -147,7 +147,7 @@ namespace TraderShop.Financials.TdAmeritrade.Orders.Services.Impl
 
         public async Task<int> CancelOrder(string accountId, string orderId, CancellationToken cancellationToken)
         {
-            _errorHandler.CheckForNullOrEmpty(new string[] { accountId, orderId });
+            _errorHandler.CheckForNullOrEmpty(new string[] { accountId, orderId }, new string[]{"accountId", "orderId"});
 
             var uri = new Uri($"{_httpClient.BaseAddress}{accountId}/orders/{orderId}").ToString();
 

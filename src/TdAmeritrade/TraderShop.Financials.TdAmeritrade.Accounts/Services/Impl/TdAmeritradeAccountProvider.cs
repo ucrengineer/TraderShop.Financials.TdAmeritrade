@@ -55,7 +55,7 @@ namespace TraderShop.Financials.TdAmeritrade.Accounts.Services.Impl
         }
         public async Task<SecuritiesAccount> GetAccount(string accountId, string[]? fields, CancellationToken cancellationToken)
         {
-            _errorHandler.CheckForNullOrEmpty(new string[] { accountId });
+            _errorHandler.CheckForNullOrEmpty(new string[] { accountId }, new string[]{"accountId"});
 
             var uri = new Uri($"{_httpClient.BaseAddress}{accountId}").ToString();
 

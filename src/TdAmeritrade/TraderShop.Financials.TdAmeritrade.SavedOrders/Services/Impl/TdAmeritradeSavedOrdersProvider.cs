@@ -21,7 +21,7 @@ namespace TraderShop.Financials.TdAmeritrade.SavedOrders.Services.Impl
         }
         async Task<SavedOrder> ITdAmeritradeSavedOrdersProvider.GetSavedOrder(string accountId, string savedOrderId, CancellationToken cancellationToken)
         {
-            _errorHandler.CheckForNullOrEmpty(new string[] { accountId, savedOrderId });
+            _errorHandler.CheckForNullOrEmpty(new string[] { accountId, savedOrderId }, new string[] { "accountId", "savedOrderId" });
 
             var uri = new Uri($"{_httpClient.BaseAddress}{accountId}/savedorders/{savedOrderId}").ToString();
 
@@ -40,7 +40,7 @@ namespace TraderShop.Financials.TdAmeritrade.SavedOrders.Services.Impl
 
         async Task<SavedOrder[]> ITdAmeritradeSavedOrdersProvider.GetSavedOrdersByAccountId(string accountId, CancellationToken cancellationToken)
         {
-            _errorHandler.CheckForNullOrEmpty(new string[] { accountId });
+            _errorHandler.CheckForNullOrEmpty(new string[] { accountId }, new string[] { "accountId" });
 
             var uri = new Uri($"{_httpClient.BaseAddress}{accountId}/savedorders").ToString();
 
