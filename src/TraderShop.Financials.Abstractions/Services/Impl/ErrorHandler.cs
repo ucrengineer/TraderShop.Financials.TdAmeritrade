@@ -16,13 +16,13 @@
             }
         }
 
-        public void CheckForNullOrEmpty(string[] mandatoryStrings)
+        public void CheckForNullOrEmpty(string[] mandatoryStrings, string[]? name)
         {
             for (var i = 0; i < mandatoryStrings.Length; i++)
             {
                 if (!mandatoryStrings[i].Any())
                 {
-                    throw new Exception($"String input cannot be null or empty");
+                    throw new Exception($"{name?[i] ?? nameof(String)} input cannot be null or empty");
                 }
             }
         }

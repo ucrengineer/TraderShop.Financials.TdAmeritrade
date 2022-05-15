@@ -43,6 +43,8 @@ namespace TraderShop.Financials.TdAmeritrade.UserInfo.Services.Impl
 
         public async Task<SubscriptionKey> GetStreamerSubscriptionKeys(string[]? accountIds, CancellationToken cancellationToken = default)
         {
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await _authService.GetBearerToken());
+
             var uri = new Uri($"{_httpClient?.BaseAddress?.ToString().Split("accounts/")[0]}/userprincipals/streamersubscriptionkeys").ToString();
 
             if (accountIds != null)
@@ -54,9 +56,6 @@ namespace TraderShop.Financials.TdAmeritrade.UserInfo.Services.Impl
 
                 uri = QueryHelpers.AddQueryString(uri, query);
             }
-
-
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await _authService.GetBearerToken());
 
             var response = await _httpClient.GetAsync(uri, cancellationToken);
 
@@ -71,6 +70,8 @@ namespace TraderShop.Financials.TdAmeritrade.UserInfo.Services.Impl
 
         public async Task<UserPrinciple> GetUserPrincipals(string[]? fields, CancellationToken cancellationToken = default)
         {
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await _authService.GetBearerToken());
+
             var uri = new Uri($"{_httpClient?.BaseAddress?.ToString().Split("accounts/")[0]}/userprincipals").ToString();
 
             if (fields != null)
@@ -82,9 +83,6 @@ namespace TraderShop.Financials.TdAmeritrade.UserInfo.Services.Impl
 
                 uri = QueryHelpers.AddQueryString(uri, query);
             }
-
-
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await _authService.GetBearerToken());
 
             var response = await _httpClient.GetAsync(uri, cancellationToken);
 

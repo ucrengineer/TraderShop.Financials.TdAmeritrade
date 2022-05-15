@@ -3,6 +3,6 @@
     public interface IErrorHandler
     {
         Task CheckForErrorsAsync(HttpResponseMessage httpResponseMessage);
-        void CheckForNullOrEmpty(string[] mandatoryString);
+        void CheckForNullOrEmpty(string[] mandatoryString, string[]? name = null);
     }
 }

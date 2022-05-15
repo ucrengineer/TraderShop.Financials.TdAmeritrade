@@ -14,8 +14,8 @@
         public double ClosePrice { get; set; }
         public double NetChange { get; set; }
         public double TotalVolume { get; set; }
-        public double QuoteTimeInLong { get; set; }
-        public double TradeTimeInLong { get; set; }
+        public long QuoteTimeInLong { get; set; }
+        public long TradeTimeInLong { get; set; }
         public double Mark { get; set; }
         public double Volatility { get; set; }
         public string ContractType { get; set; } = string.Empty;

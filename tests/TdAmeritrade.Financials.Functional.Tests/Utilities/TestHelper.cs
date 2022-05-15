@@ -10,6 +10,7 @@ using TraderShop.Financials.TdAmeritrade.Abstractions.Options;
 using TraderShop.Financials.TdAmeritrade.Accounts.DependencyInjection;
 using TraderShop.Financials.TdAmeritrade.MarketHours.DependencyInjection;
 using TraderShop.Financials.TdAmeritrade.Movers.DependencyInjection;
+using TraderShop.Financials.TdAmeritrade.OptionChains.DependencyInjection;
 using TraderShop.Financials.TdAmeritrade.Orders.DependencyInjection;
 using TraderShop.Financials.TdAmeritrade.Quotes.DependencyInjection;
 using TraderShop.Financials.TdAmeritrade.SavedOrders.DependencyInjection;
@@ -59,6 +60,8 @@ namespace TdAmeritrade.Financials.Functional.Tests.Utilities
             services.AddTdAmeritradeTransactionHistoryProvider();
 
             services.AddTdAmeritradeUserInfoProvider();
+
+            services.AddTdAmeritradeOptionChainsProvider();
 
             return services.BuildServiceProvider();
         }
