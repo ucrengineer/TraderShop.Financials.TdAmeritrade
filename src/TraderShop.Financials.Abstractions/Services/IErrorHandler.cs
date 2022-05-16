@@ -14,7 +14,5 @@
         /// <param name="httpResponseMessage"></param>
         /// <returns></returns>
         Task CheckCommandErrorsAsync(HttpResponseMessage httpResponseMessage);
-        void CheckForNullOrEmpty(string[] mandatoryString, string[]? name = null);
-
     }
 }

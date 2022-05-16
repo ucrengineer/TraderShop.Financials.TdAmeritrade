@@ -19,10 +19,8 @@ namespace TraderShop.Financials.TdAmeritrade.SavedOrders.Services.Impl
             _errorHandler = errorHandler;
 
         }
-        async Task<SavedOrder> ITdAmeritradeSavedOrdersProvider.GetSavedOrder(string accountId, string savedOrderId, CancellationToken cancellationToken)
+        public async Task<SavedOrder> GetSavedOrder(string accountId, string savedOrderId, CancellationToken cancellationToken)
         {
-            _errorHandler.CheckForNullOrEmpty(new string[] { accountId, savedOrderId }, new string[] { "accountId", "savedOrderId" });
-
             var uri = new Uri($"{_httpClient.BaseAddress}{accountId}/savedorders/{savedOrderId}").ToString();
 
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await _authService.GetBearerToken());
@@ -38,10 +36,8 @@ namespace TraderShop.Financials.TdAmeritrade.SavedOrders.Services.Impl
             return savedOrderRoot.SavedOrder;
         }
 
-        async Task<SavedOrder[]> ITdAmeritradeSavedOrdersProvider.GetSavedOrdersByAccountId(string accountId, CancellationToken cancellationToken)
+        public async Task<SavedOrder[]> GetSavedOrdersByAccountId(string accountId, CancellationToken cancellationToken)
         {
-            _errorHandler.CheckForNullOrEmpty(new string[] { accountId }, new string[] { "accountId" });
-
             var uri = new Uri($"{_httpClient.BaseAddress}{accountId}/savedorders").ToString();
 
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await _authService.GetBearerToken());

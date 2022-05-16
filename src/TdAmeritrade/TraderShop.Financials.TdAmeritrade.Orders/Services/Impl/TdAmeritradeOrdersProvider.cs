@@ -26,8 +26,6 @@ namespace TraderShop.Financials.TdAmeritrade.Orders.Services.Impl
         }
         public async Task<Order> GetOrder(string accountId, string OrderId, CancellationToken cancellationToken)
         {
-            _errorHandler.CheckForNullOrEmpty(new string[] { accountId, OrderId }, new string[]{"accountId", "OrderId"});
-
             var uri = new Uri($"{_httpClient.BaseAddress}{accountId}/orders/{OrderId}").ToString();
 
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await _authService.GetBearerToken());
@@ -45,8 +43,6 @@ namespace TraderShop.Financials.TdAmeritrade.Orders.Services.Impl
 
         public async Task<Order[]> GetOrdersByPath(string accountId, CancellationToken cancellationToken, OrderQuery? orderQuery)
         {
-            _errorHandler.CheckForNullOrEmpty(new string[] { accountId }, new string[]{"accountId"});
-
             var uri = new Uri($"{_httpClient.BaseAddress}{accountId}/orders").ToString();
 
             if (orderQuery != null)
@@ -109,8 +105,6 @@ namespace TraderShop.Financials.TdAmeritrade.Orders.Services.Impl
 
         public async Task<int> PlaceOrder(string accountId, object order, CancellationToken cancellationToken)
         {
-            _errorHandler.CheckForNullOrEmpty(new string[] { accountId }, new string[]{"accountId"});
-
             var uri = new Uri($"{_httpClient.BaseAddress}{accountId}/orders").ToString();
 
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await _authService.GetBearerToken());
@@ -121,15 +115,13 @@ namespace TraderShop.Financials.TdAmeritrade.Orders.Services.Impl
 
             var response = await _httpClient.PostAsync(uri, content, cancellationToken);
 
-            response.EnsureSuccessStatusCode();
+            await _errorHandler.CheckCommandErrorsAsync(response);
 
             return 0;
         }
 
         public async Task<int> ReplaceOrder(string accountId, string orderId, object order, CancellationToken cancellationToken)
         {
-            _errorHandler.CheckForNullOrEmpty(new string[] { accountId, orderId }, new string[]{"accountId", "orderId"});
-
             var uri = new Uri($"{_httpClient.BaseAddress}{accountId}/orders/{orderId}").ToString();
 
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await _authService.GetBearerToken());
@@ -140,22 +132,20 @@ namespace TraderShop.Financials.TdAmeritrade.Orders.Services.Impl
 
             var response = await _httpClient.PutAsync(uri, content, cancellationToken);
 
-            response.EnsureSuccessStatusCode();
+            await _errorHandler.CheckCommandErrorsAsync(response);
 
             return 0;
         }
 
         public async Task<int> CancelOrder(string accountId, string orderId, CancellationToken cancellationToken)
         {
-            _errorHandler.CheckForNullOrEmpty(new string[] { accountId, orderId }, new string[]{"accountId", "orderId"});
-
             var uri = new Uri($"{_httpClient.BaseAddress}{accountId}/orders/{orderId}").ToString();
 
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await _authService.GetBearerToken());
 
             var response = await _httpClient.DeleteAsync(uri, cancellationToken);
 
-            response.EnsureSuccessStatusCode();
+            await _errorHandler.CheckCommandErrorsAsync(response);
 
             return 0;
         }

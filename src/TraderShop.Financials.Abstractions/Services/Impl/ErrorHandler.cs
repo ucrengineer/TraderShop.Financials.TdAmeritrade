@@ -10,23 +10,12 @@
             {
                 throw new Exception($"Http Code : {httpResponseMessage?.StatusCode} but no content is returned");
             }
+
             if (!httpResponseMessage.IsSuccessStatusCode)
             {
                 throw new Exception(responseObject);
             }
         }
-
-        public void CheckForNullOrEmpty(string[] mandatoryStrings, string[]? name)
-        {
-            for (var i = 0; i < mandatoryStrings.Length; i++)
-            {
-                if (!mandatoryStrings[i].Any())
-                {
-                    throw new Exception($"{name?[i] ?? nameof(String)} input cannot be null or empty");
-                }
-            }
-        }
-
         public async Task CheckCommandErrorsAsync(HttpResponseMessage httpResponseMessage)
         {
             var responseObject = await httpResponseMessage.Content.ReadAsStringAsync();

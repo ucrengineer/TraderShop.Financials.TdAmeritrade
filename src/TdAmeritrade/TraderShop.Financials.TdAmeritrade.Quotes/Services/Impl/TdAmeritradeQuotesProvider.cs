@@ -23,8 +23,6 @@ namespace TraderShop.Financials.TdAmeritrade.Quotes.Services.Impl
 
         public async Task<T> GetQuote<T>(string symbol, CancellationToken cancellationToken = default) where T : Quote
         {
-            _errorHandler.CheckForNullOrEmpty(new string[] { symbol }, new string[] { "symbol" });
-
             var uri = new Uri($"{_httpClient.BaseAddress}{symbol}/quotes").ToString();
 
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await _authService.GetBearerToken());
@@ -42,14 +40,7 @@ namespace TraderShop.Financials.TdAmeritrade.Quotes.Services.Impl
 
         public async Task<Quote[]> GetQuotes(string[] symbols, CancellationToken cancellationToken = default)
         {
-            var array = new string[symbols.Length];
-
-            Array.Fill<string>(array, "symbol");
-
-            _errorHandler.CheckForNullOrEmpty(symbols, array);
-
             var uri = new Uri($"{_httpClient.BaseAddress}/quotes").ToString();
-
 
             var query = new Dictionary<string, string>
             {
