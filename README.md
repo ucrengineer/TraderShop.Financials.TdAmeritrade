@@ -35,7 +35,8 @@ This library wraps the following endpoints from the TdAmeritrade Developer API :
 ## Accounts and Trading
 <b>Saved Orders endpoints are not wrapped</b>
 ## Authentication
-Bearer Token is cached in memory. Absolute expiration is set to the "Expires_In" value that is returned from the TdAmeritrade API. Currently only Bearer Tokens are supported and is done using embedded Tdameritrade account information in the appsettings.json file.
+Located in the `TraderShop.Financials.TdAmeritrade.Abstractions` project.
+Bearer Token is cached in memory. Absolute expiration is set to the "Expires_In" value that is returned from the TdAmeritrade API. Currently only Bearer Tokens are supported and is done using embedded Tdameritrade account information.
 
 ## Instruments
 <b>GetAllForexInstruments is currently not implemented</b>
