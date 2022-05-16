@@ -35,7 +35,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TraderShop.Financials.TdAme
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TraderShop.Financials.TdAmeritrade.UserInfo", "src\TdAmeritrade\TraderShop.Financials.TdAmeritrade.UserInfo\TraderShop.Financials.TdAmeritrade.UserInfo.csproj", "{82D97787-9E2E-48DC-B843-502DDA9BABCB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TraderShop.Financials.TdAmeritrade.WatchList", "src\TdAmeritrade\TraderShop.Financials.TdAmeritrade.WatchList\TraderShop.Financials.TdAmeritrade.WatchList.csproj", "{A0344A36-0184-4877-B5B2-6B2E374836EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TraderShop.Financials.TdAmeritrade.Watchlist", "src\TdAmeritrade\TraderShop.Financials.TdAmeritrade.Watchlist\TraderShop.Financials.TdAmeritrade.Watchlist.csproj", "{A0344A36-0184-4877-B5B2-6B2E374836EA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TraderShop.Financials.TdAmeritrade.TransactionHistory", "src\TdAmeritrade\TraderShop.Financials.TdAmeritrade.TransactionHistory\TraderShop.Financials.TdAmeritrade.TransactionHistory.csproj", "{CE67BFA6-3887-4F20-A940-5E95012125B8}"
 EndProject

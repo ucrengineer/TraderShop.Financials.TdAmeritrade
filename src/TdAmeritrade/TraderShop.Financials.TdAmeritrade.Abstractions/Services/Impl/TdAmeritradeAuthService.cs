@@ -58,7 +58,7 @@ namespace TraderShop.Financials.TdAmeritrade.Abstractions.Services.Impl
 
             var response = await _httpClient.PostAsync(_tdAmeritradeOptions.auth_url, content, cancellationToken);
 
-            await _errorHandler.CheckForErrorsAsync(response);
+            await _errorHandler.CheckQueryErrorsAsync(response);
 
             return JsonConvert.DeserializeObject<PostAccessTokenResponse>(await response.Content.ReadAsStringAsync()) ?? new PostAccessTokenResponse() { error = $"Response Status Code : {response.StatusCode}" };
         }

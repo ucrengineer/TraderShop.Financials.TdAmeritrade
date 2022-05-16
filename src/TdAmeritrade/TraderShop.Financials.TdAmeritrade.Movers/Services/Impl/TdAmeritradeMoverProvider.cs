@@ -36,7 +36,7 @@ namespace TraderShop.Financials.TdAmeritrade.Movers.Services.Impl
 
             var response = await _httpClient.GetAsync(uri, cancellationToken);
 
-            await _errorHandler.CheckForErrorsAsync(response);
+            await _errorHandler.CheckQueryErrorsAsync(response);
 
             var responseObject = await response.Content.ReadAsStringAsync();
 

@@ -17,6 +17,7 @@ using TraderShop.Financials.TdAmeritrade.SavedOrders.DependencyInjection;
 using TraderShop.Financials.TdAmeritrade.Symbols.DependencyInjection;
 using TraderShop.Financials.TdAmeritrade.TransactionHistory.DependencyInjection;
 using TraderShop.Financials.TdAmeritrade.UserInfo.DependencyInjection;
+using TraderShop.Financials.TdAmeritrade.Watchlist.DependencyInjection;
 
 namespace TdAmeritrade.Financials.Functional.Tests.Utilities
 {
@@ -62,6 +63,8 @@ namespace TdAmeritrade.Financials.Functional.Tests.Utilities
             services.AddTdAmeritradeUserInfoProvider();
 
             services.AddTdAmeritradeOptionChainsProvider();
+
+            services.AddTdAmeritradeWatchlistProvider();
 
             return services.BuildServiceProvider();
         }

@@ -2,7 +2,7 @@
 {
     public class ErrorHandler : IErrorHandler
     {
-        public async Task CheckForErrorsAsync(HttpResponseMessage httpResponseMessage)
+        public async Task CheckQueryErrorsAsync(HttpResponseMessage httpResponseMessage)
         {
             var responseObject = await httpResponseMessage.Content.ReadAsStringAsync();
 
@@ -24,6 +24,16 @@
                 {
                     throw new Exception($"{name?[i] ?? nameof(String)} input cannot be null or empty");
                 }
+            }
+        }
+
+        public async Task CheckCommandErrorsAsync(HttpResponseMessage httpResponseMessage)
+        {
+            var responseObject = await httpResponseMessage.Content.ReadAsStringAsync();
+
+            if (!httpResponseMessage.IsSuccessStatusCode)
+            {
+                throw new Exception(responseObject);
             }
         }
     }
