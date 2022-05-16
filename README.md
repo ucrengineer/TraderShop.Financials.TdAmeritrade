@@ -1,5 +1,4 @@
-## TraderShop Financials
-
+## TdAmeritrade API Wrapper
 <img src="https://img.shields.io/github/issues/ucrengineer/TraderShop.Financials"
     alt = "home screen"
     style = "float: left"/>
@@ -12,8 +11,6 @@
 <img src="https://img.shields.io/badge/license-GPL--3.0-green"
     alt = "home screen"
     style = "float: left"/>
-
-## TdAmeritrade API Wrapper
 
 [TdAmeritrade API Documentation](https://developer.tdameritrade.com/apis "TdAmeritrade's API Documentation")
 
