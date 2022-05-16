@@ -4,7 +4,9 @@
 
 [https://developer.tdameritrade.com/apis]
 
-[https://img.shields.io/github/issues/ucrengineer/TraderShop.Financials]
+<img src="https://img.shields.io/github/issues/ucrengineer/TraderShop.Financials"
+    alt = "home screen"/>
+
 
 [https://img.shields.io/github/forks/ucrengineer/TraderShop.Financials]
 
