@@ -21,11 +21,8 @@ namespace TraderShop.Financials.TdAmeritrade.UserInfo.Services.Impl
             _authService = authService;
         }
 
-
         async Task<Preferences> ITdAmeritradeUserInfoProvider.GetPreferences(string accountId, CancellationToken cancellationToken)
         {
-            _errorHandler.CheckForNullOrEmpty(new string[] { accountId }, new string[] { "accountId" });
-
             var uri = new Uri($"{_httpClient.BaseAddress}{accountId}/preferences").ToString();
 
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await _authService.GetBearerToken());
@@ -97,8 +94,6 @@ namespace TraderShop.Financials.TdAmeritrade.UserInfo.Services.Impl
 
         public async Task<int> UpdatePreferences(string accountId, Preferences preferences, CancellationToken cancellationToken = default)
         {
-            _errorHandler.CheckForNullOrEmpty(new string[] { accountId }, new string[] { "accountId" });
-
             var uri = new Uri($"{_httpClient.BaseAddress}{accountId}/preferences").ToString();
 
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await _authService.GetBearerToken());
@@ -109,11 +104,9 @@ namespace TraderShop.Financials.TdAmeritrade.UserInfo.Services.Impl
 
             var response = await _httpClient.PutAsync(uri, content, cancellationToken);
 
-            response.EnsureSuccessStatusCode();
+            await _errorHandler.CheckCommandErrorsAsync(response);
 
             return 0;
         }
-
-
     }
 }

@@ -22,8 +22,6 @@ namespace TraderShop.Financials.TdAmeritrade.Watchlist.Services.Impl
 
         public async Task<int> CreateWatchlist(string accountId, WatchlistPost watchlist, CancellationToken cancellationToken = default)
         {
-            _errorHandler.CheckForNullOrEmpty(new string[] { accountId }, new string[] { "accountId" });
-
             var uri = new Uri($"{_httpClient.BaseAddress}{accountId}/watchlists").ToString();
 
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await _authService.GetBearerToken());

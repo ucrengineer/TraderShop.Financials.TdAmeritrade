@@ -3,7 +3,6 @@
 <img src="https://img.shields.io/github/issues/ucrengineer/TraderShop.Financials"
     alt = "home screen"
     style = "float: left"/>
-
 <img src="https://img.shields.io/github/forks/ucrengineer/TraderShop.Financials"
     alt = "home screen"
     style = "float: left"/>
@@ -18,10 +17,10 @@
 
 [TdAmeritrade API Documentation](https://developer.tdameritrade.com/apis "TdAmeritrade's API Documentation")
 
-
+### Description
 
 This library wraps the following endpoints from the TdAmeritrade Developer API :
-1. Accounts and Trading (Saved Orders endpoints are not wrapped)
+1. Accounts and Trading 
 2. Authentication
 3. Instruments
 4. Market Hours
@@ -33,16 +32,30 @@ This library wraps the following endpoints from the TdAmeritrade Developer API :
 10. User Info and Preferences
 11. Watchlist
 
-Copyright 2022 @ucrengineer
+## Accounts and Trading
+<b>Saved Orders endpoints are not wrapped</b>
+## Authentication
+Bearer Token is cached in memory. Absolute expiration is set to the "Expires_In" value that is returned from the TdAmeritrade API. Currently only Bearer Tokens are supported and is done using embedded Tdameritrade account information in the appsettings.json file.
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
+## Instruments
+<b>GetAllForexInstruments is currently not implemented</b>
 
-    http://www.apache.org/licenses/LICENSE-2.0
+## Market Hours
 
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
+## Movers
+
+## Option Chains
+
+## Price History
+
+## Quotes
+
+## Transaction History
+
+## User Info and Preferences
+
+## Watchlist
+
+## ErrorHandling
+The library will throw an exception if the TdAmeritrade API returns an error code or if there are no objects returned.
+The exception will contain the error code and message.

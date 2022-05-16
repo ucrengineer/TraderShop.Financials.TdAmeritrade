@@ -22,8 +22,6 @@ namespace TraderShop.Financials.TdAmeritrade.OptionChains.Services.Impl
 
         public async Task<OptionChain> GetOptionChain(OptionChainQuery optionQuery, CancellationToken cancellationToken = default)
         {
-            _errorHandler.CheckForNullOrEmpty(new string[] { optionQuery.Symbol }, new string[] { "Symbol" });
-
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await _authService.GetBearerToken());
 
             var query = new Dictionary<string, string>
