@@ -8,7 +8,7 @@
 <img src="https://img.shields.io/github/stars/ucrengineer/TraderShop.Financials"
     alt = "home screen"
     style = "float: left"/>
-<img src="https://img.shields.io/badge/license-GPL--3.0-green"
+<img src="https://img.shields.io/github/license/ucrengineer/TraderShop.Financials.TdAmeritrade"
     alt = "home screen"
     style = "float: left"/>
 
