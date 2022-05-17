@@ -12,6 +12,10 @@
     alt = "home screen"
     style = "float: left"/>
 
+<img src="buymeacoffee.com/ucrengineer"
+    alt = "home screen"
+    style = "float: left"/>
+    
 [TdAmeritrade API Documentation](https://developer.tdameritrade.com/apis "TdAmeritrade's API Documentation")
 
 ### Description
