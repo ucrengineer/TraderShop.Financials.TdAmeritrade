@@ -30,7 +30,8 @@ This library wraps the following endpoints from the TdAmeritrade Developer API :
 11. Watchlist
 
 ## Accounts and Trading
-<b>Saved Orders endpoints are not wrapped</b>
+<b>Saved Orders endpoints are not wrapped</b>.
+
 Still working on consolidating models for Orders enpoints.
 ## Authentication
 Located in the `TraderShop.Financials.TdAmeritrade.Abstractions` project.
