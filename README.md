@@ -31,6 +31,7 @@ This library wraps the following endpoints from the TdAmeritrade Developer API :
 
 ## Accounts and Trading
 <b>Saved Orders endpoints are not wrapped</b>
+Still working on consolidating models for Orders enpoints.
 ## Authentication
 Located in the `TraderShop.Financials.TdAmeritrade.Abstractions` project.
 Bearer Token is cached in memory. Absolute expiration is set to the "Expires_In" value that is returned from the TdAmeritrade API. Currently only Bearer Tokens are supported and is done using embedded Tdameritrade account information.
@@ -53,7 +54,7 @@ Bearer Token is cached in memory. Absolute expiration is set to the "Expires_In"
 ## User Info and Preferences
 
 ## Watchlist
-
+Still working on consolidating models.
 ## ErrorHandling
 The library will throw an exception if the TdAmeritrade API returns an error code or if there are no objects returned.
 The exception will contain the error code and message.
