@@ -35,42 +35,6 @@ This library wraps the following endpoints from the TdAmeritrade Developer API :
 ## Usage 
 
 ```csharp
-
-services.AddTdAmeritradeClient();
-services.Configure<TdAmeritradeOptions>(
-    hostContext.Configuration.GetSection("TdAmeritradeOptions")
-        );
-
-services.AddFinancialsAbstractionsServices();
-
-services.AddTdAmeritradeClient();
-
-services.AddTdAmeritradeInstrumentProvider();
-
-services.AddTdAmeritradePriceHistoryProvider();
-
-services.AddTdAmeritradeAccountProvider();
-
-services.AddTdAmeritradeSavedOrdersProvider();
-
-services.AddTdAmeritradeOrdersProvider();
-
-services.AddTdAmeritradeQuotesProvider();
-
-services.AddTdAmeritradeMoverProvider();
-
-services.AddTdAmeritradeMarketHoursProvider();
-
-services.AddTdAmeritradeTransactionHistoryProvider();
-
-services.AddTdAmeritradeUserInfoProvider();
-
-services.AddTdAmeritradeOptionChainsProvider();
-
-services.AddTdAmeritradeWatchlistProvider();
-
-var serviceProvider  = services.BuildServiceProvider();
-
 public class BasicUsageDemo
 {
     public static void Main(string[] args)
