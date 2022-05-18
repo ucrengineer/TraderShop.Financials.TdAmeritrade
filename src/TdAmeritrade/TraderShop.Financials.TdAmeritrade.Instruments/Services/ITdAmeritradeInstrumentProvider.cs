@@ -1,4 +1,4 @@
-﻿using TraderShop.Financials.TdAmeritrade.Instruments.Models;
+﻿using TraderShop.Financials.TdAmeritrade.Abstractions.Models;
 
 namespace TraderShop.Financials.TdAmeritrade.Instruments.Services
 {

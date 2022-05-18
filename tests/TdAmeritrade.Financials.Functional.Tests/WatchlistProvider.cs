@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Options;
 using System;
 using TdAmeritrade.Financials.Functional.Tests.Utilities;
+using TraderShop.Financials.TdAmeritrade.Abstractions.Models;
 using TraderShop.Financials.TdAmeritrade.Abstractions.Options;
 using TraderShop.Financials.TdAmeritrade.Watchlist.Models;
 using TraderShop.Financials.TdAmeritrade.Watchlist.Services;
@@ -23,10 +24,8 @@ namespace TdAmeritrade.Financials.Functional.Tests
         public async void Create_Watchlist_SuccessfullyAsync()
         {
             // arrange
-            var newWatchlist = new WatchlistPost()
-            {
-                Name = "apiTest",
-                WatchlistItems = new[]
+            var newWatchlist = new WatchlistPost(name: "apiTest",
+                watchlistItems: new[]
                 {
                     new WatchlistItem
                     {
@@ -39,7 +38,9 @@ namespace TdAmeritrade.Financials.Functional.Tests
                             AssetType = "EQUITY"
                         }
                     }
-                }
+                })
+            {
+
             };
 
             // act

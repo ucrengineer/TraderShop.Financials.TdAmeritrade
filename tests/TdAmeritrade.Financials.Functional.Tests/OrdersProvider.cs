@@ -59,27 +59,36 @@ namespace TdAmeritrade.Financials.Functional.Tests
              * will have to create objects for order creation, it is a sensitive process.
              * possibly use premade json files for order placement
             */
-            var order = new
-            {
-                orderType = "LIMIT",
-                session = "NORMAL",
-                price = "150",
-                duration = "DAY",
-                orderStrategyType = "SINGLE",
-                orderLegCollection = new object[]
+            //var order = new
+            //{
+            //    orderType = "LIMIT",
+            //    session = "NORMAL",
+            //    price = "150",
+            //    duration = "DAY",
+            //    orderStrategyType = "SINGLE",
+            //    orderLegCollection = new object[]
+            //    {
+            //        new
+            //        {
+            //            instruction = "BUY",
+            //            quantity = 1,
+            //            instrument = new
+            //            {
+            //                symbol = "MSFT",
+            //                assetType = "EQUITY"
+            //            }
+            //        }
+            //    }
+            //};
+
+            var order = new PlaceOrder("LIMIT", 100,
+                "NORMAL",
+                "DAY",
+                "SINGLE",
+                new OrderLegCollection[]
                 {
-                    new
-                    {
-                        instruction = "BUY",
-                        quantity = 1,
-                        instrument = new
-                        {
-                            symbol = "MSFT",
-                            assetType = "EQUITY"
-                        }
-                    }
-                }
-            };
+                    new OrderLegCollection("BUY",1,"MSFT","EQUITY")
+                });
 
             var result = await _ordersProvider.PlaceOrder(_options.account_number, order);
 
@@ -94,29 +103,37 @@ namespace TdAmeritrade.Financials.Functional.Tests
              * will have to create objects for order creation, it is a sensitive process.
              * possibly use premade json files for order placement
             */
-            var order = new
-            {
-                orderType = "LIMIT",
-                session = "NORMAL",
-                price = "100",
-                duration = "DAY",
-                orderStrategyType = "SINGLE",
-                orderLegCollection = new object[]
-                {
-                    new
-                    {
-                        instruction = "BUY",
-                        quantity = 1,
-                        instrument = new
-                        {
-                            symbol = "MSFT",
-                            assetType = "EQUITY"
-                        }
-                    }
-                }
-            };
+            //var order = new
+            //{
+            //    orderType = "LIMIT",
+            //    session = "NORMAL",
+            //    price = "100",
+            //    duration = "DAY",
+            //    orderStrategyType = "SINGLE",
+            //    orderLegCollection = new object[]
+            //    {
+            //        new
+            //        {
+            //            instruction = "BUY",
+            //            quantity = 1,
+            //            instrument = new
+            //            {
+            //                symbol = "MSFT",
+            //                assetType = "EQUITY"
+            //            }
+            //        }
+            //    }
+            //};
 
-            var result = await _ordersProvider.ReplaceOrder(_options.account_number, "5561451864", order);
+            var order = new PlaceOrder("LIMIT", 100,
+                           "NORMAL",
+                           "DAY",
+                           "SINGLE",
+                           new OrderLegCollection[]
+                           {
+                                        new OrderLegCollection("BUY",2,"MSFT","EQUITY")
+                           });
+            var result = await _ordersProvider.ReplaceOrder(_options.account_number, "5586319823", order);
 
             Assert.Equal(0, result);
 
@@ -147,27 +164,36 @@ namespace TdAmeritrade.Financials.Functional.Tests
              * will have to create objects for order creation, it is a sensitive process.
              * possibly use premade json files for order placement
             */
-            var order = new
-            {
-                orderType = "LIMIT",
-                session = "NORMAL",
-                price = "150",
-                duration = "DAY",
-                orderStrategyType = "SINGLE",
-                orderLegCollection = new object[]
-                {
-                    new
-                    {
-                        instruction = "BUY",
-                        quantity = 1,
-                        instrument = new
-                        {
-                            symbol = "",
-                            assetType = "EQUITY"
-                        }
-                    }
-                }
-            };
+            //var order = new
+            //{
+            //    orderType = "LIMIT",
+            //    session = "NORMAL",
+            //    price = "150",
+            //    duration = "DAY",
+            //    orderStrategyType = "SINGLE",
+            //    orderLegCollection = new object[]
+            //    {
+            //        new
+            //        {
+            //            instruction = "BUY",
+            //            quantity = 1,
+            //            instrument = new
+            //            {
+            //                symbol = "",
+            //                assetType = "EQUITY"
+            //            }
+            //        }
+            //    }
+            //};
+
+            var order = new PlaceOrder("LIMIT", 100,
+       "NORMAL",
+       "DAY",
+       "SINGLE",
+       new OrderLegCollection[]
+       {
+                    new OrderLegCollection("BUY",1,"MSFT","EQUITY")
+       });
 
             await Assert.ThrowsAsync<HttpRequestException>(async () => await _ordersProvider.PlaceOrder(_options.account_number, order));
 
@@ -180,29 +206,68 @@ namespace TdAmeritrade.Financials.Functional.Tests
              * will have to create objects for order creation, it is a sensitive process.
              * possibly use premade json files for order placement
             */
-            var order = new
-            {
-                orderType = "LIMIT",
-                session = "NORMAL",
-                price = "100",
-                duration = "DAY",
-                orderStrategyType = "SINGLE",
-                orderLegCollection = new object[]
-                {
-                    new
-                    {
-                        instruction = "BUY",
-                        quantity = 1,
-                        instrument = new
-                        {
-                            symbol = "MSFT",
-                            assetType = "EQUITY"
-                        }
-                    }
-                }
-            };
+            //var order = new
+            //{
+            //    orderType = "LIMIT",
+            //    session = "NORMAL",
+            //    price = "100",
+            //    duration = "DAY",
+            //    orderStrategyType = "SINGLE",
+            //    orderLegCollection = new object[]
+            //    {
+            //        new
+            //        {
+            //            instruction = "BUY",
+            //            quantity = 1,
+            //            instrument = new
+            //            {
+            //                symbol = "MSFT",
+            //                assetType = "EQUITY"
+            //            }
+            //        }
+            //    }
+            //};
+
+            var order = new PlaceOrder("LIMIT", 100,
+       "NORMAL",
+       "DAY",
+       "SINGLE",
+       new OrderLegCollection[]
+       {
+                    new OrderLegCollection("BUY",1,"MSFT","EQUITY")
+       });
 
             await Assert.ThrowsAsync<HttpRequestException>(async () => await _ordersProvider.ReplaceOrder(_options.account_number, "12345", order));
+        }
+
+        [Fact]
+        public async Task Place_Conditional_Order_Successfully()
+        {
+            var order = new ConditionalTriggerOrder("LIMIT", 100,
+                        "NORMAL",
+                        "DAY",
+                        "SINGLE",
+                        new OrderLegCollection[]
+                        {
+                            new OrderLegCollection("BUY",1,"MSFT","EQUITY")
+                        },
+                        new PlaceOrder[]
+                        {
+                            new PlaceOrder("LIMIT", 1,
+                               "NORMAL",
+                               "DAY",
+                               "SINGLE",
+                               new OrderLegCollection[]
+                               {
+                                            new OrderLegCollection("SELL",1,"MSFT","EQUITY")
+                               })
+                        });
+
+            var result = await _ordersProvider.PlaceOrder<ConditionalTriggerOrder>(_options.account_number, order);
+
+
+            Assert.Equal(0, result);
+
         }
     }
 }

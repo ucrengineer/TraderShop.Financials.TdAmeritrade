@@ -1,5 +1,4 @@
-﻿using TraderShop.Financials.TdAmeritrade.Instruments.Models;
-
+﻿
 namespace TraderShop.Financials.TdAmeritrade.Abstractions.Models
 {
     public class Order

@@ -24,7 +24,7 @@ namespace TraderShop.Financials.TdAmeritrade.Orders.Services.Impl
             _httpClient = httpClient;
             _authService = authService;
         }
-        public async Task<Order> GetOrder(string accountId, string OrderId, CancellationToken cancellationToken)
+        public async Task<Abstractions.Models.Order> GetOrder(string accountId, string OrderId, CancellationToken cancellationToken)
         {
             var uri = new Uri($"{_httpClient.BaseAddress}{accountId}/orders/{OrderId}").ToString();
 
@@ -36,12 +36,12 @@ namespace TraderShop.Financials.TdAmeritrade.Orders.Services.Impl
 
             var responseObject = await response.Content.ReadAsStringAsync();
 
-            var Order = JsonConvert.DeserializeObject<Order>(responseObject);
+            var Order = JsonConvert.DeserializeObject<Abstractions.Models.Order>(responseObject);
 
             return Order;
         }
 
-        public async Task<Order[]> GetOrdersByPath(string accountId, CancellationToken cancellationToken, OrderQuery? orderQuery)
+        public async Task<Abstractions.Models.Order[]> GetOrdersByPath(string accountId, CancellationToken cancellationToken, OrderQuery? orderQuery)
         {
             var uri = new Uri($"{_httpClient.BaseAddress}{accountId}/orders").ToString();
 
@@ -66,12 +66,12 @@ namespace TraderShop.Financials.TdAmeritrade.Orders.Services.Impl
 
             var responseObject = await response.Content.ReadAsStringAsync();
 
-            var Orders = JsonConvert.DeserializeObject<Order[]>(responseObject);
+            var Orders = JsonConvert.DeserializeObject<Abstractions.Models.Order[]>(responseObject);
 
             return Orders;
         }
 
-        public async Task<Order[]> GetOrdersByQuery(CancellationToken cancellationToken, string? accountId, OrderQuery? orderQuery)
+        public async Task<Abstractions.Models.Order[]> GetOrdersByQuery(CancellationToken cancellationToken, string? accountId, OrderQuery? orderQuery)
         {
             var uri = new Uri($"{_httpClient.BaseAddress.ToString().Split("/accounts").FirstOrDefault()}/orders").ToString();
 
@@ -98,12 +98,12 @@ namespace TraderShop.Financials.TdAmeritrade.Orders.Services.Impl
 
             var responseObject = await response.Content.ReadAsStringAsync();
 
-            var Orders = JsonConvert.DeserializeObject<Order[]>(responseObject);
+            var Orders = JsonConvert.DeserializeObject<Abstractions.Models.Order[]>(responseObject);
 
             return Orders;
         }
 
-        public async Task<int> PlaceOrder(string accountId, object order, CancellationToken cancellationToken)
+        public async Task<int> PlaceOrder<T>(string accountId, T order, CancellationToken cancellationToken) where T : IBaseOrder
         {
             var uri = new Uri($"{_httpClient.BaseAddress}{accountId}/orders").ToString();
 
@@ -120,7 +120,7 @@ namespace TraderShop.Financials.TdAmeritrade.Orders.Services.Impl
             return 0;
         }
 
-        public async Task<int> ReplaceOrder(string accountId, string orderId, object order, CancellationToken cancellationToken)
+        public async Task<int> ReplaceOrder<T>(string accountId, string orderId, T order, CancellationToken cancellationToken) where T : IBaseOrder
         {
             var uri = new Uri($"{_httpClient.BaseAddress}{accountId}/orders/{orderId}").ToString();
 

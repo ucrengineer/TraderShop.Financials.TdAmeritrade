@@ -4,6 +4,13 @@ namespace TraderShop.Financials.TdAmeritrade.Watchlist.Models
 {
     public class WatchlistPut
     {
+        public WatchlistPut(string name, string watchlistId, WatchlistItemPut[] watchlistItems)
+        {
+            Name = name;
+            WatchlistId = watchlistId;
+            WatchlistItems = watchlistItems;
+        }
+
         [JsonProperty("name")]
         public string Name { get; set; } = string.Empty;
         [JsonProperty("watchlistId")]

@@ -10,19 +10,19 @@ namespace TraderShop.Financials.TdAmeritrade.Orders.Services
         /// </summary>
         /// <param name="orderId"></param>
         /// <returns></returns>
-        Task<Order> GetOrder(string accountId, string orderId, CancellationToken cancellationToken = default);
+        Task<Abstractions.Models.Order> GetOrder(string accountId, string orderId, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Orders for a specific account.
         /// </summary>
         /// <returns></returns>
-        Task<Order[]> GetOrdersByPath(string accountId, CancellationToken cancellationToken = default, OrderQuery? orderQuery = null);
+        Task<Abstractions.Models.Order[]> GetOrdersByPath(string accountId, CancellationToken cancellationToken = default, OrderQuery? orderQuery = null);
 
         /// <summary>
         /// All orders for a specific account or, if account ID isn't specified, orders will be returned for all linked accounts.
         /// </summary>
         /// <returns></returns>
-        Task<Order[]> GetOrdersByQuery(CancellationToken cancellationToken = default, string? accountId = null, OrderQuery? orderQuery = null);
+        Task<Abstractions.Models.Order[]> GetOrdersByQuery(CancellationToken cancellationToken = default, string? accountId = null, OrderQuery? orderQuery = null);
 
         /// <summary>
         /// <para>Place an order for a specific account. Order throttle limits may apply.</para>
@@ -30,7 +30,7 @@ namespace TraderShop.Financials.TdAmeritrade.Orders.Services
         /// </summary>
         /// <param name="order"></param>
         /// <returns></returns>
-        Task<int> PlaceOrder(string accountId, object order, CancellationToken cancellationToken = default);
+        Task<int> PlaceOrder<T>(string accountId, T order, CancellationToken cancellationToken = default) where T : IBaseOrder;
 
         /// <summary>
         /// <para>Replace an existing order for an account.
@@ -45,7 +45,7 @@ namespace TraderShop.Financials.TdAmeritrade.Orders.Services
         /// <param name="order"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        Task<int> ReplaceOrder(string accountId, string orderId, object order, CancellationToken cancellationToken = default);
+        Task<int> ReplaceOrder<T>(string accountId, string orderId, T order, CancellationToken cancellationToken = default) where T : IBaseOrder;
 
         /// <summary>
         /// Cancel a specific order for a specific account. Order throttle limits may apply.
