@@ -13,5 +13,43 @@
     alt = "home screen"
     style = "float: left"/>
 
-[TdAmeritrade API Documentation](https://developer.tdameritrade.com/instruments/apis "TdAmeritrade's API Documentation")
 
+## Usage 
+
+```csharp
+  public class InstrumentProvider
+    {
+        private readonly ITdAmeritradeInstrumentProvider _instrumentProvider;
+        public InstrumentProvider(ITdAmeritradeInstrumentProvider instrumentProvider)
+        {
+            _instrumentProvider = instrumentProvider;
+        }
+
+        public async Task Return_Instrument_Successfully(string symbol)
+        {
+            var result = await _instrumentProvider.GetInstrument(symbol);
+        }
+
+        public async Task Return_Instruments_Successfully()
+        {
+            var result = await _instrumentProvider.GetInstruments(symbols: new string[] { "TIGR", "AAPL" });
+        }
+
+    }
+
+```
+
+## Description
+
+This library is in charge of providing information on instruments (stock tickers, futures tickers, etc).
+
+A single instrument can be requested by using GetInstrument(string symbol) or a list of instruments can be requested by using GetInstruments(string[] symbols).
+
+Also by calling GetAllFuturesInstruments() you can get a list of all of TdAmeritrade's futures instruments listed on their website.
+
+__Note individual contracts are not supported, yeah I know it sucks. One limitation of TdAmeritrade's API__
+
+GetAllForexInstruments() is currently not implemented.
+
+
+[TdAmeritrade API Instruments Documentation](https://developer.tdameritrade.com/instruments/apis)

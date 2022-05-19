@@ -13,5 +13,6 @@
     alt = "home screen"
     style = "float: left"/>
 
-[TdAmeritrade API Documentation](https://developer.tdameritrade.com/apis "TdAmeritrade's API Documentation")
+## Usage
 
+Another form of testing.
