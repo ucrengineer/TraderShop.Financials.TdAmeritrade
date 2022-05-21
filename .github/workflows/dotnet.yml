@@ -15,7 +15,7 @@ jobs:
   build:
 
     env:
-      BUILD_CONFIG: 1.0.0
+      BUILD_CONFIG: 'Release'
       SOLUTION: TraderShop.Financials.TdAmeritrade.sln
 
     runs-on: ubuntu-latest
