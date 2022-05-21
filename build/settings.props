@@ -1,0 +1,41 @@
+<Project>
+
+  <PropertyGroup Label="Basic Settings">
+	<VersionPrefix>1.0.0-preview1</VersionPrefix>
+	<TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+	<SuppressNETCoreSdkPreviewMessage>true</SuppressNETCoreSdkPreviewMessage>
+	<NoWarn>$(NoWarn);CS1591;NU1605;DS126858;DS137138</NoWarn>
+	<ReportAnalyzer>true</ReportAnalyzer>
+  </PropertyGroup>
+
+  <PropertyGroup>
+	<LangVersion>preview</LangVersion>
+	  <ImplicitUsings>enable</ImplicitUsings>
+	  <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Ownership Settings">
+	<Authors>ucrengineer</Authors>
+  </PropertyGroup>
+
+
+  <PropertyGroup Label="Nuget Package Settings">
+	<PackageProjectUrl>https://github.com/ucrengineer/TraderShop.Financials.TdAmeritrade</PackageProjectUrl>
+	<RepositoryUrl>https://github.com/ucrengineer/TraderShop.Financials.TdAmeritrade.git</RepositoryUrl>
+	<RepositoryType>git</RepositoryType>
+	<PackageLicense>https://github.com/ucrengineer/TraderShop.Financials.TdAmeritrade/blob/master/LICENSE</PackageLicense>
+	<PackageTags>TdAmeritrade, Finance, TdAmeritrade-Api, Trading, AspNetCore</PackageTags>
+	<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+
+  </PropertyGroup>
+
+  <PropertyGroup Label="SourceLink Settings">
+	<GenerateDocumentationFile>true</GenerateDocumentationFile>
+	<PublishRepositoryUrl>true</PublishRepositoryUrl>
+	<EmbedUntrackedSources>true</EmbedUntrackedSources>
+	<AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+	<DebugType>Embedded</DebugType>
+	<EmbedAllSources>True</EmbedAllSources>
+  </PropertyGroup>
+
+</Project>
