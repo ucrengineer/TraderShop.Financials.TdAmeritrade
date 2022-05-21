@@ -1,4 +1,4 @@
-## Instruments Library
+# Instruments Library
 
 <img src="https://img.shields.io/github/issues/ucrengineer/TraderShop.Financials"
     alt = "home screen"
@@ -13,6 +13,9 @@
     alt = "home screen"
     style = "float: left"/>
 
+<br></br>
+
+[TdAmeritrade API Instruments Documentation](https://developer.tdameritrade.com/instruments/apis)
 
 ## Usage 
 
@@ -47,9 +50,6 @@ A single instrument can be requested by using GetInstrument(string symbol) or a 
 
 Also by calling GetAllFuturesInstruments() you can get a list of all of TdAmeritrade's futures instruments listed on their website.
 
-__Note individual contracts are not supported, yeah I know it sucks. One limitation of TdAmeritrade's API__
+__Note individual contracts are not supported__
 
 GetAllForexInstruments() is currently not implemented.
-
-
-[TdAmeritrade API Instruments Documentation](https://developer.tdameritrade.com/instruments/apis)

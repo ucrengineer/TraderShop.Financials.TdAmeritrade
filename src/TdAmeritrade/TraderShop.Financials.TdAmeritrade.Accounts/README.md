@@ -1,4 +1,4 @@
-## Accounts & Trading Library
+# Accounts & Trading Library
 
 <img src="https://img.shields.io/github/issues/ucrengineer/TraderShop.Financials"
     alt = "home screen"
@@ -12,6 +12,10 @@
 <img src="https://img.shields.io/github/license/ucrengineer/TraderShop.Financials.TdAmeritrade"
     alt = "home screen"
     style = "float: left"/>
+
+<br></br>
+[TdAmeritrade API Account Endpoint Documentation](https://developer.tdameritrade.com/account-access/apis")
+
 ## Usage
 
 ```csharp
@@ -40,5 +44,3 @@
 ## Description
 
 Returns all information regarding the accounts associated with the user. The information is modeled using various models in the Models folder.
-
-[TdAmeritrade API Account Endpoint Documentation](https://developer.tdameritrade.com/account-access/apis")

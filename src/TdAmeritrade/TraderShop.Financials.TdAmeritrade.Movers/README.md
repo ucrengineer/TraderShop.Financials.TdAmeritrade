@@ -1,4 +1,4 @@
-## Movers Library
+# Movers Library
 
 <img src="https://img.shields.io/github/issues/ucrengineer/TraderShop.Financials"
     alt = "home screen"
@@ -14,6 +14,9 @@
     style = "float: left"/>
 
 
+<br></br>
+[TdAmeritrade API Movers Documentation](https://developer.tdameritrade.com/movers/apis)
+## Usage
 
 ```csharp
 public class MoverProvider
@@ -35,4 +38,3 @@ public class MoverProvider
 
 This library uses the TdAmeritrade API to provide information on movers for a given market and direction. See the MoverQuery object for more information.
 
-[TdAmeritrade API Movers Documentation](https://developer.tdameritrade.com/movers/apis)

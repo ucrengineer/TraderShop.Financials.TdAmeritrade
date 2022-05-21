@@ -1,4 +1,4 @@
-## TdAmeritrade API Abstractions Library
+# TdAmeritrade API Abstractions Library
 
 <img src="https://img.shields.io/github/issues/ucrengineer/TraderShop.Financials"
     alt = "home screen"
@@ -13,6 +13,8 @@
     alt = "home screen"
     style = "float: left"/>
 
+<br></br>
+[TdAmeritrade API Authentication Documentation](https://developer.tdameritrade.com/authentication/apis)
 
 ## Usage
 
@@ -53,9 +55,6 @@
         public string error { get; set; } = string.Empty;
     }
 ```
- 
 ## Description
 
-Must have a valid Refresh Token and ClientId to use this library. The bear token is stored until it expires using IMemoryCache. Also basic models that are used throughout the project are located in the Models folder.
-
-[TdAmeritrade API Authentication Documentation](https://developer.tdameritrade.com/authentication/apis)
+Must have a valid Refresh Token and ClientId to use throught the TdAmeritrade library. The bear token is stored until it expires using IMemoryCache. Also basic models that are used throughout the project are located in the Models folder. 

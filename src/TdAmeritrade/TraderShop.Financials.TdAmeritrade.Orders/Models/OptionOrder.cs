@@ -1,4 +1,6 @@
-﻿namespace TraderShop.Financials.TdAmeritrade.Orders.Models
+﻿using Newtonsoft.Json;
+
+namespace TraderShop.Financials.TdAmeritrade.Orders.Models
 {
     /// <summary>
     /// <see href="https://developer.tdameritrade.com/content/place-order-samples"/>
@@ -20,8 +22,9 @@
                 orderStrategyType,
                 orderLegCollections)
         {
-            ComplexOrderStrategyType = complexOrderStrategyType ?? "NONE";
+            ComplexOrderStrategyType = complexOrderStrategyType;
         }
-        public string ComplexOrderStrategyType { get; set; }
+        [JsonProperty("complexOrderStrategyType")]
+        public string? ComplexOrderStrategyType { get; set; }
     }
 }

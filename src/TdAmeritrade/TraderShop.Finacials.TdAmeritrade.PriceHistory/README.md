@@ -1,4 +1,4 @@
-## Price History Library
+# Price History Library
 
 <img src="https://img.shields.io/github/issues/ucrengineer/TraderShop.Financials"
     alt = "home screen"
@@ -12,6 +12,9 @@
 <img src="https://img.shields.io/github/license/ucrengineer/TraderShop.Financials.TdAmeritrade"
     alt = "home screen"
     style = "float: left"/>
+
+<br></br>
+[TdAmeritrade API PriceHistory Documentation](https://developer.tdameritrade.com/price-history/apis)
 
 ## Usage
 
@@ -114,4 +117,3 @@
 
 This library is in charge of returning price histories for a given instrument.
 
-[TdAmeritrade API PriceHistory Documentation](https://developer.tdameritrade.com/price-history/apis)

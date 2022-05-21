@@ -1,4 +1,4 @@
-## Market HoursLibrary
+# Market HoursLibrary
 
 <img src="https://img.shields.io/github/issues/ucrengineer/TraderShop.Financials"
     alt = "home screen"
@@ -13,6 +13,9 @@
     alt = "home screen"
     style = "float: left"/>
 
+<br></br>
+
+[TdAmeritrade API Documentation](https://developer.tdameritrade.com/market-hours/apis)
 
 ## Usage
 
@@ -21,6 +24,7 @@
     public class MarketHoursProvider
     {
         private readonly ITdAmeritradeMarketHoursProvider _hoursProvider;
+
         public MarketHoursProvider(ITdAmeritradeMarketHours Provider)
         {
             _hoursProvider = Provider;
@@ -37,6 +41,5 @@
 ```
 
 ## Description
-This library is in charge of providing information on market hours. Notice that most of these methods use MarketHoursQuery objects to specify the market and date. When using the object please hover over to see the properties.
 
-[TdAmeritrade API Documentation](https://developer.tdameritrade.com/market-hours/apis)
+This library is in charge of providing information on market hours. Notice that most of these methods use MarketHoursQuery objects to specify the market and date. When using the object please hover over to see the properties.

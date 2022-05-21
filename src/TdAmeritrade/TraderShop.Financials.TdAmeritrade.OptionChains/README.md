@@ -1,4 +1,4 @@
-## Option Chains Library
+# Option Chains Library
 
 <img src="https://img.shields.io/github/issues/ucrengineer/TraderShop.Financials"
     alt = "home screen"
@@ -12,6 +12,12 @@
 <img src="https://img.shields.io/github/license/ucrengineer/TraderShop.Financials.TdAmeritrade"
     alt = "home screen"
     style = "float: left"/>
+
+<br></br>
+
+[TdAmeritrade API Documentation](https://developer.tdameritrade.com/option-chains/apis)
+
+## Usage
 
 ```csharp
 
@@ -33,8 +39,6 @@
     }
 ```
 
-## Description 
-This libraries job is to return option chains for a given symbol. See the OptionChainQuery object for more information on the filters that can be provided.
+## Description
 
-## Usage
-[TdAmeritrade API Options Chains Documentation](https://developer.tdameritrade.com/option-chains/apis)
+This libraries job is to return option chains for a given symbol. See the OptionChainQuery object for more information on the filters that can be provided.

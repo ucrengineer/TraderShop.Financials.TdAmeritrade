@@ -94,6 +94,78 @@ namespace TdAmeritrade.Financials.Functional.Tests
 
             Assert.Equal(0, result);
 
+            var optionOrder = new OptionOrder(
+                "NONE",
+                "LIMIT",
+                2.0,
+                "NORMAL",
+                "DAY",
+                "SINGLE",
+                new OrderLegCollection[]
+                {
+                    new OrderLegCollection(
+                        "BUY_TO_OPEN",
+                        1,
+                        ".MSFT220715C245",
+                        "OPTION")
+                });
+
+            var optionsResult = await _ordersProvider.PlaceOrder<OptionOrder>(_options.account_number, optionOrder);
+
+            Assert.Equal(0, optionsResult);
+
+            var verticalCallSpread = new OptionOrder(
+                "VERTICAL",
+                "NET_DEBIT",
+                2.0,
+                "NORMAL",
+                "DAY",
+                "SINGLE",
+                new OrderLegCollection[]
+                {
+                    new OrderLegCollection(
+                        "BUY_TO_OPEN",
+                        1,
+                        ".MSFT220715C245",
+                        "OPTION"),
+                    new OrderLegCollection(
+                        "SELL_TO_OPEN",
+                        1,
+                        ".MSFT220617C250",
+                        "OPTION"),
+                });
+
+            var optionsVerticalSpreadResult = await _ordersProvider.PlaceOrder<OptionOrder>(_options.account_number, verticalCallSpread);
+
+            Assert.Equal(0, optionsVerticalSpreadResult);
+
+            var conditionalOrder = new ConditionalTriggerOrder(
+            "LIMIT",
+            100,
+            "NORMAL",
+            "DAY",
+            "TRIGGER",
+            new OrderLegCollection[]
+            {
+                            new OrderLegCollection("BUY",1,"MSFT","EQUITY")
+            },
+            new PlaceOrder[]
+            {
+                            new PlaceOrder("LIMIT", 1,
+                               "NORMAL",
+                               "DAY",
+                               "SINGLE",
+                               new OrderLegCollection[]
+                               {
+                                            new OrderLegCollection("SELL",1,"MSFT","EQUITY")
+                               })
+            });
+
+            var conditionalOrderResult = await _ordersProvider.PlaceOrder<ConditionalTriggerOrder>(_options.account_number, conditionalOrder);
+
+
+            Assert.Equal(0, result);
+
         }
 
         [Fact]
@@ -238,36 +310,6 @@ namespace TdAmeritrade.Financials.Functional.Tests
        });
 
             await Assert.ThrowsAsync<HttpRequestException>(async () => await _ordersProvider.ReplaceOrder(_options.account_number, "12345", order));
-        }
-
-        [Fact]
-        public async Task Place_Conditional_Order_Successfully()
-        {
-            var order = new ConditionalTriggerOrder("LIMIT", 100,
-                        "NORMAL",
-                        "DAY",
-                        "SINGLE",
-                        new OrderLegCollection[]
-                        {
-                            new OrderLegCollection("BUY",1,"MSFT","EQUITY")
-                        },
-                        new PlaceOrder[]
-                        {
-                            new PlaceOrder("LIMIT", 1,
-                               "NORMAL",
-                               "DAY",
-                               "SINGLE",
-                               new OrderLegCollection[]
-                               {
-                                            new OrderLegCollection("SELL",1,"MSFT","EQUITY")
-                               })
-                        });
-
-            var result = await _ordersProvider.PlaceOrder<ConditionalTriggerOrder>(_options.account_number, order);
-
-
-            Assert.Equal(0, result);
-
         }
     }
 }

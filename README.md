@@ -1,4 +1,4 @@
-## TdAmeritrade API Library
+# Unofficial TdAmeritrade API Library
 
 <img src="https://img.shields.io/github/issues/ucrengineer/TraderShop.Financials"
     alt = "home screen"
@@ -16,27 +16,22 @@
 [TdAmeritrade API Documentation](https://developer.tdameritrade.com/apis "TdAmeritrade's API Documentation")
 
 
-### Description
+## Description
 
 This library wraps the following endpoints from the TdAmeritrade Developer API :
 
-* Accounts and Trading
-* Authentication
-* Instruments
-* Market Hours
-* Movers
-* Option Chains
-* Price History
-* Quotes
-* Transaction History
-* User Info and Preferences
-* Watchlist
+1. Accounts and Trading
+2. Authentication
+3. Instruments
+4. Market Hours
+5. Movers
+6. Option Chains
+7. Price History
+8. Quotes
+9. Transaction History
+10. User Info and Preferences
+11. Watchlist
+
+## Official TdAmeritrade API Documentation
 
 Data returned from the library are modeled after the [TdAmeritrade API Documentation](https://developer.tdameritrade.com/apis "TdAmeritrade's API Documentation").
-
-IHttpClientFactory is used to create an instance of IHttpClient.
-
-Error Handling is handled by the library, the exception thrown will have the http error message and the status code.
-
-An error will also be thrown on Http Get requests that return a empty 
-response. It is recommended to use some form of resilient mechanism to handle these events.
