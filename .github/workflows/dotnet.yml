@@ -14,19 +14,15 @@ on:
 jobs:
   build:
 
-
+    env:
+      BUILD_CONFIG: 'Release'
+      SOLUTION: TraderShop.Financials.TdAmeritrade.sln
 
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
-
-    - name: Get Api Key 
-      env:
-        BUILD_CONFIG: 'Release'
-        SOLUTION: TraderShop.Financials.TdAmeritrade.sln
-        API_KEY: ${{ secrets.env.NUGET_API_KEY }}
-
+    
     - name: Get Build Version
       run: |
         Import-Module .\build\GetBuildVersion.psm1
@@ -57,4 +53,4 @@ jobs:
       
     - name: Publish
       # if: startsWith(github.ref, 'refs/heads/release')
-      run: nuget push **\*.nupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey $API_KEY
+      run: nuget push **\*.nupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.NUGET_API_KEY}}
