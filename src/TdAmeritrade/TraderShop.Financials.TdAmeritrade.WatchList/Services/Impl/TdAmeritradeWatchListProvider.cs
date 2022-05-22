@@ -3,9 +3,9 @@ using System.Net.Http.Headers;
 using System.Text;
 using TraderShop.Financials.Abstractions.Services;
 using TraderShop.Financials.TdAmeritrade.Abstractions.Services;
-using TraderShop.Financials.TdAmeritrade.Watchlist.Models;
+using TraderShop.Financials.TdAmeritrade.WatchList.Models;
 
-namespace TraderShop.Financials.TdAmeritrade.Watchlist.Services.Impl
+namespace TraderShop.Financials.TdAmeritrade.WatchList.Services.Impl
 {
     public class TdAmeritradeWatchlistProvider : ITdAmeritradeWatchlistProvider
     {

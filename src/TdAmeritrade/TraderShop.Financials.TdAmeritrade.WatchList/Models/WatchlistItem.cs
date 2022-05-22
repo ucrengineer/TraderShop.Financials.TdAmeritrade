@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using TraderShop.Financials.TdAmeritrade.Abstractions.Models;
 
-namespace TraderShop.Financials.TdAmeritrade.Watchlist.Models
+namespace TraderShop.Financials.TdAmeritrade.WatchList.Models
 {
     public class WatchlistItem
     {

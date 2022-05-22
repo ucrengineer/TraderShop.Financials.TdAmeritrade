@@ -33,7 +33,7 @@
     <ProjectReference Include="..\..\src\TdAmeritrade\TraderShop.Financials.TdAmeritrade.SavedOrders\TraderShop.Financials.TdAmeritrade.SavedOrders.csproj" />
     <ProjectReference Include="..\..\src\TdAmeritrade\TraderShop.Financials.TdAmeritrade.TransactionHistory\TraderShop.Financials.TdAmeritrade.TransactionHistory.csproj" />
     <ProjectReference Include="..\..\src\TdAmeritrade\TraderShop.Financials.TdAmeritrade.UserInfo\TraderShop.Financials.TdAmeritrade.UserInfo.csproj" />
-    <ProjectReference Include="..\..\src\TdAmeritrade\TraderShop.Financials.TdAmeritrade.Watchlist\TraderShop.Financials.TdAmeritrade.Watchlist.csproj" />
+    <ProjectReference Include="..\..\src\TdAmeritrade\TraderShop.Financials.TdAmeritrade.WatchList\TraderShop.Financials.TdAmeritrade.WatchList.csproj" />
     <ProjectReference Include="..\..\src\TraderShop.Financials.Abstractions\TraderShop.Financials.Abstractions.csproj" />
   </ItemGroup>
 

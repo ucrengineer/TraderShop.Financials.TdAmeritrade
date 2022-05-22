@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using TraderShop.Financials.Abstractions.DependencyInjection;
-using TraderShop.Financials.TdAmeritrade.Watchlist.Services;
-using TraderShop.Financials.TdAmeritrade.Watchlist.Services.Impl;
+using TraderShop.Financials.TdAmeritrade.WatchList.Services;
+using TraderShop.Financials.TdAmeritrade.WatchList.Services.Impl;
 
-namespace TraderShop.Financials.TdAmeritrade.Watchlist.DependencyInjection
+namespace TraderShop.Financials.TdAmeritrade.WatchList.DependencyInjection
 {
     public static class TdAmeritradeWatchlistServiceCollectionExtensions
     {

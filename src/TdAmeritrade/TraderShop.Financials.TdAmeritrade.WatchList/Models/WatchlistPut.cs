@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace TraderShop.Financials.TdAmeritrade.Watchlist.Models
+namespace TraderShop.Financials.TdAmeritrade.WatchList.Models
 {
     public class WatchlistPut
     {

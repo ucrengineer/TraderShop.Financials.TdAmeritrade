@@ -17,7 +17,7 @@ using TraderShop.Financials.TdAmeritrade.SavedOrders.DependencyInjection;
 using TraderShop.Financials.TdAmeritrade.Symbols.DependencyInjection;
 using TraderShop.Financials.TdAmeritrade.TransactionHistory.DependencyInjection;
 using TraderShop.Financials.TdAmeritrade.UserInfo.DependencyInjection;
-using TraderShop.Financials.TdAmeritrade.Watchlist.DependencyInjection;
+using TraderShop.Financials.TdAmeritrade.WatchList.DependencyInjection;
 
 namespace TdAmeritrade.Financials.Functional.Tests.Utilities
 {

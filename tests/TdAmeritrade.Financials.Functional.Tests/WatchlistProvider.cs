@@ -4,8 +4,8 @@ using System;
 using TdAmeritrade.Financials.Functional.Tests.Utilities;
 using TraderShop.Financials.TdAmeritrade.Abstractions.Models;
 using TraderShop.Financials.TdAmeritrade.Abstractions.Options;
-using TraderShop.Financials.TdAmeritrade.Watchlist.Models;
-using TraderShop.Financials.TdAmeritrade.Watchlist.Services;
+using TraderShop.Financials.TdAmeritrade.WatchList.Models;
+using TraderShop.Financials.TdAmeritrade.WatchList.Services;
 using Xunit;
 
 namespace TdAmeritrade.Financials.Functional.Tests

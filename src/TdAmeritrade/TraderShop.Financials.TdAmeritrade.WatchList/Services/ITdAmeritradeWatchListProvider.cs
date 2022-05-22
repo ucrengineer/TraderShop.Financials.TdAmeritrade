@@ -1,6 +1,6 @@
-﻿using TraderShop.Financials.TdAmeritrade.Watchlist.Models;
+﻿using TraderShop.Financials.TdAmeritrade.WatchList.Models;
 
-namespace TraderShop.Financials.TdAmeritrade.Watchlist.Services
+namespace TraderShop.Financials.TdAmeritrade.WatchList.Services
 {
     public interface ITdAmeritradeWatchlistProvider
     {
