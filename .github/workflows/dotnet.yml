@@ -18,7 +18,7 @@ jobs:
       BUILD_CONFIG: 'Release'
       SOLUTION: TraderShop.Financials.TdAmeritrade.sln
 
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
@@ -41,9 +41,12 @@ jobs:
       uses: actions/setup-dotnet@v1.7.2
       with:
         dotnet-version: 6.0.x
+        
+    - name : Clean
+      run : dotnet Clean
 
     - name: Build
-      run: dotnet build $SOLUTION --configuration $BUILD_CONFIG -p:Version=$BUILD_VERSION -p:Platform="Any CPU" --no-restore
+      run: dotnet build $SOLUTION --configuration $BUILD_CONFIG -p:Version=$BUILD_VERSION --no-restore
 
     - name: Run tests
       run: dotnet test /p:Configuration=$env:BUILD_CONFIG --no-restore --no-build --verbosity normal
