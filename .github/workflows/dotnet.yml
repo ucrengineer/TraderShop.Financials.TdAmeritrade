@@ -17,7 +17,7 @@ jobs:
     env:
       BUILD_CONFIG: 'Release'
       SOLUTION: TraderShop.Financials.TdAmeritrade.sln
-      API_KEY: ${{ Secrets.NUGET_API_KEY }}
+      API_KEY: ${{ secrets.env.NUGET_API_KEY }}
 
     runs-on: ubuntu-latest
 
