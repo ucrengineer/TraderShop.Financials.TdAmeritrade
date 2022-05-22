@@ -14,15 +14,18 @@ on:
 jobs:
   build:
 
-    env:
-      BUILD_CONFIG: 'Release'
-      SOLUTION: TraderShop.Financials.TdAmeritrade.sln
-      API_KEY: ${{ secrets.env.NUGET_API_KEY }}
+
 
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
+
+    - name: Get Api Key 
+      env:
+        BUILD_CONFIG: 'Release'
+        SOLUTION: TraderShop.Financials.TdAmeritrade.sln
+        API_KEY: ${{ secrets.env.NUGET_API_KEY }}
 
     - name: Get Build Version
       run: |
