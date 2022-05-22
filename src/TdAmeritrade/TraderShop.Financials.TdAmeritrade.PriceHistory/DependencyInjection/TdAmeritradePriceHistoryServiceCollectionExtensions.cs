@@ -3,7 +3,7 @@ using TraderShop.Finacials.TdAmeritrade.PriceHistory.Services;
 using TraderShop.Finacials.TdAmeritrade.PriceHistory.Services.Impl;
 using TraderShop.Financials.Abstractions.DependencyInjection;
 
-namespace TraderShop.Finacials.TdAmeritrade.PriceHistory.DependencyInjection
+namespace TraderShop.Financials.TdAmeritrade.PriceHistory.DependencyInjection
 {
     public static class TdAmeritradePriceHistoryServiceCollectionExtensions
     {

@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.WebUtilities;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
-using TraderShop.Finacials.TdAmeritrade.PriceHistory.Models;
 using TraderShop.Financials.Abstractions.Services;
 using TraderShop.Financials.TdAmeritrade.Abstractions.Services;
+using TraderShop.Financials.TdAmeritrade.PriceHistory.Models;
 
 namespace TraderShop.Finacials.TdAmeritrade.PriceHistory.Services.Impl
 {

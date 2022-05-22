@@ -16,6 +16,7 @@ jobs:
 
     env:
       BUILD_CONFIG: 'Release'
+      SOLUTION: TraderShop.Financials.TdAmeritrade.sln
 
     runs-on: ubuntu-latest
 
@@ -34,7 +35,7 @@ jobs:
       uses: NuGet/setup-nuget@v1.0.5
 
     - name: Restore dependencies
-      run: dotnet restore
+      run: NuGet restore $SOLUTION
 
     - name: Setup .NET
       uses: actions/setup-dotnet@v2
@@ -45,7 +46,7 @@ jobs:
       run : dotnet Clean
 
     - name: Build
-      run: dotnet build --configuration $BUILD_CONFIG --no-restore
+      run: dotnet build $SOLUTION --configuration $BUILD_CONFIG --no-restore
 
     - name: Run tests
       run: dotnet test /p:Configuration=$env:BUILD_CONFIG --no-restore --no-build --verbosity normal

@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+	<ProjectReference Include="..\TraderShop.Financials.TdAmeritrade.PriceHistory\TraderShop.Financials.TdAmeritrade.PriceHistory.csproj" />
 	<ProjectReference Include="..\TraderShop.Financials.TdAmeritrade.Abstractions\TraderShop.Financials.TdAmeritrade.Abstractions.csproj" />
 	<ProjectReference Include="..\TraderShop.Financials.TdAmeritrade.Accounts\TraderShop.Financials.TdAmeritrade.Accounts.csproj" />
 	<ProjectReference Include="..\TraderShop.Financials.TdAmeritrade.Instruments\TraderShop.Financials.TdAmeritrade.Instruments.csproj" />

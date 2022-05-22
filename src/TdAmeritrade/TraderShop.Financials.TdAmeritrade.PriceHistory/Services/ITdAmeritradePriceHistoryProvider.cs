@@ -1,4 +1,4 @@
-﻿using TraderShop.Finacials.TdAmeritrade.PriceHistory.Models;
+﻿using TraderShop.Financials.TdAmeritrade.PriceHistory.Models;
 
 namespace TraderShop.Finacials.TdAmeritrade.PriceHistory.Services
 {

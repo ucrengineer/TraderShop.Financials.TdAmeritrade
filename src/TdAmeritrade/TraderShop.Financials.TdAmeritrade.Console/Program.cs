@@ -1,8 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using Microsoft.Extensions.Options;
-using TraderShop.Finacials.TdAmeritrade.PriceHistory.DependencyInjection;
-using TraderShop.Finacials.TdAmeritrade.PriceHistory.Models;
 using TraderShop.Finacials.TdAmeritrade.PriceHistory.Services;
 using TraderShop.Financials.TdAmeritrade.Abstractions.DependencyInjection;
 using TraderShop.Financials.TdAmeritrade.Abstractions.Options;
@@ -10,6 +8,8 @@ using TraderShop.Financials.TdAmeritrade.Abstractions.Services;
 using TraderShop.Financials.TdAmeritrade.Accounts.DependencyInjection;
 using TraderShop.Financials.TdAmeritrade.Accounts.Services;
 using TraderShop.Financials.TdAmeritrade.Instruments.Services;
+using TraderShop.Financials.TdAmeritrade.PriceHistory.DependencyInjection;
+using TraderShop.Financials.TdAmeritrade.PriceHistory.Models;
 using TraderShop.Financials.TdAmeritrade.Symbols.DependencyInjection;
 
 internal sealed class Program

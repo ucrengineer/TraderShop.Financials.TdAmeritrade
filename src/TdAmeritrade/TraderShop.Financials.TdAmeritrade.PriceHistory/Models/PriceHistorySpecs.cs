@@ -1,4 +1,4 @@
-﻿namespace TraderShop.Finacials.TdAmeritrade.PriceHistory.Models
+﻿namespace TraderShop.Financials.TdAmeritrade.PriceHistory.Models
 {
     public class PriceHistorySpecs
     {
