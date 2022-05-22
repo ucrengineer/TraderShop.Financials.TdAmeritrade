@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using TraderShop.Finacials.TdAmeritrade.PriceHistory.Services;
-using TraderShop.Finacials.TdAmeritrade.PriceHistory.Services.Impl;
 using TraderShop.Financials.Abstractions.DependencyInjection;
+using TraderShop.Financials.TdAmeritrade.PriceHistory.Services;
+using TraderShop.Financials.TdAmeritrade.PriceHistory.Services.Impl;
 
 namespace TraderShop.Financials.TdAmeritrade.PriceHistory.DependencyInjection
 {

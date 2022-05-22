@@ -5,7 +5,7 @@ using TraderShop.Financials.Abstractions.Services;
 using TraderShop.Financials.TdAmeritrade.Abstractions.Services;
 using TraderShop.Financials.TdAmeritrade.PriceHistory.Models;
 
-namespace TraderShop.Finacials.TdAmeritrade.PriceHistory.Services.Impl
+namespace TraderShop.Financials.TdAmeritrade.PriceHistory.Services.Impl
 {
     public class TdAmeritradePriceHistoryProvider : ITdAmeritradePriceHistoryProvider
     {

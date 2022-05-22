@@ -1,6 +1,6 @@
 ﻿using TraderShop.Financials.TdAmeritrade.PriceHistory.Models;
 
-namespace TraderShop.Finacials.TdAmeritrade.PriceHistory.Services
+namespace TraderShop.Financials.TdAmeritrade.PriceHistory.Services
 {
     public interface ITdAmeritradePriceHistoryProvider
     {

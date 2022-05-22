@@ -2,8 +2,8 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Threading.Tasks;
 using TdAmeritrade.Financials.Functional.Tests.Utilities;
-using TraderShop.Finacials.TdAmeritrade.PriceHistory.Models;
-using TraderShop.Finacials.TdAmeritrade.PriceHistory.Services;
+using TraderShop.Financials.TdAmeritrade.PriceHistory.Models;
+using TraderShop.Financials.TdAmeritrade.PriceHistory.Services;
 using Xunit;
 
 namespace TdAmeritrade.Financials.Functional.Tests
