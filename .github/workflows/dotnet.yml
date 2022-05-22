@@ -21,7 +21,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
+      env:
+        API_KEY: ${{secrets.NUGET_API_KEY}}
+      
+    - name: Get Api Key 
+
     
     - name: Get Build Version
       run: |
@@ -53,4 +58,4 @@ jobs:
       
     - name: Publish
       # if: startsWith(github.ref, 'refs/heads/release')
-      run: nuget push **\*.nupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.NUGET_API_KEY}}
+      run: nuget push **\*.nupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey API_KEY
