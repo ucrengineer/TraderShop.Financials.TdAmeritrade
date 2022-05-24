@@ -24,7 +24,7 @@ jobs:
     - name: Setting up actions
       uses: actions/checkout@v3
       env:
-        API_KEY: oy2cplcxpoeprfjukudaf3d7vxomwsbebgnc4d4zdnapjy
+        API_KEY: oy2e7vwpckbbnbf52bia4yjltuk5uaeebd25tbznmfmtdq
       
     
     - name: Get Build Version
