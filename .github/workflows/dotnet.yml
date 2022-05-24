@@ -23,6 +23,8 @@ jobs:
     steps:
     - name: Setting up actions
       uses: actions/checkout@v3
+      env: 
+        API_KEY: ${{ secrets.NUGET_API_KEY }}
 
       
     
@@ -53,9 +55,7 @@ jobs:
 
     - name: Pack
       run: dotnet pack --configuration $BUILD_CONFIG  --no-build --output .
-    # - name: Run tests
-    #   run: dotnet test /p:Configuration=$env:BUILD_CONFIG --no-restore --no-build --verbosity normal
-      
+
     - name: Publish
       # if: startsWith(github.ref, 'refs/heads/release')
-      run: dotnet nuget push **\*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json --skip-duplicate
+      run: dotnet nuget push **\*.nupkg -k $API_KEY -s https://api.nuget.org/v3/index.json --skip-duplicate
