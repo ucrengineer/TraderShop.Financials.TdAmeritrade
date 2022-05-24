@@ -14,7 +14,7 @@
 
   <ItemGroup>
 	<ProjectReference Include="..\..\TraderShop.Financials.Abstractions\TraderShop.Financials.Abstractions.csproj" />
-	 <None Include="docs\README.md" Pack="true" PackagePath="\"/>
+	 <None Include="README.md" Pack="true" PackagePath="\"/>
   </ItemGroup>
 
 </Project>
