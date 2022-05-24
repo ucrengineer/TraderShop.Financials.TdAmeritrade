@@ -59,4 +59,4 @@ jobs:
       
     - name: Publish
       # if: startsWith(github.ref, 'refs/heads/release')
-      run: dotnet nuget push **\*.nupkg -k API_KEY -s 'https://api.nuget.org/v3/index.json' 
+      run: dotnet nuget push **\*.nupkg -k oy2e7vwpckbbnbf52bia4yjltuk5uaeebd25tbznmfmtdq -s https://api.nuget.org/v3/index.json
