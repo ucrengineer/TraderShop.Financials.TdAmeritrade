@@ -5,15 +5,19 @@
     	<Version>1.0.0</Version>
 	<Authors>Brandon Moffett</Authors>
 	<PackageTags>TdAmeritrade; Financials;</PackageTags>
-	<Description>This library provides a easy to user wrapper around the official TdAmeritrade API</Description>
+	<Description>This library provides saved orders functionality using the offical tdAmeritrade api</Description>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+      	<PackageReadmeFile>README.md</PackageReadmeFile>
+
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\TraderShop.Financials.Abstractions\TraderShop.Financials.Abstractions.csproj" />
     <ProjectReference Include="..\TraderShop.Financials.TdAmeritrade.Abstractions\TraderShop.Financials.TdAmeritrade.Abstractions.csproj" />
+    	 <None Include="docs\README.md" Pack="true" PackagePath="\"/>
+
   </ItemGroup>
 
 </Project>

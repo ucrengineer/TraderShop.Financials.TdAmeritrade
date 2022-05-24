@@ -5,14 +5,16 @@
 	<Version>1.0.0</Version>
 	<Authors>Brandon Moffett</Authors>
 	<PackageTags>TdAmeritrade; Financials;</PackageTags>
-	<Description>This library provides a easy to user wrapper around the official TdAmeritrade API</Description>
+	<Description>This library provides a auth for TraderShop.Financials.TdAmeritrade library</Description>
 	<ImplicitUsings>enable</ImplicitUsings>
 	<Nullable>enable</Nullable>
   	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	<PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
 	<ProjectReference Include="..\..\TraderShop.Financials.Abstractions\TraderShop.Financials.Abstractions.csproj" />
+	 <None Include="docs\README.md" Pack="true" PackagePath="\"/>
   </ItemGroup>
 
 </Project>

@@ -21,6 +21,7 @@
 	<ProjectReference Include="..\TraderShop.Financials.TdAmeritrade.Accounts\TraderShop.Financials.TdAmeritrade.Accounts.csproj" />
 	<ProjectReference Include="..\TraderShop.Financials.TdAmeritrade.Instruments\TraderShop.Financials.TdAmeritrade.Instruments.csproj" />
 	<ProjectReference Include="..\TraderShop.Financials.TdAmeritrade.PriceHistory\TraderShop.Financials.TdAmeritrade.PriceHistory.csproj" />
+		 <None Include="docs\README.md" Pack="true" PackagePath="\"/>
   </ItemGroup>
 
 </Project>
