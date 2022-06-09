@@ -27,8 +27,9 @@ namespace TdAmeritrade.Financials.Functional.Tests.Utilities
         {
             var services = new ServiceCollection();
 
+
             var options = JsonConvert.DeserializeObject<Dictionary<string, TdAmeritradeOptions>>
-                (File.ReadAllText(@"C:\Users\ucren\source\repos\TraderShop.Financials\src\TdAmeritrade\TraderShop.Financials.TdAmeritrade.Console\appsettings.development.json"));
+                (File.ReadAllText(@"C:\Users\ucren\source\repos\TraderShop.Financials.TdAmeritrade\src\TdAmeritrade\TraderShop.Financials.TdAmeritrade.Console\appsettings.Development.json"));
 
             services.Configure<TdAmeritradeOptions>(x =>
             {

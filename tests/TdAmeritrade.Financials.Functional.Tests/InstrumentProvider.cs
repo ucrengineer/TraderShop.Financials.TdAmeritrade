@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using System.Linq;
 using System.Threading.Tasks;
 using TdAmeritrade.Financials.Functional.Tests.Utilities;
 using TraderShop.Financials.TdAmeritrade.Instruments.Services;
@@ -34,6 +35,16 @@ namespace TdAmeritrade.Financials.Functional.Tests
             Assert.NotNull(result);
 
             Assert.Equal(2, result.Count);
+        }
+
+        [Fact]
+        public async Task Return_FuturesInstruments_Successfully()
+        {
+            var result = await _instrumentProvider.GetAllFuturesInstruments();
+
+            Assert.NotNull(result);
+
+            Assert.True(result.All(x => x.AssetType == "FUTURE"));
         }
 
     }
