@@ -3,7 +3,7 @@ using TraderShop.Financials.Abstractions.DependencyInjection;
 using TraderShop.Financials.TdAmeritrade.Instruments.Services;
 using TraderShop.Financials.TdAmeritrade.Instruments.Services.Impl;
 
-namespace TraderShop.Financials.TdAmeritrade.Symbols.DependencyInjection
+namespace TraderShop.Financials.TdAmeritrade.Instruments.DependencyInjection
 {
     public static class TdAmeritradeSymbolsServiceCollectionExtensions
     {

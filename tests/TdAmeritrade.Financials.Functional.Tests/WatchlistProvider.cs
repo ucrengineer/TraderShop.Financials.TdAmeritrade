@@ -24,7 +24,7 @@ namespace TdAmeritrade.Financials.Functional.Tests
         public async void Create_Watchlist_SuccessfullyAsync()
         {
             // arrange
-            var newWatchlist = new WatchlistPost(name: "apiTest",
+            var newWatchlist = new CreatedWatchlist(name: "apiTest",
                 watchlistItems: new[]
                 {
                     new WatchlistItem

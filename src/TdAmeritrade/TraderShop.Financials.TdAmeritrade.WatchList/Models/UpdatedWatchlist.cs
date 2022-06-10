@@ -2,9 +2,9 @@
 
 namespace TraderShop.Financials.TdAmeritrade.WatchList.Models
 {
-    public class WatchlistPut
+    public class UpdatedWatchlist
     {
-        public WatchlistPut(string name, string watchlistId, WatchlistItemPut[] watchlistItems)
+        public UpdatedWatchlist(string name, string watchlistId, UpdatedWatchlistItem[] watchlistItems)
         {
             Name = name;
             WatchlistId = watchlistId;
@@ -16,10 +16,10 @@ namespace TraderShop.Financials.TdAmeritrade.WatchList.Models
         [JsonProperty("watchlistId")]
         public string WatchlistId { get; set; } = string.Empty;
         [JsonProperty("watchlistItems")]
-        public WatchlistItemPut[] WatchlistItems { get; set; } = new WatchlistItemPut[0];
+        public UpdatedWatchlistItem[] WatchlistItems { get; set; } = new UpdatedWatchlistItem[0];
     }
 
-    public class WatchlistItemPut : WatchlistItem
+    public class UpdatedWatchlistItem : WatchlistItem
     {
         [JsonProperty("sequenceId")]
         public string SequenceId { get; set; } = string.Empty;
