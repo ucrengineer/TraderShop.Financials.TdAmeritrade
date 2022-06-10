@@ -21,7 +21,7 @@ namespace TdAmeritrade.Financials.Functional.Tests
 
             Assert.NotNull(movers);
 
-            Assert.True(movers.Length == 10);
+            Assert.True(movers.Length > 0);
         }
     }
 }

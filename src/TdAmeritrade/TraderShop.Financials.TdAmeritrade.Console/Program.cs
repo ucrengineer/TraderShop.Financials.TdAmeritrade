@@ -6,11 +6,11 @@ using TraderShop.Financials.TdAmeritrade.Abstractions.Options;
 using TraderShop.Financials.TdAmeritrade.Abstractions.Services;
 using TraderShop.Financials.TdAmeritrade.Accounts.DependencyInjection;
 using TraderShop.Financials.TdAmeritrade.Accounts.Services;
+using TraderShop.Financials.TdAmeritrade.Instruments.DependencyInjection;
 using TraderShop.Financials.TdAmeritrade.Instruments.Services;
 using TraderShop.Financials.TdAmeritrade.PriceHistory.DependencyInjection;
 using TraderShop.Financials.TdAmeritrade.PriceHistory.Models;
 using TraderShop.Financials.TdAmeritrade.PriceHistory.Services;
-using TraderShop.Financials.TdAmeritrade.Symbols.DependencyInjection;
 
 internal sealed class Program
 {
@@ -73,17 +73,15 @@ internal sealed class Program
                     try
                     {
 
-
-
                         var instruments = await _tdInstrumentProvider.GetInstruments();
 
                         _logger.LogCritical($"{await _tdClient.GetBearerToken()}");
 
-                        _logger.LogInformation($"{instruments.Count}");
+                        _logger.LogInformation($"{instruments.Count()}");
 
                         var futures = await _tdInstrumentProvider.GetAllFuturesInstruments();
 
-                        _logger.LogInformation($"{futures.Count}");
+                        _logger.LogInformation($"{futures.Count()}");
 
                         var priceHistory = await _tdPriceHistoryProvider.GetPriceHistory(new PriceHistorySpecs());
 

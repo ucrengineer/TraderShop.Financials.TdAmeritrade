@@ -13,7 +13,7 @@
 
             if (!httpResponseMessage.IsSuccessStatusCode)
             {
-                throw new Exception(responseObject);
+                throw new HttpRequestException(responseObject);
             }
         }
         public async Task CheckCommandErrorsAsync(HttpResponseMessage httpResponseMessage)
@@ -22,7 +22,7 @@
 
             if (!httpResponseMessage.IsSuccessStatusCode)
             {
-                throw new Exception(responseObject);
+                throw new HttpRequestException(responseObject);
             }
         }
     }

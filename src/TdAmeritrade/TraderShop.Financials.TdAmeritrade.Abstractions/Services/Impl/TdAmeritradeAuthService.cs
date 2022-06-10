@@ -56,7 +56,7 @@ namespace TraderShop.Financials.TdAmeritrade.Abstractions.Services.Impl
                             new KeyValuePair<string, string>("client_id",_tdAmeritradeOptions.client_id)
                     });
 
-            var response = await _httpClient.PostAsync(_tdAmeritradeOptions.auth_url, content, cancellationToken);
+            var response = await _httpClient.PostAsync(_httpClient.BaseAddress, content, cancellationToken);
 
             await _errorHandler.CheckCommandErrorsAsync(response);
 

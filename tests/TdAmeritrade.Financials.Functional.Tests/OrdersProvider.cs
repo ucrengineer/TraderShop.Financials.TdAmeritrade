@@ -55,31 +55,7 @@ namespace TdAmeritrade.Financials.Functional.Tests
         [Fact]
         public async Task Place_Order_Successfully()
         {
-            /*
-             * will have to create objects for order creation, it is a sensitive process.
-             * possibly use premade json files for order placement
-            */
-            //var order = new
-            //{
-            //    orderType = "LIMIT",
-            //    session = "NORMAL",
-            //    price = "150",
-            //    duration = "DAY",
-            //    orderStrategyType = "SINGLE",
-            //    orderLegCollection = new object[]
-            //    {
-            //        new
-            //        {
-            //            instruction = "BUY",
-            //            quantity = 1,
-            //            instrument = new
-            //            {
-            //                symbol = "MSFT",
-            //                assetType = "EQUITY"
-            //            }
-            //        }
-            //    }
-            //};
+
 
             var order = new PlaceOrder("LIMIT", 100,
                 "NORMAL",
@@ -171,31 +147,6 @@ namespace TdAmeritrade.Financials.Functional.Tests
         [Fact]
         public async Task Replace_Order_Successfully()
         {
-            /*
-             * will have to create objects for order creation, it is a sensitive process.
-             * possibly use premade json files for order placement
-            */
-            //var order = new
-            //{
-            //    orderType = "LIMIT",
-            //    session = "NORMAL",
-            //    price = "100",
-            //    duration = "DAY",
-            //    orderStrategyType = "SINGLE",
-            //    orderLegCollection = new object[]
-            //    {
-            //        new
-            //        {
-            //            instruction = "BUY",
-            //            quantity = 1,
-            //            instrument = new
-            //            {
-            //                symbol = "MSFT",
-            //                assetType = "EQUITY"
-            //            }
-            //        }
-            //    }
-            //};
 
             var order = new PlaceOrder("LIMIT", 100,
                            "NORMAL",
@@ -232,40 +183,14 @@ namespace TdAmeritrade.Financials.Functional.Tests
         [Fact]
         public async Task Place_Order_Throws_Exception()
         {
-            /*
-             * will have to create objects for order creation, it is a sensitive process.
-             * possibly use premade json files for order placement
-            */
-            //var order = new
-            //{
-            //    orderType = "LIMIT",
-            //    session = "NORMAL",
-            //    price = "150",
-            //    duration = "DAY",
-            //    orderStrategyType = "SINGLE",
-            //    orderLegCollection = new object[]
-            //    {
-            //        new
-            //        {
-            //            instruction = "BUY",
-            //            quantity = 1,
-            //            instrument = new
-            //            {
-            //                symbol = "",
-            //                assetType = "EQUITY"
-            //            }
-            //        }
-            //    }
-            //};
 
             var order = new PlaceOrder("LIMIT", 100,
-       "NORMAL",
-       "DAY",
-       "SINGLE",
-       new OrderLegCollection[]
-       {
-                    new OrderLegCollection("BUY",1,"MSFT","EQUITY")
-       });
+                   "NORMAL",
+                   "DAY",
+                   "SINGLE",
+                   new OrderLegCollection[]
+                   {
+                   });
 
             await Assert.ThrowsAsync<HttpRequestException>(async () => await _ordersProvider.PlaceOrder(_options.account_number, order));
 
@@ -274,31 +199,6 @@ namespace TdAmeritrade.Financials.Functional.Tests
         [Fact]
         public async Task Replace_Order_Throws_Exception()
         {
-            /*
-             * will have to create objects for order creation, it is a sensitive process.
-             * possibly use premade json files for order placement
-            */
-            //var order = new
-            //{
-            //    orderType = "LIMIT",
-            //    session = "NORMAL",
-            //    price = "100",
-            //    duration = "DAY",
-            //    orderStrategyType = "SINGLE",
-            //    orderLegCollection = new object[]
-            //    {
-            //        new
-            //        {
-            //            instruction = "BUY",
-            //            quantity = 1,
-            //            instrument = new
-            //            {
-            //                symbol = "MSFT",
-            //                assetType = "EQUITY"
-            //            }
-            //        }
-            //    }
-            //};
 
             var order = new PlaceOrder("LIMIT", 100,
        "NORMAL",

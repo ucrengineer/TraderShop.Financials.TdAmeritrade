@@ -3,7 +3,6 @@ using Newtonsoft.Json;
 using System.Net.Http.Headers;
 using System.Text;
 using TraderShop.Financials.Abstractions.Services;
-using TraderShop.Financials.TdAmeritrade.Abstractions.Models;
 using TraderShop.Financials.TdAmeritrade.Abstractions.Services;
 using TraderShop.Financials.TdAmeritrade.Orders.Models;
 
@@ -83,7 +82,7 @@ namespace TraderShop.Financials.TdAmeritrade.Orders.Services.Impl
                     ["maxResults"] = orderQuery.MaxResults.ToString(),
                     ["fromEnteredTime"] = orderQuery.FromEnteredTime.ToString("yyyy-MM-dd"),
                     ["toEnteredTime"] = orderQuery.ToEnteredTime.ToString("yyyy-MM-dd"),
-                    ["status"] = orderQuery.Status.ToString()
+                    ["status"] = orderQuery.Status == Status.ALL ? string.Empty : orderQuery.Status.ToString()
                 };
 
                 uri = QueryHelpers.AddQueryString(uri, query);

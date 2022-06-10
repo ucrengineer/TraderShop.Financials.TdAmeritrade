@@ -1,18 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
+
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    	<Version>1.0.1</Version>
+	<TargetFramework>net6.0</TargetFramework>
+	<Version>1.0.2</Version>
 	<Authors>Brandon Moffett</Authors>
+	<License>MIT</License>
+	<ProjectUrl>https://github.com/ucrengineer/TraderShop.Financials.TdAmeritrade</ProjectUrl>
 	<PackageTags>TdAmeritrade; Financials;</PackageTags>
-	<Description>This library provides orders functionality (CRUD) using the offical tdAmeritrade api</Description>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-      	<PackageReadmeFile>README.md</PackageReadmeFile>
-
+	<Description>This library provides a Orders service for easy interaction with the official TdAmeritrade api</Description>
+	<ImplicitUsings>enable</ImplicitUsings>
+	<Nullable>enable</Nullable>
+  	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\..\TraderShop.Financials.Abstractions\TraderShop.Financials.Abstractions.csproj" />
     <ProjectReference Include="..\TraderShop.Financials.TdAmeritrade.Abstractions\TraderShop.Financials.TdAmeritrade.Abstractions.csproj" />

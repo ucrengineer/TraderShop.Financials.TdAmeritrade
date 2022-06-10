@@ -38,5 +38,5 @@ public class MoverProvider
 
 ## Description
 
-This library uses the TdAmeritrade API to provide information on movers for a given market and direction. See the MoverQuery object for more information.
+This library uses the TdAmeritrade API for information on movers for a given market and direction. See the MoverQuery object for more information.
 

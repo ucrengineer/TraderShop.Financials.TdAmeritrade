@@ -15,10 +15,10 @@ namespace TraderShop.Financials.TdAmeritrade.Instruments.Services
     {
         Task<Instrument> GetInstrument(string symbol, CancellationToken cancellationToken = default);
 
-        Task<IList<Instrument>> GetInstruments(CancellationToken cancellationToken = default, string[]? symbols = null);
+        Task<Instrument[]> GetInstruments(CancellationToken cancellationToken = default, string[]? symbols = null);
 
-        Task<IList<Instrument>> GetAllFuturesInstruments(CancellationToken cancellationToken = default);
+        Task<Instrument[]> GetAllFuturesInstruments(CancellationToken cancellationToken = default);
 
-        Task<IList<Instrument>> GetAllForexInstruments(CancellationToken cancellationToken = default);
+        Task<Instrument[]> GetAllForexInstruments(CancellationToken cancellationToken = default);
     }
 }

@@ -54,7 +54,7 @@ namespace TraderShop.Financials.TdAmeritrade.Instruments.Services.Impl
         /// </summary>
         /// <param name="symbols"></param>
         /// <returns></returns>
-        public async Task<IList<Instrument>> GetInstruments(CancellationToken cancellationToken, string[]? symbols = null)
+        public async Task<Instrument[]> GetInstruments(CancellationToken cancellationToken, string[]? symbols = null)
         {
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await _authService.GetBearerToken());
 
@@ -86,13 +86,13 @@ namespace TraderShop.Financials.TdAmeritrade.Instruments.Services.Impl
 
             var instrument = JsonConvert.DeserializeObject<Dictionary<string, Instrument>>(responseObject);
 
-            return instrument?.ToList().Select(x => x.Value).ToList() ?? new List<Instrument>();
+            return instrument?.ToList().Select(x => x.Value).ToArray() ?? new Instrument[0];
         }
         /// <summary>
         /// Returns all of continuous futures markets
         /// </summary>
         /// <returns></returns>
-        public async Task<IList<Instrument>> GetAllFuturesInstruments(CancellationToken cancellationToken)
+        public async Task<Instrument[]> GetAllFuturesInstruments(CancellationToken cancellationToken)
         {
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await _authService.GetBearerToken());
 
@@ -117,10 +117,10 @@ namespace TraderShop.Financials.TdAmeritrade.Instruments.Services.Impl
 
             var instrument = JsonConvert.DeserializeObject<Dictionary<string, Instrument>>(responseObject);
 
-            return instrument?.ToList().Select(x => x.Value).ToList() ?? new List<Instrument>();
+            return instrument?.ToList().Select(x => x.Value).ToArray() ?? new Instrument[0];
         }
 
-        public Task<IList<Instrument>> GetAllForexInstruments(CancellationToken cancellationToken)
+        public Task<Instrument[]> GetAllForexInstruments(CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }

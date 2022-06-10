@@ -20,7 +20,7 @@ namespace TraderShop.Financials.TdAmeritrade.WatchList.Services.Impl
             _authService = authService;
         }
 
-        public async Task<int> CreateWatchlist(string accountId, WatchlistPost watchlist, CancellationToken cancellationToken = default)
+        public async Task<int> CreateWatchlist(string accountId, CreatedWatchlist watchlist, CancellationToken cancellationToken = default)
         {
             var uri = new Uri($"{_httpClient.BaseAddress}{accountId}/watchlists").ToString();
 
@@ -50,7 +50,7 @@ namespace TraderShop.Financials.TdAmeritrade.WatchList.Services.Impl
             return 0;
         }
 
-        public async Task<WatchlistGet> GetWatchlist(string accountId, string watchlistId, CancellationToken cancellationToken = default)
+        public async Task<RequestedWatchlist> GetWatchlist(string accountId, string watchlistId, CancellationToken cancellationToken = default)
         {
             var uri = new Uri($"{_httpClient.BaseAddress}{accountId}/watchlists/{watchlistId}").ToString();
 
@@ -62,12 +62,12 @@ namespace TraderShop.Financials.TdAmeritrade.WatchList.Services.Impl
 
             var responseObject = await response.Content.ReadAsStringAsync();
 
-            var watchlist = JsonConvert.DeserializeObject<WatchlistGet>(responseObject);
+            var watchlist = JsonConvert.DeserializeObject<RequestedWatchlist>(responseObject);
 
             return watchlist;
         }
 
-        public async Task<WatchlistGet[]> GetWatchlistsForMultipleAccounts(CancellationToken cancellationToken = default)
+        public async Task<RequestedWatchlist[]> GetWatchlistsForMultipleAccounts(CancellationToken cancellationToken = default)
         {
             var uri = new Uri($"{_httpClient.BaseAddress}watchlists").ToString();
 
@@ -79,12 +79,12 @@ namespace TraderShop.Financials.TdAmeritrade.WatchList.Services.Impl
 
             var responseObject = await response.Content.ReadAsStringAsync();
 
-            var watchlists = JsonConvert.DeserializeObject<WatchlistGet[]>(responseObject);
+            var watchlists = JsonConvert.DeserializeObject<RequestedWatchlist[]>(responseObject);
 
             return watchlists;
         }
 
-        public async Task<WatchlistGet[]> GetWatchlistsForSingleAccounts(string accountId, CancellationToken cancellationToken = default)
+        public async Task<RequestedWatchlist[]> GetWatchlistsForSingleAccounts(string accountId, CancellationToken cancellationToken = default)
         {
             var uri = new Uri($"{_httpClient.BaseAddress}{accountId}/watchlists").ToString();
 
@@ -96,12 +96,12 @@ namespace TraderShop.Financials.TdAmeritrade.WatchList.Services.Impl
 
             var responseObject = await response.Content.ReadAsStringAsync();
 
-            var watchlists = JsonConvert.DeserializeObject<WatchlistGet[]>(responseObject);
+            var watchlists = JsonConvert.DeserializeObject<RequestedWatchlist[]>(responseObject);
 
             return watchlists;
         }
 
-        public async Task<int> ReplaceWatchlist(string accountId, WatchlistPut watchlist, CancellationToken cancellationToken = default)
+        public async Task<int> ReplaceWatchlist(string accountId, ReplacementWatchlist watchlist, CancellationToken cancellationToken = default)
         {
             var uri = new Uri($"{_httpClient.BaseAddress}{accountId}/watchlists/{watchlist.WatchlistId}").ToString();
 
@@ -118,7 +118,7 @@ namespace TraderShop.Financials.TdAmeritrade.WatchList.Services.Impl
             return 0;
         }
 
-        public async Task<int> UpdateWatchlist(string accountId, WatchlistPut watchlist, CancellationToken cancellationToken = default)
+        public async Task<int> UpdateWatchlist(string accountId, UpdatedWatchlist watchlist, CancellationToken cancellationToken = default)
         {
             var uri = new Uri($"{_httpClient.BaseAddress}{accountId}/watchlists/{watchlist.WatchlistId}").ToString();
 
