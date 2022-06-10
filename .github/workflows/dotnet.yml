@@ -1,9 +1,9 @@
 name: CI
 
 on:
-  create:
-    branches: 
-      - release/**
+  # create:
+  #   branches: 
+  #     - release/**
   push:
     branches:
     - master
