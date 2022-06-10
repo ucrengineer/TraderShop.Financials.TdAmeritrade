@@ -33,9 +33,9 @@ namespace TraderShop.Financials.TdAmeritrade.Quotes.Services.Impl
 
             var responseObject = await response.Content.ReadAsStringAsync();
 
-            var Quote = JsonConvert.DeserializeObject<T>(responseObject);
+            var quote = JsonConvert.DeserializeObject<T>(responseObject);
 
-            return Quote;
+            return quote;
         }
 
         public async Task<Quote[]> GetQuotes(string[] symbols, CancellationToken cancellationToken = default)
@@ -44,7 +44,7 @@ namespace TraderShop.Financials.TdAmeritrade.Quotes.Services.Impl
 
             var query = new Dictionary<string, string>
             {
-                ["symbol"] = String.Join(",", symbols)
+                ["symbol"] = string.Join(",", symbols)
             };
 
             uri = QueryHelpers.AddQueryString(uri, query);

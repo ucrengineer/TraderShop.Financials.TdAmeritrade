@@ -40,9 +40,9 @@ namespace TraderShop.Financials.TdAmeritrade.Movers.Services.Impl
 
             var responseObject = await response.Content.ReadAsStringAsync();
 
-            var Movers = JsonConvert.DeserializeObject<Mover[]>(responseObject);
+            var movers = JsonConvert.DeserializeObject<Mover[]>(responseObject);
 
-            return Movers;
+            return movers;
         }
     }
 }

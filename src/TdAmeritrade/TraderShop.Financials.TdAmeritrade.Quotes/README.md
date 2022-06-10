@@ -50,4 +50,4 @@ public class QuotesProvider
 
 ## Description
 
-This library uses the TdAmeritrade API to provide information on quotes for a given symbol. See the Quote, Future, FutureOptions, and MutualFund classes for more information.
+This library uses the TdAmeritrade API for information on quotes for a given symbol. See the Quote, Future, FutureOptions, and MutualFund classes for more information.

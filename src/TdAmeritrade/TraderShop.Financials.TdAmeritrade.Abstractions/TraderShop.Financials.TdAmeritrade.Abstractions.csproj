@@ -2,14 +2,16 @@
 
   <PropertyGroup>
 	<TargetFramework>net6.0</TargetFramework>
-	<Version>1.0.1</Version>
+	<Version>1.0.2</Version>
 	<Authors>Brandon Moffett</Authors>
+	<owners>Brandon Moffett</owners>
+	<License>MIT</License>
+	<ProjectUrl>https://github.com/ucrengineer/TraderShop.Financials.TdAmeritrade</ProjectUrl>
 	<PackageTags>TdAmeritrade; Financials;</PackageTags>
 	<Description>This library provides a auth for TraderShop.Financials.TdAmeritrade library</Description>
 	<ImplicitUsings>enable</ImplicitUsings>
 	<Nullable>enable</Nullable>
   	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-	<PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>

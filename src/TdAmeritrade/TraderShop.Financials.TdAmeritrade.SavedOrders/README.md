@@ -41,5 +41,4 @@
 ```
 
 ## Description
-
-This library currently isn't being implemented.
+This library provides a Saved Orders service for easy interaction with the official TdAmeritrade api

@@ -55,6 +55,11 @@ namespace TraderShop.Financials.TdAmeritrade.Accounts.Services.Impl
         }
         public async Task<SecuritiesAccount> GetAccount(string accountId, string[]? fields, CancellationToken cancellationToken)
         {
+            if (string.IsNullOrEmpty(accountId))
+            {
+                throw new Exception("AccountId cannot be a empty string");
+            }
+
             var uri = new Uri($"{_httpClient.BaseAddress}{accountId}").ToString();
 
             if (fields != null)

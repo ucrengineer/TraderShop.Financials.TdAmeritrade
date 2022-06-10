@@ -34,7 +34,7 @@ namespace TdAmeritrade.Financials.Functional.Tests
 
             Assert.NotNull(result);
 
-            Assert.Equal(2, result.Count);
+            Assert.Equal(2, result.Count());
         }
 
         [Fact]
