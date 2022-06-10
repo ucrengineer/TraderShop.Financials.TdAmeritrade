@@ -39,15 +39,14 @@ jobs:
     - name: Setup NuGet
       uses: NuGet/setup-nuget@v1.0.5
 
-    - name: Restore dependencies
-      run: nuget restore $SOLUTION
-
     - name: Setup .NET
       uses: actions/setup-dotnet@v2
       with:
-        dotnet-version: |
-          6.0.x
-          5.0.x
+        dotnet-version: 6.0.x
+
+
+    - name: Restore dependencies
+      run: dotnet restore $SOLUTION
 
     - name : Clean
       run : dotnet Clean
