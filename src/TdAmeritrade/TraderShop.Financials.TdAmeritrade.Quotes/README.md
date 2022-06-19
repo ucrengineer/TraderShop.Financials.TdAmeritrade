@@ -42,7 +42,7 @@ public class QuotesProvider
 
             var mutualFunds = await _quotesProvider.GetQuote<MutualFund>("MSFT");
 
-            var results = await _quotesProvider.GetQuotes(symbols: new string[] { "MSFT", "/KC", "EUR/USD" });
+            var results = await _quotesProvider.GetQuotes(symbols: "MSFT,/KC,EUR/USD");
 
         }
     }

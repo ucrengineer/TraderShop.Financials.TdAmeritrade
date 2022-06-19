@@ -21,7 +21,7 @@ namespace TdAmeritrade.Financials.Functional.Tests
         public async void Return_Hours_Successfully()
         {
             var result = await _hoursProvider.GetHoursForMultipleMarkets
-                (new MarketHoursQuery() { Date = DateTime.Now.AddDays(4), Markets = new string[] { "FUTURE" } }, CancellationToken.None);
+                (new MarketHoursQuery() { Date = DateTime.Now.AddDays(4), Markets = "FUTURE" }, CancellationToken.None);
 
             Assert.NotNull(result);
 
@@ -30,7 +30,7 @@ namespace TdAmeritrade.Financials.Functional.Tests
             Assert.Contains(result, x => x.ProductName.Any());
 
             var result2 = await _hoursProvider.GetHoursForMultipleMarkets
-                 (new MarketHoursQuery() { Date = DateTime.Now.AddDays(4), Markets = new string[] { "FUTURE" } }, CancellationToken.None);
+                 (new MarketHoursQuery() { Date = DateTime.Now.AddDays(4), Markets =  "FUTURE" }, CancellationToken.None);
 
             Assert.NotNull(result2);
 

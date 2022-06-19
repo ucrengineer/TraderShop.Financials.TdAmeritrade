@@ -38,7 +38,7 @@ namespace TraderShop.Financials.TdAmeritrade.UserInfo.Services.Impl
             return preferences;
         }
 
-        public async Task<SubscriptionKey> GetStreamerSubscriptionKeys(string[]? accountIds, CancellationToken cancellationToken = default)
+        public async Task<SubscriptionKey> GetStreamerSubscriptionKeys(string? accountIds, CancellationToken cancellationToken = default)
         {
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await _authService.GetBearerToken());
 
@@ -65,7 +65,7 @@ namespace TraderShop.Financials.TdAmeritrade.UserInfo.Services.Impl
             return subscriptionKey;
         }
 
-        public async Task<UserPrinciple> GetUserPrincipals(string[]? fields, CancellationToken cancellationToken = default)
+        public async Task<UserPrinciple> GetUserPrincipals(string? fields, CancellationToken cancellationToken = default)
         {
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await _authService.GetBearerToken());
 

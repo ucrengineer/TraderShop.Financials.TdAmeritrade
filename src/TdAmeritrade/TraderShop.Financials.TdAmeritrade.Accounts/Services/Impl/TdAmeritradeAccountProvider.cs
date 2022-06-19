@@ -18,7 +18,7 @@ namespace TraderShop.Financials.TdAmeritrade.Accounts.Services.Impl
             _httpClient = httpClient;
             _errorHandler = errorHandler;
         }
-        public async Task<SecuritiesAccount[]> GetAccounts(string[]? fields, CancellationToken cancellationToken)
+        public async Task<SecuritiesAccount[]> GetAccounts(string? fields, CancellationToken cancellationToken)
         {
 
             var uri = new Uri($"{_httpClient.BaseAddress}").ToString();
@@ -27,7 +27,7 @@ namespace TraderShop.Financials.TdAmeritrade.Accounts.Services.Impl
             {
                 var query = new Dictionary<string, string>
                 {
-                    ["fields"] = String.Join(",", fields),
+                    ["fields"] = fields,
                 };
 
                 uri = QueryHelpers.AddQueryString(uri, query);
@@ -53,7 +53,7 @@ namespace TraderShop.Financials.TdAmeritrade.Accounts.Services.Impl
             return securitiesAccounts;
 
         }
-        public async Task<SecuritiesAccount> GetAccount(string accountId, string[]? fields, CancellationToken cancellationToken)
+        public async Task<SecuritiesAccount> GetAccount(string accountId, string? fields, CancellationToken cancellationToken)
         {
             if (string.IsNullOrEmpty(accountId))
             {
@@ -66,7 +66,7 @@ namespace TraderShop.Financials.TdAmeritrade.Accounts.Services.Impl
             {
                 var query = new Dictionary<string, string>
                 {
-                    ["fields"] = String.Join(",", fields),
+                    ["fields"] = fields,
                 };
 
                 uri = QueryHelpers.AddQueryString(uri, query);

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using System;
 using TdAmeritrade.Financials.Functional.Tests.Utilities;
 using TraderShop.Financials.TdAmeritrade.Movers.Models;
 using TraderShop.Financials.TdAmeritrade.Movers.Services;
@@ -21,7 +22,10 @@ namespace TdAmeritrade.Financials.Functional.Tests
 
             Assert.NotNull(movers);
 
-            Assert.True(movers.Length > 0);
+            if (DateTime.Now.DayOfWeek == DayOfWeek.Sunday || DateTime.Now.DayOfWeek == DayOfWeek.Saturday)
+                Assert.True(movers.Length == 0);
+            else
+                Assert.True(movers.Length > 0);
         }
     }
 }

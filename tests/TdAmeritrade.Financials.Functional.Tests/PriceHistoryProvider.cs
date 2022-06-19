@@ -1,5 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
-using System;
+using System.Net.Http;
 using System.Threading.Tasks;
 using TdAmeritrade.Financials.Functional.Tests.Utilities;
 using TraderShop.Financials.TdAmeritrade.PriceHistory.Models;
@@ -28,7 +28,7 @@ namespace TdAmeritrade.Financials.Functional.Tests
         [Fact]
         public async Task Throws_Exception()
         {
-            await Assert.ThrowsAsync<Exception>(async () => await _priceHistoryProvider.GetPriceHistory(new PriceHistorySpecs() { PeriodType = PeriodType.ytd, Period = 20 }));
+            await Assert.ThrowsAsync<HttpRequestException>(async () => await _priceHistoryProvider.GetPriceHistory(new PriceHistorySpecs() { PeriodType = PeriodType.ytd, Period = 20 }));
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using TdAmeritrade.Financials.Functional.Tests.Utilities;
+using TraderShop.Financials.TdAmeritrade.Instruments.Models;
 using TraderShop.Financials.TdAmeritrade.Instruments.Services;
 using Xunit;
 
@@ -28,16 +29,6 @@ namespace TdAmeritrade.Financials.Functional.Tests
         }
 
         [Fact]
-        public async Task Return_Instruments_Successfully()
-        {
-            var result = await _instrumentProvider.GetInstruments(symbols: new string[] { "TIGR", "AAPL" });
-
-            Assert.NotNull(result);
-
-            Assert.Equal(2, result.Count());
-        }
-
-        [Fact]
         public async Task Return_FuturesInstruments_Successfully()
         {
             var result = await _instrumentProvider.GetAllFuturesInstruments();
@@ -45,6 +36,16 @@ namespace TdAmeritrade.Financials.Functional.Tests
             Assert.NotNull(result);
 
             Assert.True(result.All(x => x.AssetType == "FUTURE"));
+        }
+
+        [Fact]
+        public async Task Return_Instruments_Successfully()
+        {
+            var result = await _instrumentProvider.GetInstruments("app,tigr", Projection.SymbolSearch);
+
+            Assert.NotNull(result);
+
+            Assert.True(result.Length == 2);
         }
 
     }

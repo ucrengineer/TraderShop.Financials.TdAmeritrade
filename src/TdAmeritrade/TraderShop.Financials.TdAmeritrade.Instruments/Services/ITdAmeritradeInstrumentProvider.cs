@@ -1,4 +1,5 @@
 ﻿using TraderShop.Financials.TdAmeritrade.Abstractions.Models;
+using TraderShop.Financials.TdAmeritrade.Instruments.Models;
 
 namespace TraderShop.Financials.TdAmeritrade.Instruments.Services
 {
@@ -13,9 +14,22 @@ namespace TraderShop.Financials.TdAmeritrade.Instruments.Services
     /// </summary>
     public interface ITdAmeritradeInstrumentProvider
     {
+        /// <summary>
+        /// Get a single instrument that matches symbol input
+        /// </summary>
+        /// <param name="symbol"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         Task<Instrument> GetInstrument(string symbol, CancellationToken cancellationToken = default);
 
-        Task<Instrument[]> GetInstruments(CancellationToken cancellationToken = default, string[]? symbols = null);
+        /// <summary>
+        /// Get instruments with projection parameters
+        /// </summary>
+        /// <param name="symbol"></param>
+        /// <param name="projection"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        Task<Instrument[]> GetInstruments(string symbol, Projection projection, CancellationToken cancellationToken = default);
 
         Task<Instrument[]> GetAllFuturesInstruments(CancellationToken cancellationToken = default);
 
