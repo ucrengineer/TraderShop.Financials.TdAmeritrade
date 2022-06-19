@@ -8,7 +8,7 @@
         /// <summary>
         /// The markets for which you're requesting market hours, comma-separated. Valid markets are EQUITY, OPTION, FUTURE, BOND, or FOREX.
         /// </summary>
-        public string[] Markets { get; set; } = new string[] { "FUTURE" };
+        public string Markets { get; set; } = "FUTURE";
 
         /// <summary>
         /// The date for which market hours information is requested.

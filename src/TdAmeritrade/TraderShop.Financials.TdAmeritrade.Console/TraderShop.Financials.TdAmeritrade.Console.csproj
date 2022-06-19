@@ -2,7 +2,7 @@
 
   <PropertyGroup>
 	<TargetFramework>net6.0</TargetFramework>
-		<Version>1.0.2</Version>
+		<Version>1.1.2</Version>
 	<Authors>Brandon Moffett</Authors>
 	<PackageTags>TdAmeritrade; Financials;</PackageTags>
 	<Description>This library provides a easy to user wrapper around the official TdAmeritrade API</Description>
@@ -11,6 +11,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+	<PackageReference Include="Ardalis.SmartEnum" Version="2.1.0" />
 	<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
 	<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
 	<PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
@@ -21,7 +22,7 @@
 	<ProjectReference Include="..\TraderShop.Financials.TdAmeritrade.Accounts\TraderShop.Financials.TdAmeritrade.Accounts.csproj" />
 	<ProjectReference Include="..\TraderShop.Financials.TdAmeritrade.Instruments\TraderShop.Financials.TdAmeritrade.Instruments.csproj" />
 	<ProjectReference Include="..\TraderShop.Financials.TdAmeritrade.PriceHistory\TraderShop.Financials.TdAmeritrade.PriceHistory.csproj" />
-		 <None Include="README.md" Pack="true" PackagePath="\"/>
+		 <None Include="README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
 </Project>

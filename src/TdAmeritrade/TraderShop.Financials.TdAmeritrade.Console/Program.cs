@@ -7,6 +7,7 @@ using TraderShop.Financials.TdAmeritrade.Abstractions.Services;
 using TraderShop.Financials.TdAmeritrade.Accounts.DependencyInjection;
 using TraderShop.Financials.TdAmeritrade.Accounts.Services;
 using TraderShop.Financials.TdAmeritrade.Instruments.DependencyInjection;
+using TraderShop.Financials.TdAmeritrade.Instruments.Models;
 using TraderShop.Financials.TdAmeritrade.Instruments.Services;
 using TraderShop.Financials.TdAmeritrade.PriceHistory.DependencyInjection;
 using TraderShop.Financials.TdAmeritrade.PriceHistory.Models;
@@ -73,7 +74,7 @@ internal sealed class Program
                     try
                     {
 
-                        var instruments = await _tdInstrumentProvider.GetInstruments();
+                        var instruments = await _tdInstrumentProvider.GetInstruments("app,tigr", Projection.SymbolSearch);
 
                         _logger.LogCritical($"{await _tdClient.GetBearerToken()}");
 
@@ -87,11 +88,11 @@ internal sealed class Program
 
                         _logger.LogInformation($"{priceHistory[0].Volume.ToString()}");
 
-                        var account = await _tdAccountProvider.GetAccount(_tdOptions.CurrentValue.account_number, new string[] { "positions", "orders" });
+                        var account = await _tdAccountProvider.GetAccount(_tdOptions.CurrentValue.account_number, "positions,orders");
 
                         _logger.LogInformation($"{account.CurrentBalances.LiquidationValue}");
 
-                        var accounts = await _tdAccountProvider.GetAccounts(new string[] { "positions", "orders" });
+                        var accounts = await _tdAccountProvider.GetAccounts("positions,orders");
 
                         _logger.LogInformation($"{accounts.Length}");
                     }

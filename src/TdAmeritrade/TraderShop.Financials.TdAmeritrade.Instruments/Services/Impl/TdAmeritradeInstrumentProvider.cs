@@ -30,7 +30,7 @@ namespace TraderShop.Financials.TdAmeritrade.Instruments.Services.Impl
             var query = new Dictionary<string, string>
             {
                 ["symbol"] = symbol,
-                ["projection"] = Projection.SymbolSearch
+                ["projection"] = Projection.SymbolSearch.Name
             };
 
             var uri = QueryHelpers.AddQueryString(_httpClient.BaseAddress?.ToString(), query);
@@ -48,35 +48,18 @@ namespace TraderShop.Financials.TdAmeritrade.Instruments.Services.Impl
             return instrument?.Values.FirstOrDefault() ?? new Instrument();
 
         }
-        /// <summary>
-        /// Default will result in all equities returned.
-        /// If array of symbols are provided, instruments will be returned.
-        /// </summary>
-        /// <param name="symbols"></param>
-        /// <returns></returns>
-        public async Task<Instrument[]> GetInstruments(CancellationToken cancellationToken, string[]? symbols = null)
+
+        public async Task<Instrument[]> GetInstruments(string symbol, Projection projection, CancellationToken cancellationToken = default)
         {
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await _authService.GetBearerToken());
 
-            var query = new Dictionary<string, string>();
-
-            var uri = string.Empty;
-
-            query = symbols switch
+            var query = new Dictionary<string, string>
             {
-                null => new Dictionary<string, string>
-                {
-                    ["symbol"] = "[A-Za-z.]*",
-                    ["projection"] = Projection.SymbolRegex
-                },
-                _ => new Dictionary<string, string>
-                {
-                    ["symbol"] = string.Join(",", symbols).ToString(),
-                    ["projection"] = Projection.SymbolSearch
-                }
+                ["symbol"] = string.Join(",", symbol),
+                ["projection"] = projection.Name
             };
 
-            uri = QueryHelpers.AddQueryString(_httpClient.BaseAddress?.ToString(), query);
+            var uri = QueryHelpers.AddQueryString(_httpClient.BaseAddress?.ToString(), query);
 
             var response = await _httpClient.GetAsync(uri, cancellationToken);
 
@@ -96,18 +79,14 @@ namespace TraderShop.Financials.TdAmeritrade.Instruments.Services.Impl
         {
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await _authService.GetBearerToken());
 
-            var query = new Dictionary<string, string>();
-
-            var uri = string.Empty;
-
-            query = new Dictionary<string, string>
+            var query = new Dictionary<string, string>
             {
                 ["symbol"] = string.Join(",", Futures.Symbols),
-                ["projection"] = Projection.SymbolSearch
+                ["projection"] = Projection.SymbolSearch.Name
             };
 
 
-            uri = QueryHelpers.AddQueryString(_httpClient.BaseAddress?.ToString(), query);
+            var uri = QueryHelpers.AddQueryString(_httpClient.BaseAddress?.ToString(), query);
 
             var response = await _httpClient.GetAsync(uri, cancellationToken);
 
@@ -119,6 +98,7 @@ namespace TraderShop.Financials.TdAmeritrade.Instruments.Services.Impl
 
             return instrument?.ToList().Select(x => x.Value).ToArray() ?? new Instrument[0];
         }
+
 
         public Task<Instrument[]> GetAllForexInstruments(CancellationToken cancellationToken)
         {
