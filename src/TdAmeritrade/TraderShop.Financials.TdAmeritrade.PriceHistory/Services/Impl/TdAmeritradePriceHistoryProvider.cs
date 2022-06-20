@@ -19,15 +19,15 @@ namespace TraderShop.Financials.TdAmeritrade.PriceHistory.Services.Impl
             _errorHandler = errorHandler;
         }
 
-        public async Task<Candle[]> GetPriceHistory(PriceHistorySpecs priceHistorySpecs, CancellationToken cancellationToken)
+        public async Task<Candle[]> GetPriceHistory(string symbol, PriceHistorySpecs priceHistorySpecs, CancellationToken cancellationToken)
         {
-            _httpClient.BaseAddress = new Uri($"{_httpClient.BaseAddress}{priceHistorySpecs.Symbol}/pricehistory");
+            _httpClient.BaseAddress = new Uri($"{_httpClient.BaseAddress}{symbol}/pricehistory");
 
             var query = new Dictionary<string, string>
             {
-                ["periodType"] = priceHistorySpecs.PeriodType.ToString(),
+                ["periodType"] = priceHistorySpecs.PeriodType.Name,
                 ["period"] = priceHistorySpecs.Period.ToString(),
-                ["frequencyType"] = priceHistorySpecs.FrequecyType.ToString(),
+                ["frequencyType"] = priceHistorySpecs.FrequecyType.Name,
                 ["frequency"] = priceHistorySpecs.Frequency.ToString(),
                 ["endDate"] = priceHistorySpecs.EndDate.ToUnixTimeMilliseconds().ToString(),
                 ["startDate"] = priceHistorySpecs.StartDate.ToUnixTimeMilliseconds().ToString()

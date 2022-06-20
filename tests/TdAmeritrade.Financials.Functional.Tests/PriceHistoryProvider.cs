@@ -20,7 +20,7 @@ namespace TdAmeritrade.Financials.Functional.Tests
         [Fact]
         public async Task Return_PriceHistory_Successfully()
         {
-            var result = await _priceHistoryProvider.GetPriceHistory(new PriceHistorySpecs());
+            var result = await _priceHistoryProvider.GetPriceHistory("TIGR", new PriceHistorySpecs());
 
             Assert.NotNull(result);
             Assert.Contains(result, x => x.Close != 0);
@@ -28,7 +28,7 @@ namespace TdAmeritrade.Financials.Functional.Tests
         [Fact]
         public async Task Throws_Exception()
         {
-            await Assert.ThrowsAsync<HttpRequestException>(async () => await _priceHistoryProvider.GetPriceHistory(new PriceHistorySpecs() { PeriodType = PeriodType.ytd, Period = 20 }));
+            await Assert.ThrowsAsync<HttpRequestException>(async () => await _priceHistoryProvider.GetPriceHistory("APP", new PriceHistorySpecs() { PeriodType = PeriodType.Ytd, Period = 20 }));
         }
     }
 }

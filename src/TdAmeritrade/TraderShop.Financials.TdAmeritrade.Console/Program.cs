@@ -84,7 +84,7 @@ internal sealed class Program
 
                         _logger.LogInformation($"{futures.Count()}");
 
-                        var priceHistory = await _tdPriceHistoryProvider.GetPriceHistory(new PriceHistorySpecs());
+                        var priceHistory = await _tdPriceHistoryProvider.GetPriceHistory("tigr", new PriceHistorySpecs());
 
                         _logger.LogInformation($"{priceHistory[0].Volume.ToString()}");
 
