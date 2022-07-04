@@ -56,4 +56,4 @@ jobs:
 
     - name: Publish
       # if: startsWith(github.ref, 'refs/heads/release')
-      run: dotnet nuget push **\*.nupkg -k oy2hg2qufmbv3gwe4abq2aoxbr7x4huulcvhknf42m4wj4 -s https://api.nuget.org/v3/index.json --skip-duplicate
+      run: dotnet nuget push **\*.nupkg -k oy2nishnhgyuay2dxisqt3rdv4mejo6ubgftikt43djflq -s https://api.nuget.org/v3/index.json --skip-duplicate

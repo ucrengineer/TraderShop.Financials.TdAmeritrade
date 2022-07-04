@@ -110,7 +110,6 @@ public class PriceHistorySpecs
     /// <b>true</b> to return <b>extended hours data</b>,<b>false</b> for <b>regular market hours</b> only.<b>Default</b>  is <b>true</b>.
     /// </summary>
     public bool NeedExtendedHoursData { get; set; } = true;
-
 }
 /// <summary>
 /// <list type="bullet">

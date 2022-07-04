@@ -21,8 +21,6 @@ namespace TraderShop.Financials.TdAmeritrade.PriceHistory.Services.Impl
 
         public async Task<Candle[]> GetPriceHistory(string symbol, PriceHistorySpecs priceHistorySpecs, CancellationToken cancellationToken)
         {
-            _httpClient.BaseAddress = new Uri($"{_httpClient.BaseAddress}{symbol}/pricehistory");
-
             var query = new Dictionary<string, string>
             {
                 ["periodType"] = priceHistorySpecs.PeriodType.Name,
@@ -33,7 +31,7 @@ namespace TraderShop.Financials.TdAmeritrade.PriceHistory.Services.Impl
                 ["startDate"] = priceHistorySpecs.StartDate.ToUnixTimeMilliseconds().ToString()
             };
 
-            var uri = QueryHelpers.AddQueryString(_httpClient.BaseAddress?.ToString(), query);
+            var uri = QueryHelpers.AddQueryString($"{_httpClient.BaseAddress}{symbol}/pricehistory", query);
 
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await _authService.GetBearerToken());
 
