@@ -35,7 +35,7 @@
 
         public async void BasicExample()
         {
-            var newWatchlist = new WatchlistPost(name: "apiTest",
+            var newWatchlist = new CreatedWatchlist(name: "apiTest",
                 watchlistItems: new[]
                 {
                     new WatchlistItem
