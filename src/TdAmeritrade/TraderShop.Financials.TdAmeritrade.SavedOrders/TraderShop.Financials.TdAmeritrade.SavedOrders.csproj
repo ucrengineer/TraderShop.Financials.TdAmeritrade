@@ -14,7 +14,8 @@
 		<PackageProjectUrl>https://github.com/ucrengineer/TraderShop.Financials.TdAmeritrade.git</PackageProjectUrl>
   	<RepositoryUrl>https://github.com/ucrengineer/TraderShop.Financials.TdAmeritrade.git</RepositoryUrl>  
 	<PackageReleaseNotes>updated contracts </PackageReleaseNotes>
-	<GenerateDocumentationFile>true</GenerateDocumentationFile>
+				<GenerateDocumentationFile>true</GenerateDocumentationFile>
+<PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>

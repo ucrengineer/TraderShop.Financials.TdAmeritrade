@@ -68,7 +68,6 @@ namespace TraderShop.Financials.TdAmeritrade.Instruments.Services.Impl
             var responseObject = await response.Content.ReadAsStringAsync();
 
             var instrument = JsonConvert.DeserializeObject<Dictionary<string, Instrument>>(responseObject);
-
             return instrument?.ToList().Select(x => x.Value).ToArray() ?? new Instrument[0];
         }
         /// <summary>
