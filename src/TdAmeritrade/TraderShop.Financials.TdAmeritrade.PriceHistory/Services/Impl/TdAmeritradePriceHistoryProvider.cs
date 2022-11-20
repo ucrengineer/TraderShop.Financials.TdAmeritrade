@@ -7,18 +7,38 @@ using TraderShop.Financials.TdAmeritrade.PriceHistory.Models;
 
 namespace TraderShop.Financials.TdAmeritrade.PriceHistory.Services.Impl
 {
+    /// <summary>
+    ///
+    /// </summary>
     public class TdAmeritradePriceHistoryProvider : ITdAmeritradePriceHistoryProvider
     {
         private readonly HttpClient _httpClient;
         private readonly ITdAmeritradeAuthService _authService;
         private readonly IErrorHandler _errorHandler;
-        public TdAmeritradePriceHistoryProvider(HttpClient httpClient, ITdAmeritradeAuthService tdAmeritradeAuthService, IErrorHandler errorHandler)
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="httpClient"></param>
+        /// <param name="authService"></param>
+        /// <param name="errorHandler"></param>
+        public TdAmeritradePriceHistoryProvider(
+            HttpClient httpClient,
+            ITdAmeritradeAuthService authService,
+            IErrorHandler errorHandler)
         {
-            _httpClient = httpClient;
-            _authService = tdAmeritradeAuthService;
-            _errorHandler = errorHandler;
+
+            _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
+            _authService = authService ?? throw new ArgumentNullException(nameof(authService));
+            _errorHandler = errorHandler ?? throw new ArgumentNullException(nameof(errorHandler));
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="symbol"></param>
+        /// <param name="priceHistorySpecs"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public async Task<Candle[]> GetPriceHistory(string symbol, PriceHistorySpecs priceHistorySpecs, CancellationToken cancellationToken)
         {
             var query = new Dictionary<string, string>
@@ -43,7 +63,10 @@ namespace TraderShop.Financials.TdAmeritrade.PriceHistory.Services.Impl
 
             var candles = JsonConvert.DeserializeObject<PriceHistoryRoot>(responseObject);
 
-            return candles?.Candles;
+            if (candles is null)
+                throw new ArgumentNullException(nameof(PriceHistoryRoot));
+
+            return candles.Candles;
         }
     }
 }

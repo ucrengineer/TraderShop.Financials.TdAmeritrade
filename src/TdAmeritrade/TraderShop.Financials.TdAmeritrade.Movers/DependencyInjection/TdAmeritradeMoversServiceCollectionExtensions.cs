@@ -5,8 +5,16 @@ using TraderShop.Financials.TdAmeritrade.Movers.Services.Impl;
 
 namespace TraderShop.Financials.TdAmeritrade.Movers.DependencyInjection
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class TdAmeritradeMoversServiceCollectionExtensions
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="services"></param>
+        /// <returns></returns>
         public static IServiceCollection AddTdAmeritradeMoverProvider(
             this IServiceCollection services)
         {

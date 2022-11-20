@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
+using System;
 using System.Linq;
-using System.Net.Http;
 using System.Threading.Tasks;
 using TdAmeritrade.Financials.Functional.Tests.Utilities;
 using TraderShop.Financials.TdAmeritrade.Abstractions.Options;
@@ -43,7 +43,7 @@ namespace TdAmeritrade.Financials.Functional.Tests
         [InlineData("343343")]
         public async Task Throws_Exception(string faultyAccountId)
         {
-            await Assert.ThrowsAsync<HttpRequestException>(() => _accountProvider.GetAccount(faultyAccountId));
+            await Assert.ThrowsAsync<Exception>(() => _accountProvider.GetAccount(faultyAccountId));
 
         }
 

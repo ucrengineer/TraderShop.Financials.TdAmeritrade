@@ -8,6 +8,9 @@ using TraderShop.Financials.TdAmeritrade.Abstractions.Options;
 
 namespace TraderShop.Financials.TdAmeritrade.Abstractions.Services.Impl
 {
+    /// <summary>
+    ///
+    /// </summary>
     public class TdAmeritradeAuthService : ITdAmeritradeAuthService
     {
         private readonly HttpClient _httpClient;
@@ -16,22 +19,36 @@ namespace TraderShop.Financials.TdAmeritrade.Abstractions.Services.Impl
         private readonly IErrorHandler _errorHandler;
 
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="httpClient"></param>
+        /// <param name="memoryCache"></param>
+        /// <param name="errorHandler"></param>
+        /// <param name="tdAmeritradeOptions"></param>
+        /// <param name="deserializerService"></param>
         public TdAmeritradeAuthService(
             HttpClient httpClient,
             IMemoryCache memoryCache,
             IErrorHandler errorHandler,
             IOptionsMonitor<TdAmeritradeOptions> tdAmeritradeOptions)
         {
-            _httpClient = httpClient;
+
+            _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
             _memoryCache = memoryCache;
-            _errorHandler = errorHandler;
+            _errorHandler = errorHandler ?? throw new ArgumentNullException(nameof(errorHandler));
             _tdAmeritradeOptions = tdAmeritradeOptions.CurrentValue;
             tdAmeritradeOptions.OnChange(x => _tdAmeritradeOptions = x);
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public async Task<string> GetBearerToken(CancellationToken cancellationToken)
         {
-            if (!_memoryCache.TryGetValue("tdAmeritrade-bearer", out Token cacheValue))
+            if (!_memoryCache.TryGetValue("tdAmeritrade-bearer", out Token? cacheValue))
             {
                 var tokenResponse = await SetAccessToken(cancellationToken);
 
@@ -43,7 +60,7 @@ namespace TraderShop.Financials.TdAmeritrade.Abstractions.Services.Impl
                 _memoryCache.Set("tdAmeritrade-bearer", cacheValue, cacheEntryOptions);
             }
 
-            return cacheValue.Value;
+            return cacheValue?.Value;
         }
 
         private async Task<PostAccessTokenResponse> SetAccessToken(CancellationToken cancellationToken)
@@ -60,7 +77,13 @@ namespace TraderShop.Financials.TdAmeritrade.Abstractions.Services.Impl
 
             await _errorHandler.CheckCommandErrorsAsync(response);
 
-            return JsonConvert.DeserializeObject<PostAccessTokenResponse>(await response.Content.ReadAsStringAsync()) ?? new PostAccessTokenResponse() { error = $"Response Status Code : {response.StatusCode}" };
+            var result = JsonConvert.DeserializeObject<PostAccessTokenResponse>(await response.Content.ReadAsStringAsync());
+
+            if (result is null)
+                throw new ArgumentNullException(nameof(PostAccessTokenResponse));
+
+            return result;
+
         }
     }
 }

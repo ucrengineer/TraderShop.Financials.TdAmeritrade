@@ -7,18 +7,39 @@ using TraderShop.Financials.TdAmeritrade.TransactionHistory.Models;
 
 namespace TraderShop.Financials.TdAmeritrade.TransactionHistory.Services.Impl
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class TdAmeritradeTransactionHistoryProvider : ITdAmeritradeTransactionHistoryProvider
     {
         private readonly HttpClient _httpClient;
         private readonly IErrorHandler _errorHandler;
         private readonly ITdAmeritradeAuthService _authService;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="httpClient"></param>
+        /// <param name="errorHandler"></param>
+        /// <param name="authService"></param>
         public TdAmeritradeTransactionHistoryProvider(HttpClient httpClient, IErrorHandler errorHandler, ITdAmeritradeAuthService authService)
         {
-            _httpClient = httpClient;
-            _errorHandler = errorHandler;
-            _authService = authService;
+
+            _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
+           
+
+
+            _errorHandler = errorHandler ?? throw new ArgumentNullException(nameof(errorHandler));
+
+            _authService = authService ?? throw new ArgumentNullException(nameof(authService));
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="accountId"></param>
+        /// <param name="transactionId"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public async Task<Transaction> GetTransaction(string accountId, string transactionId, CancellationToken cancellationToken = default)
         {
             var uri = new Uri($"{_httpClient.BaseAddress}{accountId}/transactions/{transactionId}").ToString();
@@ -36,6 +57,13 @@ namespace TraderShop.Financials.TdAmeritrade.TransactionHistory.Services.Impl
             return transaction;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="accountId"></param>
+        /// <param name="transactionQuery"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public async Task<Transaction[]> GetTransactions(string accountId, TransactionQuery transactionQuery, CancellationToken cancellationToken = default)
         {
             var uri = new Uri($"{_httpClient.BaseAddress}{accountId}/transactions").ToString();

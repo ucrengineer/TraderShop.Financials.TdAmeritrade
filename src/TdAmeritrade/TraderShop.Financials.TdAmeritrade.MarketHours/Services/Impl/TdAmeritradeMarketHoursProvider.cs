@@ -7,19 +7,48 @@ using TraderShop.Financials.TdAmeritrade.MarketHours.Models;
 
 namespace TraderShop.Financials.TdAmeritrade.MarketHours.Services.Impl
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class TdAmeritradeMarketHoursProvider : ITdAmeritradeMarketHoursProvider
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public readonly HttpClient _httpClient;
+        /// <summary>
+        /// 
+        /// </summary>
         public readonly ITdAmeritradeAuthService _authService;
+        /// <summary>
+        /// 
+        /// </summary>
         public readonly IErrorHandler _errorHandler;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="httpClient"></param>
+        /// <param name="authService"></param>
+        /// <param name="errorHandler"></param>
         public TdAmeritradeMarketHoursProvider(HttpClient httpClient, ITdAmeritradeAuthService authService, IErrorHandler errorHandler)
         {
-            _httpClient = httpClient;
-            _authService = authService;
-            _errorHandler = errorHandler;
+
+            _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
+
+            _authService = authService ?? throw new ArgumentNullException(nameof(authService));
+           
+
+
+            _errorHandler = errorHandler ?? throw new ArgumentNullException(nameof(errorHandler));
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="marketHoursQuery"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public async Task<Hour[]> GetHoursForMultipleMarkets(MarketHoursQuery marketHoursQuery, CancellationToken cancellationToken)
         {
             var query = new Dictionary<string, string>
@@ -61,6 +90,12 @@ namespace TraderShop.Financials.TdAmeritrade.MarketHours.Services.Impl
             return hours;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="marketHoursQuery"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public async Task<Hour[]> GetHoursForSingleMarket(MarketHoursQuery marketHoursQuery, CancellationToken cancellationToken)
         {
             var uri = new Uri($"{_httpClient.BaseAddress}{marketHoursQuery.Markets.FirstOrDefault()}/hours").ToString();

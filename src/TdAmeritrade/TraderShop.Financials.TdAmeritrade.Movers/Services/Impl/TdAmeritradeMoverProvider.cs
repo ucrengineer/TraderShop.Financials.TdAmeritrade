@@ -7,19 +7,48 @@ using TraderShop.Financials.TdAmeritrade.Movers.Models;
 
 namespace TraderShop.Financials.TdAmeritrade.Movers.Services.Impl
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class TdAmeritradeMoverProvider : ITdAmeritradeMoverProvider
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public readonly HttpClient _httpClient;
+        /// <summary>
+        /// 
+        /// </summary>
         public readonly ITdAmeritradeAuthService _authService;
+        /// <summary>
+        /// 
+        /// </summary>
         public readonly IErrorHandler _errorHandler;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="httpClient"></param>
+        /// <param name="authService"></param>
+        /// <param name="errorHandler"></param>
         public TdAmeritradeMoverProvider(HttpClient httpClient, ITdAmeritradeAuthService authService, IErrorHandler errorHandler)
         {
-            _httpClient = httpClient;
-            _authService = authService;
-            _errorHandler = errorHandler;
+
+            _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
+
+            _authService = authService ?? throw new ArgumentNullException(nameof(authService));
+           
+
+
+            _errorHandler = errorHandler ?? throw new ArgumentNullException(nameof(errorHandler));
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="moverQuery"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public async Task<Mover[]> GetMovers(MoverQuery moverQuery, CancellationToken cancellationToken = default)
         {
             var uri = new Uri($"{_httpClient.BaseAddress}{moverQuery.IndexSymbol}/movers").ToString();

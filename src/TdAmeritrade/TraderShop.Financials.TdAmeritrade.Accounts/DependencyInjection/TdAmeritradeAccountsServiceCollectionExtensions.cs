@@ -5,8 +5,16 @@ using TraderShop.Financials.TdAmeritrade.Accounts.Services.Impl;
 
 namespace TraderShop.Financials.TdAmeritrade.Accounts.DependencyInjection
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class TdAmeritradeAccountsServiceCollectionExtensions
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="services"></param>
+        /// <returns></returns>
         public static IServiceCollection AddTdAmeritradeAccountProvider(
             this IServiceCollection services)
         {

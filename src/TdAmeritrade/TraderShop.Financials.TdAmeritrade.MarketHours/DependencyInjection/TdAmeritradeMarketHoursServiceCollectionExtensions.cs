@@ -5,8 +5,16 @@ using TraderShop.Financials.TdAmeritrade.MarketHours.Services.Impl;
 
 namespace TraderShop.Financials.TdAmeritrade.MarketHours.DependencyInjection
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class TdAmeritradeMarketHoursServiceCollectionExtensions
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="services"></param>
+        /// <returns></returns>
         public static IServiceCollection AddTdAmeritradeMarketHoursProvider(
             this IServiceCollection services)
         {

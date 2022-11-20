@@ -2,6 +2,9 @@
 
 namespace TraderShop.Financials.TdAmeritrade.MarketHours.Services
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public interface ITdAmeritradeMarketHoursProvider
     {
         /// <summary>

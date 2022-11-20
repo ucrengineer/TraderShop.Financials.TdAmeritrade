@@ -7,19 +7,43 @@ using TraderShop.Financials.TdAmeritrade.WatchList.Models;
 
 namespace TraderShop.Financials.TdAmeritrade.WatchList.Services.Impl
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class TdAmeritradeWatchlistProvider : ITdAmeritradeWatchlistProvider
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public readonly IErrorHandler _errorHandler;
         private readonly HttpClient _httpClient;
         private readonly ITdAmeritradeAuthService _authService;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="errorHandler"></param>
+        /// <param name="httpClient"></param>
+        /// <param name="authService"></param>
         public TdAmeritradeWatchlistProvider(IErrorHandler errorHandler, HttpClient httpClient, ITdAmeritradeAuthService authService)
         {
-            _errorHandler = errorHandler;
-            _httpClient = httpClient;
-            _authService = authService;
+           
+
+
+            _errorHandler = errorHandler ?? throw new ArgumentNullException(nameof(errorHandler));
+
+            _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
+
+            _authService = authService ?? throw new ArgumentNullException(nameof(authService));
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="accountId"></param>
+        /// <param name="watchlist"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public async Task<int> CreateWatchlist(string accountId, CreatedWatchlist watchlist, CancellationToken cancellationToken = default)
         {
             var uri = new Uri($"{_httpClient.BaseAddress}{accountId}/watchlists").ToString();
@@ -37,6 +61,13 @@ namespace TraderShop.Financials.TdAmeritrade.WatchList.Services.Impl
             return 0;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="accountId"></param>
+        /// <param name="watchlistId"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public async Task<int> DeleteWatchlist(string accountId, string watchlistId, CancellationToken cancellationToken = default)
         {
             var uri = new Uri($"{_httpClient.BaseAddress}{accountId}/watchlists/{watchlistId}").ToString();
@@ -50,6 +81,13 @@ namespace TraderShop.Financials.TdAmeritrade.WatchList.Services.Impl
             return 0;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="accountId"></param>
+        /// <param name="watchlistId"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public async Task<RequestedWatchlist> GetWatchlist(string accountId, string watchlistId, CancellationToken cancellationToken = default)
         {
             var uri = new Uri($"{_httpClient.BaseAddress}{accountId}/watchlists/{watchlistId}").ToString();
@@ -67,6 +105,11 @@ namespace TraderShop.Financials.TdAmeritrade.WatchList.Services.Impl
             return watchlist;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public async Task<RequestedWatchlist[]> GetWatchlistsForMultipleAccounts(CancellationToken cancellationToken = default)
         {
             var uri = new Uri($"{_httpClient.BaseAddress}watchlists").ToString();
@@ -84,6 +127,12 @@ namespace TraderShop.Financials.TdAmeritrade.WatchList.Services.Impl
             return watchlists;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="accountId"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public async Task<RequestedWatchlist[]> GetWatchlistsForSingleAccounts(string accountId, CancellationToken cancellationToken = default)
         {
             var uri = new Uri($"{_httpClient.BaseAddress}{accountId}/watchlists").ToString();
@@ -101,6 +150,13 @@ namespace TraderShop.Financials.TdAmeritrade.WatchList.Services.Impl
             return watchlists;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="accountId"></param>
+        /// <param name="watchlist"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public async Task<int> ReplaceWatchlist(string accountId, ReplacementWatchlist watchlist, CancellationToken cancellationToken = default)
         {
             var uri = new Uri($"{_httpClient.BaseAddress}{accountId}/watchlists/{watchlist.WatchlistId}").ToString();
@@ -118,6 +174,13 @@ namespace TraderShop.Financials.TdAmeritrade.WatchList.Services.Impl
             return 0;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="accountId"></param>
+        /// <param name="watchlist"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public async Task<int> UpdateWatchlist(string accountId, UpdatedWatchlist watchlist, CancellationToken cancellationToken = default)
         {
             var uri = new Uri($"{_httpClient.BaseAddress}{accountId}/watchlists/{watchlist.WatchlistId}").ToString();

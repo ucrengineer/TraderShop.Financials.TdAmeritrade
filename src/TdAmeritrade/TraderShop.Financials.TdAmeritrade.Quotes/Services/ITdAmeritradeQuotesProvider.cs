@@ -2,6 +2,9 @@
 
 namespace TraderShop.Financials.TdAmeritrade.Quotes.Services
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public interface ITdAmeritradeQuotesProvider
     {
         /// <summary>
@@ -10,7 +13,8 @@ namespace TraderShop.Financials.TdAmeritrade.Quotes.Services
         /// </para>
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="quoteType"></param>
+        /// <param name="symbol"></param>
+        /// <param name="cancellationToken"></param>
         /// <returns></returns>
         Task<T> GetQuote<T>(string symbol, CancellationToken cancellationToken = default) where T : Quote;
 

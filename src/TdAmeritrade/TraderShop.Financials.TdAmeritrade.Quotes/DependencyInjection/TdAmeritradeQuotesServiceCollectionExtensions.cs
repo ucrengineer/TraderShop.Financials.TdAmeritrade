@@ -5,8 +5,16 @@ using TraderShop.Financials.TdAmeritrade.Quotes.Services.Impl;
 
 namespace TraderShop.Financials.TdAmeritrade.Quotes.DependencyInjection
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class TdAmeritradeQuotesServiceCollectionExtensions
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="services"></param>
+        /// <returns></returns>
         public static IServiceCollection AddTdAmeritradeQuotesProvider(this IServiceCollection services)
         {
             services.AddFinancialsAbstractionsServices();

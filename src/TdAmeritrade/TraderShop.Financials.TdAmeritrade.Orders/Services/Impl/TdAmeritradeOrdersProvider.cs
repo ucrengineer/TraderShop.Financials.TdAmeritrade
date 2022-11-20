@@ -8,21 +8,45 @@ using TraderShop.Financials.TdAmeritrade.Orders.Models;
 
 namespace TraderShop.Financials.TdAmeritrade.Orders.Services.Impl
 {
+    /// <summary>
+    ///
+    /// </summary>
     public class TdAmeritradeOrdersProvider : ITdAmeritradeOrdersProvider
     {
+        /// <summary>
+        ///
+        /// </summary>
         public readonly IErrorHandler _errorHandler;
         private readonly HttpClient _httpClient;
         private readonly ITdAmeritradeAuthService _authService;
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="errorHandler"></param>
+        /// <param name="httpClient"></param>
+        /// <param name="authService"></param>
         public TdAmeritradeOrdersProvider(
             IErrorHandler errorHandler,
             HttpClient httpClient,
             ITdAmeritradeAuthService authService)
         {
-            _errorHandler = errorHandler;
-            _httpClient = httpClient;
-            _authService = authService;
+
+
+
+            _errorHandler = errorHandler ?? throw new ArgumentNullException(nameof(errorHandler));
+
+            _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
+
+            _authService = authService ?? throw new ArgumentNullException(nameof(authService));
         }
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="accountId"></param>
+        /// <param name="OrderId"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public async Task<Abstractions.Models.Order> GetOrder(string accountId, string OrderId, CancellationToken cancellationToken)
         {
             var uri = new Uri($"{_httpClient.BaseAddress}{accountId}/orders/{OrderId}").ToString();
@@ -40,6 +64,13 @@ namespace TraderShop.Financials.TdAmeritrade.Orders.Services.Impl
             return Order;
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="accountId"></param>
+        /// <param name="cancellationToken"></param>
+        /// <param name="orderQuery"></param>
+        /// <returns></returns>
         public async Task<Abstractions.Models.Order[]> GetOrdersByPath(string accountId, CancellationToken cancellationToken, OrderQuery? orderQuery)
         {
             var uri = new Uri($"{_httpClient.BaseAddress}{accountId}/orders").ToString();
@@ -70,6 +101,13 @@ namespace TraderShop.Financials.TdAmeritrade.Orders.Services.Impl
             return Orders;
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="cancellationToken"></param>
+        /// <param name="accountId"></param>
+        /// <param name="orderQuery"></param>
+        /// <returns></returns>
         public async Task<Abstractions.Models.Order[]> GetOrdersByQuery(CancellationToken cancellationToken, string? accountId, OrderQuery? orderQuery)
         {
             var uri = new Uri($"{_httpClient.BaseAddress.ToString().Split("/accounts").FirstOrDefault()}/orders").ToString();
@@ -102,6 +140,14 @@ namespace TraderShop.Financials.TdAmeritrade.Orders.Services.Impl
             return Orders;
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="accountId"></param>
+        /// <param name="order"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public async Task<int> PlaceOrder<T>(string accountId, T order, CancellationToken cancellationToken) where T : IBaseOrder
         {
             var uri = new Uri($"{_httpClient.BaseAddress}{accountId}/orders").ToString();
@@ -119,6 +165,15 @@ namespace TraderShop.Financials.TdAmeritrade.Orders.Services.Impl
             return 0;
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="accountId"></param>
+        /// <param name="orderId"></param>
+        /// <param name="order"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public async Task<int> ReplaceOrder<T>(string accountId, string orderId, T order, CancellationToken cancellationToken) where T : IBaseOrder
         {
             var uri = new Uri($"{_httpClient.BaseAddress}{accountId}/orders/{orderId}").ToString();
@@ -136,6 +191,13 @@ namespace TraderShop.Financials.TdAmeritrade.Orders.Services.Impl
             return 0;
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="accountId"></param>
+        /// <param name="orderId"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public async Task<int> CancelOrder(string accountId, string orderId, CancellationToken cancellationToken)
         {
             var uri = new Uri($"{_httpClient.BaseAddress}{accountId}/orders/{orderId}").ToString();

@@ -31,8 +31,18 @@ namespace TraderShop.Financials.TdAmeritrade.Instruments.Services
         /// <returns></returns>
         Task<Instrument[]> GetInstruments(string symbol, Projection projection, CancellationToken cancellationToken = default);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         Task<Instrument[]> GetAllFuturesInstruments(CancellationToken cancellationToken = default);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         Task<Instrument[]> GetAllForexInstruments(CancellationToken cancellationToken = default);
     }
 }

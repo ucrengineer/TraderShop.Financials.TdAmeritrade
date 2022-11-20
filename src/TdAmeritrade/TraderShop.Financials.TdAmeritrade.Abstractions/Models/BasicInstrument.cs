@@ -1,8 +1,14 @@
 ﻿using Newtonsoft.Json;
 namespace TraderShop.Financials.TdAmeritrade.Abstractions.Models;
 
+/// <summary>
+/// Basic information for a instrument
+/// </summary>
 public class BasicInstrument
 {
+    /// <summary>
+    /// Instruments ticker
+    /// </summary>
     [JsonProperty("symbol")]
     public string Symbol { get; set; } = string.Empty;
     /// <summary>

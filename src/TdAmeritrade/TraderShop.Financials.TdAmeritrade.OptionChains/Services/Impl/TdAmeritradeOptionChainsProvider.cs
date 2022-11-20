@@ -7,19 +7,39 @@ using TraderShop.Financials.TdAmeritrade.OptionChains.Models;
 
 namespace TraderShop.Financials.TdAmeritrade.OptionChains.Services.Impl
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class TdAmeritradeOptionChainsProvider : ITdAmeritradeOptionChainsProvider
     {
         private readonly HttpClient _httpClient;
         private readonly IErrorHandler _errorHandler;
         private readonly ITdAmeritradeAuthService _authService;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="httpClient"></param>
+        /// <param name="errorHandler"></param>
+        /// <param name="authService"></param>
         public TdAmeritradeOptionChainsProvider(HttpClient httpClient, IErrorHandler errorHandler, ITdAmeritradeAuthService authService)
         {
-            _httpClient = httpClient;
-            _errorHandler = errorHandler;
-            _authService = authService;
+
+            _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
+           
+
+
+            _errorHandler = errorHandler ?? throw new ArgumentNullException(nameof(errorHandler));
+
+            _authService = authService ?? throw new ArgumentNullException(nameof(authService));
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="optionQuery"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public async Task<OptionChain> GetOptionChain(OptionChainQuery optionQuery, CancellationToken cancellationToken = default)
         {
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await _authService.GetBearerToken());

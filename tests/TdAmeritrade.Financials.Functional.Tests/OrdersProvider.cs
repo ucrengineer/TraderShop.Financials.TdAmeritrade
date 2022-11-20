@@ -163,15 +163,20 @@ namespace TdAmeritrade.Financials.Functional.Tests
         }
 
         [Fact]
-        public async Task Cancel_Order_Successfully()
+        public async Task Cancel_Orders_Successfully()
         {
             var orders = await _ordersProvider.GetOrdersByQuery();
 
-            var order = orders.FirstOrDefault(x => x.Status != "CANCELED");
+            foreach (var order in orders)
+            {
+                if (order.Status != "CANCELED")
+                {
+                    var result = await _ordersProvider.CancelOrder(_options.account_number, order.OrderId.ToString());
+                    Assert.Equal(0, result);
 
-            var result = await _ordersProvider.CancelOrder(_options.account_number, order.OrderId.ToString());
+                }
 
-            Assert.Equal(0, result);
+            }
         }
 
         [Fact]

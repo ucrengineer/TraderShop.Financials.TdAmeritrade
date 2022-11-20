@@ -1,6 +1,9 @@
 ﻿using Ardalis.SmartEnum;
 
 namespace TraderShop.Financials.TdAmeritrade.PriceHistory.Models;
+/// <summary>
+/// 
+/// </summary>
 public class PriceHistorySpecs
 {
     /// <summary>
@@ -121,12 +124,24 @@ public class PriceHistorySpecs
 /// </summary>
 public abstract class PeriodType : SmartEnum<PeriodType>
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static readonly PeriodType Day = new DayType();
 
+    /// <summary>
+    /// 
+    /// </summary>
     public static readonly PeriodType Month = new MonthType();
 
+    /// <summary>
+    /// 
+    /// </summary>
     public static readonly PeriodType Year = new YearType();
 
+    /// <summary>
+    /// 
+    /// </summary>
     public static readonly PeriodType Ytd = new YtdType();
 
     /// <summary>
@@ -180,12 +195,24 @@ public abstract class PeriodType : SmartEnum<PeriodType>
 /// </summary>
 public abstract class FrequencyType : SmartEnum<FrequencyType>
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static readonly FrequencyType Minute = new MinuteType();
 
+    /// <summary>
+    /// 
+    /// </summary>
     public static readonly FrequencyType Daily = new DailyType();
 
+    /// <summary>
+    /// 
+    /// </summary>
     public static readonly FrequencyType Weekly = new WeeklyType();
 
+    /// <summary>
+    /// 
+    /// </summary>
     public static readonly FrequencyType Monthly = new MonthlyType();
     /// <summary>
     /// string name and enum int value
@@ -212,16 +239,28 @@ public abstract class FrequencyType : SmartEnum<FrequencyType>
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public sealed class WeeklyType : FrequencyType
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public WeeklyType() : base("weekly", 2)
         {
 
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public sealed class MonthlyType : FrequencyType
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public MonthlyType() : base("monthly", 3)
         {
 

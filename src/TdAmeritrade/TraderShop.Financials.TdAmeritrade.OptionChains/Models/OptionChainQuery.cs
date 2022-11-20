@@ -1,5 +1,8 @@
 ﻿namespace TraderShop.Financials.TdAmeritrade.OptionChains.Models
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class OptionChainQuery
     {
         /// <summary>
@@ -88,57 +91,186 @@
 
 
     }
+    /// <summary>
+    /// 
+    /// </summary>
     public enum Contract
     {
+        /// <summary>
+        /// 
+        /// </summary>
         ALL,
+        /// <summary>
+        /// 
+        /// </summary>
         CALL,
+        /// <summary>
+        /// 
+        /// </summary>
         PUT
     }
+    /// <summary>
+    /// 
+    /// </summary>
     public enum Strategy
     {
+        /// <summary>
+        /// 
+        /// </summary>
         SINGLE,
+        /// <summary>
+        /// 
+        /// </summary>
         ANALYTICAL,
+        /// <summary>
+        /// 
+        /// </summary>
         COVERED,
+        /// <summary>
+        /// 
+        /// </summary>
         VERTICAL,
+        /// <summary>
+        /// 
+        /// </summary>
         CALENDAR,
+        /// <summary>
+        /// 
+        /// </summary>
         STRANGLE,
+        /// <summary>
+        /// 
+        /// </summary>
         STRADDLE,
+        /// <summary>
+        /// 
+        /// </summary>
         BUTTERFLY,
+        /// <summary>
+        /// 
+        /// </summary>
         CONDOR,
+        /// <summary>
+        /// 
+        /// </summary>
         DIAGONAL,
+        /// <summary>
+        /// 
+        /// </summary>
         COLLAR,
+        /// <summary>
+        /// 
+        /// </summary>
         ROLL
     }
+    /// <summary>
+    /// 
+    /// </summary>
     public enum Range
     {
+        /// <summary>
+        /// 
+        /// </summary>
         ALL,
+        /// <summary>
+        /// 
+        /// </summary>
         ITM,
+        /// <summary>
+        /// 
+        /// </summary>
         NTM,
+        /// <summary>
+        /// 
+        /// </summary>
         OTM,
+        /// <summary>
+        /// 
+        /// </summary>
         SAK,
+        /// <summary>
+        /// 
+        /// </summary>
         SBK,
+        /// <summary>
+        /// 
+        /// </summary>
         SNK
     }
+    /// <summary>
+    /// 
+    /// </summary>
     public enum Month
     {
+        /// <summary>
+        /// 
+        /// </summary>
         ALL,
+        /// <summary>
+        /// 
+        /// </summary>
         JAN,
+        /// <summary>
+        /// 
+        /// </summary>
         FEB,
+        /// <summary>
+        /// 
+        /// </summary>
         MAR,
+        /// <summary>
+        /// 
+        /// </summary>
         APR,
+        /// <summary>
+        /// 
+        /// </summary>
         MAY,
+        /// <summary>
+        /// 
+        /// </summary>
         JUN,
+        /// <summary>
+        /// 
+        /// </summary>
         JUL,
+        /// <summary>
+        /// 
+        /// </summary>
         AUG,
+        /// <summary>
+        /// 
+        /// </summary>
         SEP,
+        /// <summary>
+        /// 
+        /// </summary>
         OCT,
+        /// <summary>
+        /// 
+        /// </summary>
         NOV,
+        /// <summary>
+        /// 
+        /// </summary>
         DEC
     }
+    /// <summary>
+    /// 
+    /// </summary>
     public enum OptionType
     {
+        /// <summary>
+        /// 
+        /// </summary>
         ALL,
+        /// <summary>
+        /// 
+        /// </summary>
         S,
+        /// <summary>
+        /// 
+        /// </summary>
         NS
     }
 }

@@ -9,6 +9,15 @@ namespace TraderShop.Financials.TdAmeritrade.Orders.Models
     public class PlaceOrder : IBaseOrder
     {
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="orderType"></param>
+        /// <param name="price"></param>
+        /// <param name="session"></param>
+        /// <param name="duration"></param>
+        /// <param name="orderStrategyType"></param>
+        /// <param name="orderLegCollections"></param>
         public PlaceOrder(
             string orderType,
             double price,
@@ -25,22 +34,50 @@ namespace TraderShop.Financials.TdAmeritrade.Orders.Models
             OrderStrategyType = orderStrategyType;
             OrderLegCollection = orderLegCollections;
         }
+        /// <summary>
+        /// 
+        /// </summary>
         [JsonProperty("orderType")]
         public string OrderType { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         [JsonProperty("session")]
         public string Session { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         [JsonProperty("price")]
         public double Price { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         [JsonProperty("duration")]
         public string Duration { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         [JsonProperty("orderStrategyType")]
         public string OrderStrategyType { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         [JsonProperty("orderLegCollection")]
         public OrderLegCollection[] OrderLegCollection { get; set; }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public class OrderLegCollection
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="instruction"></param>
+        /// <param name="quantity"></param>
+        /// <param name="symbol"></param>
+        /// <param name="assetType"></param>
         public OrderLegCollection(
             string instruction,
             double quantity,
@@ -56,10 +93,19 @@ namespace TraderShop.Financials.TdAmeritrade.Orders.Models
             };
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         [JsonProperty("instruction")]
         public string Instruction { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         [JsonProperty("quantity")]
         public double Quantity { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         [JsonProperty("instrument")]
         public BasicInstrument Instrument { get; set; }
 

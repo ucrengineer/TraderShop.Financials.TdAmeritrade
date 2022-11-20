@@ -29,7 +29,8 @@
 
         public AuthServiceDemo(ITdAmericaritradeAuthService authService)
         {
-            _authService = authService;
+
+            _authService = authService ?? throw new ArgumentNullException(nameof(authService));
         }
 
         public async Task Returns_Bearer_Token_Successfully()

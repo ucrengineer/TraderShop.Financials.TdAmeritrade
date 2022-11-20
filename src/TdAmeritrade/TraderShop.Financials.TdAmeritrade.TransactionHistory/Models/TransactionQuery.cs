@@ -1,5 +1,8 @@
 ﻿namespace TraderShop.Financials.TdAmeritrade.TransactionHistory.Models
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class TransactionQuery
     {
         /// <summary>
@@ -25,17 +28,50 @@
         public DateTime EndDate { get; set; } = DateTime.Now;
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public enum TransactionType
     {
+        /// <summary>
+        /// 
+        /// </summary>
         ALL,
+        /// <summary>
+        /// 
+        /// </summary>
         TRADE,
+        /// <summary>
+        /// 
+        /// </summary>
         BUY_ONLY,
+        /// <summary>
+        /// 
+        /// </summary>
         SELL_ONLY,
+        /// <summary>
+        /// 
+        /// </summary>
         CASH_IN_OR_CASH_OUT,
+        /// <summary>
+        /// 
+        /// </summary>
         CHECKING,
+        /// <summary>
+        /// 
+        /// </summary>
         DIVIDEND,
+        /// <summary>
+        /// 
+        /// </summary>
         INTEREST,
+        /// <summary>
+        /// 
+        /// </summary>
         OTHER,
+        /// <summary>
+        /// 
+        /// </summary>
         ADVISOR_FEES
     }
 }

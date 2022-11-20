@@ -2,11 +2,15 @@
 
 namespace TraderShop.Financials.TdAmeritrade.UserInfo.Services
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public interface ITdAmeritradeUserInfoProvider
     {
         /// <summary>
         /// Preferences for a specific account.
         /// </summary>
+        /// <param name="accountId"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         Task<Preferences> GetPreferences(string accountId, CancellationToken cancellationToken = default);
@@ -14,6 +18,7 @@ namespace TraderShop.Financials.TdAmeritrade.UserInfo.Services
         /// <summary>
         /// SubscriptionKey for provided accounts or default accounts.
         /// </summary>
+        /// <param name="accountIds"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         Task<SubscriptionKey> GetStreamerSubscriptionKeys(string accountIds = null, CancellationToken cancellationToken = default);
@@ -30,6 +35,7 @@ namespace TraderShop.Financials.TdAmeritrade.UserInfo.Services
         /// <item><description>surrogateIds</description></item></list>
         /// </para>
         /// </summary>
+        /// <param name="fields"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         Task<UserPrinciple> GetUserPrincipals(string fields = null, CancellationToken cancellationToken = default);
@@ -38,6 +44,8 @@ namespace TraderShop.Financials.TdAmeritrade.UserInfo.Services
         /// Update preferences for a specific account. Please note that the directOptionsRouting and directEquityRouting values cannot be modified via this operation.
         /// </para>
         /// </summary>
+        /// <param name="accountId"></param>
+        /// <param name="preferences"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         Task<int> UpdatePreferences(string accountId, Preferences preferences, CancellationToken cancellationToken = default);
