@@ -6,12 +6,12 @@ using TraderShop.Financials.TdAmeritrade.UserInfo.Services.Impl;
 namespace TraderShop.Financials.TdAmeritrade.UserInfo.DependencyInjection
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public static class TdAmeritradeUserInfoServiceCollectionExtensions
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="services"></param>
         /// <returns></returns>

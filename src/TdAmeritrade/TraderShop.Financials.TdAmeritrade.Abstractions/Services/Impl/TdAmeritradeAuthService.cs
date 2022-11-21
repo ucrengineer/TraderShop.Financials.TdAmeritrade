@@ -26,7 +26,6 @@ namespace TraderShop.Financials.TdAmeritrade.Abstractions.Services.Impl
         /// <param name="memoryCache"></param>
         /// <param name="errorHandler"></param>
         /// <param name="tdAmeritradeOptions"></param>
-        /// <param name="deserializerService"></param>
         public TdAmeritradeAuthService(
             HttpClient httpClient,
             IMemoryCache memoryCache,
@@ -60,7 +59,7 @@ namespace TraderShop.Financials.TdAmeritrade.Abstractions.Services.Impl
                 _memoryCache.Set("tdAmeritrade-bearer", cacheValue, cacheEntryOptions);
             }
 
-            return cacheValue?.Value;
+            return cacheValue?.Value ?? throw new ArgumentNullException(nameof(Token));
         }
 
         private async Task<PostAccessTokenResponse> SetAccessToken(CancellationToken cancellationToken)

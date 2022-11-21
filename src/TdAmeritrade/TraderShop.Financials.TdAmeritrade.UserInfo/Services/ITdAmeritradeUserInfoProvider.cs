@@ -3,7 +3,7 @@
 namespace TraderShop.Financials.TdAmeritrade.UserInfo.Services
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public interface ITdAmeritradeUserInfoProvider
     {
@@ -21,7 +21,7 @@ namespace TraderShop.Financials.TdAmeritrade.UserInfo.Services
         /// <param name="accountIds"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        Task<SubscriptionKey> GetStreamerSubscriptionKeys(string accountIds = null, CancellationToken cancellationToken = default);
+        Task<SubscriptionKey> GetStreamerSubscriptionKeys(string? accountIds = null, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// User Principal details.
@@ -38,7 +38,7 @@ namespace TraderShop.Financials.TdAmeritrade.UserInfo.Services
         /// <param name="fields"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        Task<UserPrinciple> GetUserPrincipals(string fields = null, CancellationToken cancellationToken = default);
+        Task<UserPrinciple> GetUserPrincipals(string? fields = null, CancellationToken cancellationToken = default);
         /// <summary>
         /// <para>
         /// Update preferences for a specific account. Please note that the directOptionsRouting and directEquityRouting values cannot be modified via this operation.

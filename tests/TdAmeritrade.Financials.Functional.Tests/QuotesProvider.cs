@@ -41,7 +41,7 @@ namespace TdAmeritrade.Financials.Functional.Tests
         [Fact]
         public async void Return_Quotes_Successfully()
         {
-            var results = await _quotesProvider.GetQuotes(symbols: new string[] { "MSFT", "/KC", "EUR/USD" });
+            var results = await _quotesProvider.GetQuotes(symbols: new string[] { "MSFT", "EUR/USD", "/KC" });
 
             Assert.NotNull(results);
 

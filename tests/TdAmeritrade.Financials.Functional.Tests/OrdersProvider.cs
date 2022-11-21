@@ -169,7 +169,7 @@ namespace TdAmeritrade.Financials.Functional.Tests
 
             foreach (var order in orders)
             {
-                if (order.Status != "CANCELED")
+                if (order.Status == "OPEN")
                 {
                     var result = await _ordersProvider.CancelOrder(_options.account_number, order.OrderId.ToString());
                     Assert.Equal(0, result);

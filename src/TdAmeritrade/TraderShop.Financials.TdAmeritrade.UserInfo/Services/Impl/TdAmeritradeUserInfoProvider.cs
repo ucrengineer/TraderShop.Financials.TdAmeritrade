@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.WebUtilities;
-using Newtonsoft.Json;
-using System.Net.Http.Headers;
-using System.Text;
 using TraderShop.Financials.Abstractions.Services;
+using TraderShop.Financials.TdAmeritrade.Abstractions;
 using TraderShop.Financials.TdAmeritrade.Abstractions.Services;
 using TraderShop.Financials.TdAmeritrade.UserInfo.Models;
 
@@ -11,11 +9,8 @@ namespace TraderShop.Financials.TdAmeritrade.UserInfo.Services.Impl
     /// <summary>
     ///
     /// </summary>
-    public class TdAmeritradeUserInfoProvider : ITdAmeritradeUserInfoProvider
+    public class TdAmeritradeUserInfoProvider : BaseTdAmeritradeProvider, ITdAmeritradeUserInfoProvider
     {
-        private readonly HttpClient _httpClient;
-        private readonly IErrorHandler _errorHandler;
-        private readonly ITdAmeritradeAuthService _authService;
 
         /// <summary>
         ///
@@ -23,31 +18,20 @@ namespace TraderShop.Financials.TdAmeritrade.UserInfo.Services.Impl
         /// <param name="httpClient"></param>
         /// <param name="errorHandler"></param>
         /// <param name="authService"></param>
-        public TdAmeritradeUserInfoProvider(HttpClient httpClient, IErrorHandler errorHandler, ITdAmeritradeAuthService authService)
-        {
-            _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
-           
-
-            _errorHandler = errorHandler ?? throw new ArgumentNullException(nameof(errorHandler));
-            _authService = authService ?? throw new ArgumentNullException(nameof(authService));
-        }
+        public TdAmeritradeUserInfoProvider(
+            HttpClient httpClient,
+            IErrorHandler errorHandler,
+            ITdAmeritradeAuthService authService)
+            : base(authService,
+                  httpClient,
+                  errorHandler)
+        { }
 
         async Task<Preferences> ITdAmeritradeUserInfoProvider.GetPreferences(string accountId, CancellationToken cancellationToken)
         {
-            var uri = new Uri($"{_httpClient.BaseAddress}{accountId}/preferences").ToString();
+            var uri = $"{baseUri}{accountId}/preferences";
 
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await _authService.GetBearerToken());
-
-            var response = await _httpClient.GetAsync(uri, cancellationToken);
-
-            await _errorHandler.CheckQueryErrorsAsync(response);
-
-            var responseObject = await response.Content.ReadAsStringAsync();
-
-            var preferences = JsonConvert.DeserializeObject<Preferences>(responseObject);
-
-            if (preferences is null)
-                throw new ArgumentNullException(nameof(preferences));
+            var preferences = await GetAsync<Preferences>(uri, cancellationToken);
 
             return preferences;
         }
@@ -60,9 +44,8 @@ namespace TraderShop.Financials.TdAmeritrade.UserInfo.Services.Impl
         /// <returns></returns>
         public async Task<SubscriptionKey> GetStreamerSubscriptionKeys(string? accountIds, CancellationToken cancellationToken = default)
         {
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await _authService.GetBearerToken());
 
-            var uri = new Uri($"{_httpClient?.BaseAddress?.ToString().Split("accounts/")[0]}/userprincipals/streamersubscriptionkeys").ToString();
+            var uri = $"{baseUri.Split("accounts/")[0]}/userprincipals/streamersubscriptionkeys";
 
             if (accountIds != null)
             {
@@ -74,16 +57,7 @@ namespace TraderShop.Financials.TdAmeritrade.UserInfo.Services.Impl
                 uri = QueryHelpers.AddQueryString(uri, query);
             }
 
-            var response = await _httpClient.GetAsync(uri, cancellationToken);
-
-            await _errorHandler.CheckQueryErrorsAsync(response);
-
-            var responseObject = await response.Content.ReadAsStringAsync();
-
-            var subscriptionKey = JsonConvert.DeserializeObject<SubscriptionKey>(responseObject);
-
-            if (subscriptionKey is null)
-                throw new ArgumentNullException(nameof(subscriptionKey));
+            var subscriptionKey = await GetAsync<SubscriptionKey>(uri, cancellationToken);
 
             return subscriptionKey;
         }
@@ -96,9 +70,7 @@ namespace TraderShop.Financials.TdAmeritrade.UserInfo.Services.Impl
         /// <returns></returns>
         public async Task<UserPrinciple> GetUserPrincipals(string? fields, CancellationToken cancellationToken = default)
         {
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await _authService.GetBearerToken());
-
-            var uri = new Uri($"{_httpClient?.BaseAddress?.ToString().Split("accounts/")[0]}/userprincipals").ToString();
+            var uri = $"{baseUri.Split("accounts/")[0]}/userprincipals";
 
             if (fields != null)
             {
@@ -110,16 +82,7 @@ namespace TraderShop.Financials.TdAmeritrade.UserInfo.Services.Impl
                 uri = QueryHelpers.AddQueryString(uri, query);
             }
 
-            var response = await _httpClient.GetAsync(uri, cancellationToken);
-
-            await _errorHandler.CheckQueryErrorsAsync(response);
-
-            var responseObject = await response.Content.ReadAsStringAsync();
-
-            var userPrinciple = JsonConvert.DeserializeObject<UserPrinciple>(responseObject);
-
-            if (userPrinciple is null)
-                throw new ArgumentNullException(nameof(userPrinciple));
+            var userPrinciple = await GetAsync<UserPrinciple>(uri, cancellationToken);
 
             return userPrinciple;
         }
@@ -133,19 +96,9 @@ namespace TraderShop.Financials.TdAmeritrade.UserInfo.Services.Impl
         /// <returns></returns>
         public async Task<int> UpdatePreferences(string accountId, Preferences preferences, CancellationToken cancellationToken = default)
         {
-            var uri = new Uri($"{_httpClient.BaseAddress}{accountId}/preferences").ToString();
+            var uri = $"{baseUri}{accountId}/preferences";
 
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await _authService.GetBearerToken());
-
-            var preferencesJson = JsonConvert.SerializeObject(preferences);
-
-            var content = new StringContent(preferencesJson, Encoding.UTF8, "application/json");
-
-            var response = await _httpClient.PutAsync(uri, content, cancellationToken);
-
-            await _errorHandler.CheckCommandErrorsAsync(response);
-
-            return 0;
+            return await PutAsync<Preferences>(uri, preferences, cancellationToken);
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.WebUtilities;
-using Newtonsoft.Json;
-using System.Net.Http.Headers;
 using TraderShop.Financials.Abstractions.Services;
+using TraderShop.Financials.TdAmeritrade.Abstractions;
 using TraderShop.Financials.TdAmeritrade.Abstractions.Services;
 using TraderShop.Financials.TdAmeritrade.PriceHistory.Models;
 
@@ -10,11 +9,8 @@ namespace TraderShop.Financials.TdAmeritrade.PriceHistory.Services.Impl
     /// <summary>
     ///
     /// </summary>
-    public class TdAmeritradePriceHistoryProvider : ITdAmeritradePriceHistoryProvider
+    public class TdAmeritradePriceHistoryProvider : BaseTdAmeritradeProvider, ITdAmeritradePriceHistoryProvider
     {
-        private readonly HttpClient _httpClient;
-        private readonly ITdAmeritradeAuthService _authService;
-        private readonly IErrorHandler _errorHandler;
         /// <summary>
         ///
         /// </summary>
@@ -24,13 +20,10 @@ namespace TraderShop.Financials.TdAmeritrade.PriceHistory.Services.Impl
         public TdAmeritradePriceHistoryProvider(
             HttpClient httpClient,
             ITdAmeritradeAuthService authService,
-            IErrorHandler errorHandler)
-        {
-
-            _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
-            _authService = authService ?? throw new ArgumentNullException(nameof(authService));
-            _errorHandler = errorHandler ?? throw new ArgumentNullException(nameof(errorHandler));
-        }
+            IErrorHandler errorHandler) :
+            base(
+            authService, httpClient, errorHandler)
+        { }
 
         /// <summary>
         ///
@@ -51,20 +44,9 @@ namespace TraderShop.Financials.TdAmeritrade.PriceHistory.Services.Impl
                 ["startDate"] = priceHistorySpecs.StartDate.ToUnixTimeMilliseconds().ToString()
             };
 
-            var uri = QueryHelpers.AddQueryString($"{_httpClient.BaseAddress}{symbol}/pricehistory", query);
+            var uri = QueryHelpers.AddQueryString($"{baseUri}{symbol}/pricehistory", query);
 
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await _authService.GetBearerToken());
-
-            var response = await _httpClient.GetAsync(uri, cancellationToken);
-
-            await _errorHandler.CheckQueryErrorsAsync(response);
-
-            var responseObject = await response.Content.ReadAsStringAsync();
-
-            var candles = JsonConvert.DeserializeObject<PriceHistoryRoot>(responseObject);
-
-            if (candles is null)
-                throw new ArgumentNullException(nameof(PriceHistoryRoot));
+            var candles = await GetAsync<PriceHistoryRoot>(uri, cancellationToken);
 
             return candles.Candles;
         }

@@ -36,7 +36,7 @@ namespace TdAmeritrade.Financials.Functional.Tests
 
             Assert.NotNull(result);
 
-            Assert.Contains(result.Keys, x => x.key.Any());
+            Assert.Contains(result!.Keys!, x => x.key.Any());
 
         }
 
