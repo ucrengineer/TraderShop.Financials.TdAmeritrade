@@ -1,29 +1,36 @@
 ﻿using Microsoft.AspNetCore.WebUtilities;
-using Newtonsoft.Json;
-using System.Net.Http.Headers;
 using TraderShop.Financials.Abstractions.Services;
+using TraderShop.Financials.TdAmeritrade.Abstractions;
 using TraderShop.Financials.TdAmeritrade.Abstractions.Services;
 using TraderShop.Financials.TdAmeritrade.OptionChains.Models;
 
 namespace TraderShop.Financials.TdAmeritrade.OptionChains.Services.Impl
 {
-    public class TdAmeritradeOptionChainsProvider : ITdAmeritradeOptionChainsProvider
+    /// <summary>
+    ///
+    /// </summary>
+    public class TdAmeritradeOptionChainsProvider : BaseTdAmeritradeProvider, ITdAmeritradeOptionChainsProvider
     {
-        private readonly HttpClient _httpClient;
-        private readonly IErrorHandler _errorHandler;
-        private readonly ITdAmeritradeAuthService _authService;
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="httpClient"></param>
+        /// <param name="errorHandler"></param>
+        /// <param name="authService"></param>
+        public TdAmeritradeOptionChainsProvider(
+            HttpClient httpClient,
+            IErrorHandler errorHandler,
+            ITdAmeritradeAuthService authService)
+            : base(authService, httpClient, errorHandler) { }
 
-        public TdAmeritradeOptionChainsProvider(HttpClient httpClient, IErrorHandler errorHandler, ITdAmeritradeAuthService authService)
-        {
-            _httpClient = httpClient;
-            _errorHandler = errorHandler;
-            _authService = authService;
-        }
-
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="optionQuery"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public async Task<OptionChain> GetOptionChain(OptionChainQuery optionQuery, CancellationToken cancellationToken = default)
         {
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await _authService.GetBearerToken());
-
             var query = new Dictionary<string, string>
             {
                 ["symbol"] = optionQuery.Symbol,
@@ -44,15 +51,9 @@ namespace TraderShop.Financials.TdAmeritrade.OptionChains.Services.Impl
                 ["optionType"] = optionQuery.OptionType.ToString()
             };
 
-            var uri = QueryHelpers.AddQueryString(_httpClient?.BaseAddress?.ToString(), query);
+            var uri = QueryHelpers.AddQueryString(baseUri, query);
 
-            var response = await _httpClient.GetAsync(uri, cancellationToken);
-
-            await _errorHandler.CheckQueryErrorsAsync(response);
-
-            var responseObject = await response.Content.ReadAsStringAsync();
-
-            var optionChain = JsonConvert.DeserializeObject<OptionChain>(responseObject);
+            var optionChain = await GetAsync<OptionChain>(uri, cancellationToken);
 
             return optionChain;
         }

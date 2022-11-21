@@ -5,8 +5,16 @@ using TraderShop.Financials.TdAmeritrade.SavedOrders.Services.Impl;
 
 namespace TraderShop.Financials.TdAmeritrade.SavedOrders.DependencyInjection
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class TdAmeritradeSavedOrdersServiceCollectionExtensions
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="services"></param>
+        /// <returns></returns>
         public static IServiceCollection AddTdAmeritradeSavedOrdersProvider(
             this IServiceCollection services)
         {

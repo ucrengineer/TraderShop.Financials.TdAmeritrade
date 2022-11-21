@@ -7,6 +7,16 @@ namespace TraderShop.Financials.TdAmeritrade.Orders.Models
     /// </summary>
     public class OptionOrder : PlaceOrder
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="complexOrderStrategyType"></param>
+        /// <param name="orderType"></param>
+        /// <param name="price"></param>
+        /// <param name="session"></param>
+        /// <param name="duration"></param>
+        /// <param name="orderStrategyType"></param>
+        /// <param name="orderLegCollections"></param>
         public OptionOrder(
             string? complexOrderStrategyType,
             string orderType,
@@ -24,6 +34,9 @@ namespace TraderShop.Financials.TdAmeritrade.Orders.Models
         {
             ComplexOrderStrategyType = complexOrderStrategyType;
         }
+        /// <summary>
+        /// 
+        /// </summary>
         [JsonProperty("complexOrderStrategyType")]
         public string? ComplexOrderStrategyType { get; set; }
     }

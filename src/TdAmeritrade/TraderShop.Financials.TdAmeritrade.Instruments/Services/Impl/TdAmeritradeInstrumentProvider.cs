@@ -1,29 +1,37 @@
 ﻿using Microsoft.AspNetCore.WebUtilities;
-using Newtonsoft.Json;
-using System.Net.Http.Headers;
 using TraderShop.Financials.Abstractions.Services;
+using TraderShop.Financials.TdAmeritrade.Abstractions;
 using TraderShop.Financials.TdAmeritrade.Abstractions.Models;
 using TraderShop.Financials.TdAmeritrade.Abstractions.Services;
 using TraderShop.Financials.TdAmeritrade.Instruments.Models;
 
 namespace TraderShop.Financials.TdAmeritrade.Instruments.Services.Impl
 {
-    public class TdAmeritradeInstrumentProvider : ITdAmeritradeInstrumentProvider
+    /// <summary>
+    ///
+    /// </summary>
+    public class TdAmeritradeInstrumentProvider : BaseTdAmeritradeProvider, ITdAmeritradeInstrumentProvider
     {
-        private readonly HttpClient _httpClient;
-        private readonly ITdAmeritradeAuthService _authService;
-        private readonly IErrorHandler _errorHandler;
 
-        public TdAmeritradeInstrumentProvider(HttpClient httpClient, ITdAmeritradeAuthService tdAmeritradeAuthService, IErrorHandler errorHandler)
-        {
-            _httpClient = httpClient;
-            _authService = tdAmeritradeAuthService;
-            _errorHandler = errorHandler;
-        }
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="httpClient"></param>
+        /// <param name="authService"></param>
+        /// <param name="errorHandler"></param>
+        public TdAmeritradeInstrumentProvider(
+            HttpClient httpClient,
+            ITdAmeritradeAuthService authService,
+            IErrorHandler errorHandler) : base(
+                authService,
+                httpClient,
+                errorHandler)
+        { }
         /// <summary>
         /// returns a single instrument.
         /// </summary>
         /// <param name="symbol"></param>
+        /// <param name="cancellationToken"></param>
         /// <returns></returns>
         public async Task<Instrument> GetInstrument(string symbol, CancellationToken cancellationToken)
         {
@@ -33,43 +41,34 @@ namespace TraderShop.Financials.TdAmeritrade.Instruments.Services.Impl
                 ["projection"] = Projection.SymbolSearch.Name
             };
 
-            var uri = QueryHelpers.AddQueryString(_httpClient.BaseAddress?.ToString(), query);
+            var uri = QueryHelpers.AddQueryString(baseUri, query);
 
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await _authService.GetBearerToken());
+            var instrument = await GetAsync<Dictionary<string, Instrument>>(uri, cancellationToken);
 
-            var response = await _httpClient.GetAsync(uri, cancellationToken);
-
-            await _errorHandler.CheckQueryErrorsAsync(response);
-
-            var responseObject = await response.Content.ReadAsStringAsync();
-
-            var instrument = JsonConvert.DeserializeObject<Dictionary<string, Instrument>>(responseObject);
-
-            return instrument?.Values.FirstOrDefault() ?? new Instrument();
+            return instrument.Values.First();
 
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="symbol"></param>
+        /// <param name="projection"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public async Task<Instrument[]> GetInstruments(string symbol, Projection projection, CancellationToken cancellationToken = default)
         {
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await _authService.GetBearerToken());
-
             var query = new Dictionary<string, string>
             {
                 ["symbol"] = string.Join(",", symbol),
                 ["projection"] = projection.Name
             };
 
-            var uri = QueryHelpers.AddQueryString(_httpClient.BaseAddress?.ToString(), query);
+            var uri = QueryHelpers.AddQueryString(baseUri, query);
 
-            var response = await _httpClient.GetAsync(uri, cancellationToken);
+            var instrument = await GetAsync<Dictionary<string, Instrument>>(uri, cancellationToken);
 
-            await _errorHandler.CheckQueryErrorsAsync(response);
-
-            var responseObject = await response.Content.ReadAsStringAsync();
-
-            var instrument = JsonConvert.DeserializeObject<Dictionary<string, Instrument>>(responseObject);
-
-            return instrument?.ToList().Select(x => x.Value).ToArray() ?? new Instrument[0];
+            return instrument.ToList().Select(x => x.Value).ToArray();
         }
         /// <summary>
         /// Returns all of continuous futures markets
@@ -77,8 +76,6 @@ namespace TraderShop.Financials.TdAmeritrade.Instruments.Services.Impl
         /// <returns></returns>
         public async Task<Instrument[]> GetAllFuturesInstruments(CancellationToken cancellationToken)
         {
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await _authService.GetBearerToken());
-
             var query = new Dictionary<string, string>
             {
                 ["symbol"] = string.Join(",", Futures.Symbols),
@@ -86,20 +83,19 @@ namespace TraderShop.Financials.TdAmeritrade.Instruments.Services.Impl
             };
 
 
-            var uri = QueryHelpers.AddQueryString(_httpClient.BaseAddress?.ToString(), query);
+            var uri = QueryHelpers.AddQueryString(baseUri, query);
 
-            var response = await _httpClient.GetAsync(uri, cancellationToken);
+            var instrument = await GetAsync<Dictionary<string, Instrument>>(uri, cancellationToken);
 
-            await _errorHandler.CheckQueryErrorsAsync(response);
-
-            var responseObject = await response.Content.ReadAsStringAsync();
-
-            var instrument = JsonConvert.DeserializeObject<Dictionary<string, Instrument>>(responseObject);
-
-            return instrument?.ToList().Select(x => x.Value).ToArray() ?? new Instrument[0];
+            return instrument.ToList().Select(x => x.Value).ToArray();
         }
 
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public Task<Instrument[]> GetAllForexInstruments(CancellationToken cancellationToken)
         {
             throw new NotImplementedException();

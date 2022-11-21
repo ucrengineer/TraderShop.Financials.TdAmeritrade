@@ -17,4 +17,4 @@
 
 ## Description
 
-This library handles the error handling for the library. Error exceptions are thrown if there are no returned objects from a HTTP GET request or if the returned status codes are not successfull. The code and message are also included in the exception.
+This library handles the error handling for the library. Error exceptions are thrown if there are no returned objects from a HTTP GET request or if the returned status codes are not successful. The code and message are also included in the exception.

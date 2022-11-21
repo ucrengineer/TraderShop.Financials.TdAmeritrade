@@ -1,27 +1,39 @@
 ﻿using Microsoft.AspNetCore.WebUtilities;
-using Newtonsoft.Json;
-using System.Net.Http.Headers;
 using TraderShop.Financials.Abstractions.Services;
+using TraderShop.Financials.TdAmeritrade.Abstractions;
 using TraderShop.Financials.TdAmeritrade.Abstractions.Services;
 using TraderShop.Financials.TdAmeritrade.Accounts.Models;
 
 namespace TraderShop.Financials.TdAmeritrade.Accounts.Services.Impl
 {
-    public class TdAmeritradeAccountProvider : ITdAmeritradeAccountProvider
+    /// <summary>
+    ///
+    /// </summary>
+    public class TdAmeritradeAccountProvider : BaseTdAmeritradeProvider, ITdAmeritradeAccountProvider
     {
-        private readonly ITdAmeritradeAuthService _authService;
-        private readonly HttpClient _httpClient;
-        private readonly IErrorHandler _errorHandler;
-        public TdAmeritradeAccountProvider(ITdAmeritradeAuthService authService, HttpClient httpClient, IErrorHandler errorHandler)
-        {
-            _authService = authService;
-            _httpClient = httpClient;
-            _errorHandler = errorHandler;
-        }
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="authService"></param>
+        /// <param name="httpClient"></param>
+        /// <param name="errorHandler"></param>
+        public TdAmeritradeAccountProvider(
+            ITdAmeritradeAuthService authService,
+            HttpClient httpClient,
+            IErrorHandler errorHandler) :
+            base(authService,
+                httpClient,
+                errorHandler)
+        { }
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="fields"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public async Task<SecuritiesAccount[]> GetAccounts(string? fields, CancellationToken cancellationToken)
         {
-
-            var uri = new Uri($"{_httpClient.BaseAddress}").ToString();
+            var uri = baseUri;
 
             if (fields != null)
             {
@@ -33,15 +45,7 @@ namespace TraderShop.Financials.TdAmeritrade.Accounts.Services.Impl
                 uri = QueryHelpers.AddQueryString(uri, query);
             }
 
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await _authService.GetBearerToken());
-
-            var response = await _httpClient.GetAsync(uri, cancellationToken);
-
-            await _errorHandler.CheckQueryErrorsAsync(response);
-
-            var responseObject = await response.Content.ReadAsStringAsync();
-
-            var securitesAccountRoots = JsonConvert.DeserializeObject<SecuritiesAccountRoot[]>(responseObject);
+            var securitesAccountRoots = await GetAsync<SecuritiesAccountRoot[]>(uri, cancellationToken);
 
             var securitiesAccounts = new SecuritiesAccount[securitesAccountRoots.Length];
 
@@ -53,6 +57,13 @@ namespace TraderShop.Financials.TdAmeritrade.Accounts.Services.Impl
             return securitiesAccounts;
 
         }
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="accountId"></param>
+        /// <param name="fields"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public async Task<SecuritiesAccount> GetAccount(string accountId, string? fields, CancellationToken cancellationToken)
         {
             if (string.IsNullOrEmpty(accountId))
@@ -60,7 +71,7 @@ namespace TraderShop.Financials.TdAmeritrade.Accounts.Services.Impl
                 throw new Exception("AccountId cannot be a empty string");
             }
 
-            var uri = new Uri($"{_httpClient.BaseAddress}{accountId}").ToString();
+            var uri = baseUri + accountId;
 
             if (fields != null)
             {
@@ -72,17 +83,9 @@ namespace TraderShop.Financials.TdAmeritrade.Accounts.Services.Impl
                 uri = QueryHelpers.AddQueryString(uri, query);
             }
 
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await _authService.GetBearerToken());
+            var securitesAccountRoot = await GetAsync<SecuritiesAccountRoot>(uri, cancellationToken);
 
-            var response = await _httpClient.GetAsync(uri, cancellationToken);
-
-            await _errorHandler.CheckQueryErrorsAsync(response);
-
-            var responseObject = await response.Content.ReadAsStringAsync();
-
-            var securitesAccount = JsonConvert.DeserializeObject<SecuritiesAccountRoot>(responseObject);
-
-            return securitesAccount?.SecuritiesAccount;
+            return securitesAccountRoot.SecuritiesAccount;
         }
     }
 }

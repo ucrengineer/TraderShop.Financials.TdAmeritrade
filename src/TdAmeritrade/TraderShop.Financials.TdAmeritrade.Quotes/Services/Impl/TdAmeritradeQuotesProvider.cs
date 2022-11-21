@@ -1,46 +1,52 @@
 ﻿using Microsoft.AspNetCore.WebUtilities;
-using Newtonsoft.Json;
-using System.Net.Http.Headers;
 using TraderShop.Financials.Abstractions.Services;
+using TraderShop.Financials.TdAmeritrade.Abstractions;
 using TraderShop.Financials.TdAmeritrade.Abstractions.Services;
 using TraderShop.Financials.TdAmeritrade.Quotes.Models;
 
 namespace TraderShop.Financials.TdAmeritrade.Quotes.Services.Impl
 {
-    public class TdAmeritradeQuotesProvider : ITdAmeritradeQuotesProvider
+    /// <summary>
+    ///
+    /// </summary>
+    public class TdAmeritradeQuotesProvider : BaseTdAmeritradeProvider, ITdAmeritradeQuotesProvider
     {
-        private readonly HttpClient _httpClient;
-        private readonly IErrorHandler _errorHandler;
-        private readonly ITdAmeritradeAuthService _authService;
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="httpClient"></param>
+        /// <param name="errorHandler"></param>
+        /// <param name="authService"></param>
+        public TdAmeritradeQuotesProvider(HttpClient httpClient, IErrorHandler errorHandler, ITdAmeritradeAuthService authService) :
+            base(
+            authService, httpClient, errorHandler)
+        { }
 
-        public TdAmeritradeQuotesProvider(HttpClient httpClient, IErrorHandler errorHandler, ITdAmeritradeAuthService authService)
-        {
-            _httpClient = httpClient;
-            _errorHandler = errorHandler;
-            _authService = authService;
-
-        }
-
+        /// <summary>
+        ///
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="symbol"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public async Task<T> GetQuote<T>(string symbol, CancellationToken cancellationToken = default) where T : Quote
         {
-            var uri = new Uri($"{_httpClient.BaseAddress}{symbol}/quotes").ToString();
+            var uri = $"{baseUri}{symbol}/quotes";
 
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await _authService.GetBearerToken());
-
-            var response = await _httpClient.GetAsync(uri, cancellationToken);
-
-            await _errorHandler.CheckQueryErrorsAsync(response);
-
-            var responseObject = await response.Content.ReadAsStringAsync();
-
-            var quote = JsonConvert.DeserializeObject<T>(responseObject);
+            var quote = await GetAsync<T>(uri, cancellationToken);
 
             return quote;
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="symbols"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public async Task<Quote[]> GetQuotes(string[] symbols, CancellationToken cancellationToken = default)
         {
-            var uri = new Uri($"{_httpClient.BaseAddress}/quotes").ToString();
+            var uri = new Uri($"{baseUri}/quotes").ToString();
 
             var query = new Dictionary<string, string>
             {
@@ -49,35 +55,28 @@ namespace TraderShop.Financials.TdAmeritrade.Quotes.Services.Impl
 
             uri = QueryHelpers.AddQueryString(uri, query);
 
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await _authService.GetBearerToken());
-
-            var response = await _httpClient.GetAsync(uri, cancellationToken);
-
-            await _errorHandler.CheckQueryErrorsAsync(response);
-
-            var responseObject = await response.Content.ReadAsStringAsync();
-
-            var quotesResult = JsonConvert.DeserializeObject<Dictionary<string, object>>(responseObject);
+            var quotesResult = await GetAsync<Dictionary<string, object>>(uri, cancellationToken);
 
             var quotes = new Quote[0];
 
             foreach (var symbol in symbols)
             {
-                var temp = JsonConvert.DeserializeObject<Quote>(quotesResult?[symbol]?.ToString());
+
+                var temp = Deserialize<Quote>(quotesResult[symbol].ToString());
 
                 quotes = quotes.Append
-                    (temp?.AssetType switch
+                    (temp.AssetType switch
                     {
-                        "FUTURE" => JsonConvert.DeserializeObject<Future>(quotesResult?[symbol]?.ToString()),
-                        "EQUITY" => JsonConvert.DeserializeObject<Equity>(quotesResult?[symbol]?.ToString()),
-                        "ETF" => JsonConvert.DeserializeObject<Equity>(quotesResult?[symbol]?.ToString()),
-                        "FOREX" => JsonConvert.DeserializeObject<Forex>(quotesResult?[symbol]?.ToString()),
-                        "OPTION" => JsonConvert.DeserializeObject<Option>(quotesResult?[symbol]?.ToString()),
-                        "INDEX" => JsonConvert.DeserializeObject<Models.Index>(quotesResult?[symbol]?.ToString()),
-                        "FUTURE_OPTION" => JsonConvert.DeserializeObject<FutureOptions>(quotesResult?[symbol]?.ToString()),
-                        "MUTUTAL_FUND" => JsonConvert.DeserializeObject<MutualFund>(quotesResult?[symbol]?.ToString()),
-                        _ => JsonConvert.DeserializeObject<Quote>(quotesResult?[symbol]?.ToString()),
-                    } ?? new Quote()
+                        "FUTURE" => Deserialize<Future>(quotesResult[symbol].ToString()),
+                        "EQUITY" => Deserialize<Equity>(quotesResult[symbol].ToString()),
+                        "ETF" => Deserialize<Equity>(quotesResult[symbol].ToString()),
+                        "FOREX" => Deserialize<Forex>(quotesResult[symbol].ToString()),
+                        "OPTION" => Deserialize<Option>(quotesResult[symbol].ToString()),
+                        "INDEX" => Deserialize<Models.Index>(quotesResult[symbol].ToString()),
+                        "FUTURE_OPTION" => Deserialize<FutureOptions>(quotesResult[symbol].ToString()),
+                        "MUTUTAL_FUND" => Deserialize<MutualFund>(quotesResult[symbol].ToString()),
+                        _ => Deserialize<Quote>(quotesResult[symbol].ToString()),
+                    }
                     ).ToArray();
             }
             return quotes;

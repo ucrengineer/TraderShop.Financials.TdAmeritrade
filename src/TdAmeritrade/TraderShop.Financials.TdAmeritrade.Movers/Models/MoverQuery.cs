@@ -1,5 +1,8 @@
 ﻿namespace TraderShop.Financials.TdAmeritrade.Movers.Models
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class MoverQuery
     {
         /// <summary>
@@ -28,15 +31,33 @@
         public Change Change { get; set; } = Change.percent;
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public enum Direction
     {
+        /// <summary>
+        /// 
+        /// </summary>
         up,
+        /// <summary>
+        /// 
+        /// </summary>
         down
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public enum Change
     {
+        /// <summary>
+        /// 
+        /// </summary>
         value,
+        /// <summary>
+        /// 
+        /// </summary>
         percent
     }
 }

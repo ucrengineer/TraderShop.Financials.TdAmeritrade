@@ -2,6 +2,9 @@
 
 namespace TraderShop.Financials.TdAmeritrade.TransactionHistory.Services
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public interface ITdAmeritradeTransactionHistoryProvider
     {
         /// <summary>
@@ -15,7 +18,7 @@ namespace TraderShop.Financials.TdAmeritrade.TransactionHistory.Services
         /// <summary>
         /// Transactions for a specific account.
         /// </summary>
-        /// <param name="accoundId"></param>
+        /// <param name="accountId"></param>
         /// <param name="transactionQuery"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>

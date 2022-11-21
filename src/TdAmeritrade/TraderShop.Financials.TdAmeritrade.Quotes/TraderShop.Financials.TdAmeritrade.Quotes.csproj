@@ -1,8 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-	<TargetFramework>net6.0</TargetFramework>
-	<Version>1.1.4</Version>
+	
+<TargetFramework>net7.0</TargetFramework>
+	<Version>2.0.0</Version>
 	<Authors>Brandon Moffett</Authors>
 	<License>MIT</License>
 	<ProjectUrl>https://github.com/ucrengineer/TraderShop.Financials.TdAmeritrade</ProjectUrl>
@@ -14,7 +15,8 @@
 		<PackageProjectUrl>https://github.com/ucrengineer/TraderShop.Financials.TdAmeritrade.git</PackageProjectUrl>
   	<RepositoryUrl>https://github.com/ucrengineer/TraderShop.Financials.TdAmeritrade.git</RepositoryUrl>  
 	<PackageReleaseNotes>updated contracts </PackageReleaseNotes>
-	<GenerateDocumentationFile>true</GenerateDocumentationFile>
+				<GenerateDocumentationFile>true</GenerateDocumentationFile>
+<PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>

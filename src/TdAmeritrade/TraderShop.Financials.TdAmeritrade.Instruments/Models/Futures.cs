@@ -1,7 +1,13 @@
 ﻿namespace TraderShop.Financials.TdAmeritrade.Instruments.Models
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class Futures
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public static readonly string[] Symbols = new string[]
         {
             "/ES",

@@ -5,8 +5,16 @@ using TraderShop.Financials.TdAmeritrade.PriceHistory.Services.Impl;
 
 namespace TraderShop.Financials.TdAmeritrade.PriceHistory.DependencyInjection
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class TdAmeritradePriceHistoryServiceCollectionExtensions
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="services"></param>
+        /// <returns></returns>
         public static IServiceCollection AddTdAmeritradePriceHistoryProvider(
             this IServiceCollection services)
         {

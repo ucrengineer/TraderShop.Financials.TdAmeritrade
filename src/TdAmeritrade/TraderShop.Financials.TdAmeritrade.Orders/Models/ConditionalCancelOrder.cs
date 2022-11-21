@@ -10,6 +10,11 @@ namespace TraderShop.Financials.TdAmeritrade.Orders.Models
     /// </summary>
     public class ConditionalCancelOrder
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="orderStrategyType"></param>
+        /// <param name="childOrderStrategies"></param>
         public ConditionalCancelOrder(string orderStrategyType,
             OrderQuery[] childOrderStrategies)
         {
@@ -17,9 +22,15 @@ namespace TraderShop.Financials.TdAmeritrade.Orders.Models
             ChildOrderStrategies = childOrderStrategies;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         [JsonProperty("orderStrategyType")]
         public string OrderStrategyType { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         [JsonProperty("childOrderStrategies")]
         public OrderQuery[] ChildOrderStrategies { get; set; }
     }

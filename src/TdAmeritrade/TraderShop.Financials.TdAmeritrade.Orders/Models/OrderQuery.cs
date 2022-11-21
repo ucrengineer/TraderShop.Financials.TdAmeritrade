@@ -1,5 +1,8 @@
 ﻿namespace TraderShop.Financials.TdAmeritrade.Orders.Models
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class OrderQuery
     {
         /// <summary>
@@ -42,23 +45,74 @@
         public Status Status { get; set; } = Status.ALL;
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public enum Status
     {
+        /// <summary>
+        /// 
+        /// </summary>
         ALL,
+        /// <summary>
+        /// 
+        /// </summary>
         AWAITING_PARENT_ORDER,
+        /// <summary>
+        /// 
+        /// </summary>
         AWAITING_CONDITION,
+        /// <summary>
+        /// 
+        /// </summary>
         AWAITING_MANUAL_REVIEW,
+        /// <summary>
+        /// 
+        /// </summary>
         ACCEPTED,
+        /// <summary>
+        /// 
+        /// </summary>
         AWAITING_UR_OUT,
+        /// <summary>
+        /// 
+        /// </summary>
         PENDING_ACTIVATION,
+        /// <summary>
+        /// 
+        /// </summary>
         QUEUED,
+        /// <summary>
+        /// 
+        /// </summary>
         WORKING,
+        /// <summary>
+        /// 
+        /// </summary>
         REJECTED,
+        /// <summary>
+        /// 
+        /// </summary>
         PENDING_CANCEL,
+        /// <summary>
+        /// 
+        /// </summary>
         CANCELED,
+        /// <summary>
+        /// 
+        /// </summary>
         PENDING_REPLACE,
+        /// <summary>
+        /// 
+        /// </summary>
         REPLACED,
+        /// <summary>
+        /// 
+        /// </summary>
         FILLED,
+        /// <summary>
+        /// 
+        /// </summary>
         EXPIRED
     }
 }

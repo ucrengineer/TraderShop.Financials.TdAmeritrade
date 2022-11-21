@@ -1,45 +1,54 @@
 ﻿using Microsoft.AspNetCore.WebUtilities;
-using Newtonsoft.Json;
-using System.Net.Http.Headers;
 using TraderShop.Financials.Abstractions.Services;
+using TraderShop.Financials.TdAmeritrade.Abstractions;
 using TraderShop.Financials.TdAmeritrade.Abstractions.Services;
 using TraderShop.Financials.TdAmeritrade.TransactionHistory.Models;
 
 namespace TraderShop.Financials.TdAmeritrade.TransactionHistory.Services.Impl
 {
-    public class TdAmeritradeTransactionHistoryProvider : ITdAmeritradeTransactionHistoryProvider
+    /// <summary>
+    ///
+    /// </summary>
+    public class TdAmeritradeTransactionHistoryProvider : BaseTdAmeritradeProvider, ITdAmeritradeTransactionHistoryProvider
     {
-        private readonly HttpClient _httpClient;
-        private readonly IErrorHandler _errorHandler;
-        private readonly ITdAmeritradeAuthService _authService;
-
-        public TdAmeritradeTransactionHistoryProvider(HttpClient httpClient, IErrorHandler errorHandler, ITdAmeritradeAuthService authService)
-        {
-            _httpClient = httpClient;
-            _errorHandler = errorHandler;
-            _authService = authService;
-        }
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="httpClient"></param>
+        /// <param name="errorHandler"></param>
+        /// <param name="authService"></param>
+        public TdAmeritradeTransactionHistoryProvider(HttpClient httpClient,
+                                                      IErrorHandler errorHandler,
+                                                      ITdAmeritradeAuthService authService)
+        : base(
+            authService, httpClient, errorHandler)
+        { }
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="accountId"></param>
+        /// <param name="transactionId"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public async Task<Transaction> GetTransaction(string accountId, string transactionId, CancellationToken cancellationToken = default)
         {
-            var uri = new Uri($"{_httpClient.BaseAddress}{accountId}/transactions/{transactionId}").ToString();
+            var uri = $"{baseUri}{accountId}/transactions/{transactionId}";
 
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await _authService.GetBearerToken());
-
-            var response = await _httpClient.GetAsync(uri, cancellationToken);
-
-            await _errorHandler.CheckQueryErrorsAsync(response);
-
-            var responseObject = await response.Content.ReadAsStringAsync();
-
-            var transaction = JsonConvert.DeserializeObject<Transaction>(responseObject);
+            var transaction = await GetAsync<Transaction>(uri, cancellationToken);
 
             return transaction;
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="accountId"></param>
+        /// <param name="transactionQuery"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public async Task<Transaction[]> GetTransactions(string accountId, TransactionQuery transactionQuery, CancellationToken cancellationToken = default)
         {
-            var uri = new Uri($"{_httpClient.BaseAddress}{accountId}/transactions").ToString();
-
+            var uri = $"{baseUri}{accountId}/transactions";
 
             var query = new Dictionary<string, string>
             {
@@ -51,15 +60,7 @@ namespace TraderShop.Financials.TdAmeritrade.TransactionHistory.Services.Impl
 
             uri = QueryHelpers.AddQueryString(uri, query);
 
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await _authService.GetBearerToken());
-
-            var response = await _httpClient.GetAsync(uri, cancellationToken);
-
-            await _errorHandler.CheckQueryErrorsAsync(response);
-
-            var responseObject = await response.Content.ReadAsStringAsync();
-
-            var transactions = JsonConvert.DeserializeObject<Transaction[]>(responseObject);
+            var transactions = await GetAsync<Transaction[]>(uri, cancellationToken);
 
             return transactions;
 

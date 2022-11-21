@@ -5,8 +5,16 @@ using TraderShop.Financials.TdAmeritrade.WatchList.Services.Impl;
 
 namespace TraderShop.Financials.TdAmeritrade.WatchList.DependencyInjection
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class TdAmeritradeWatchlistServiceCollectionExtensions
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="services"></param>
+        /// <returns></returns>
         public static IServiceCollection AddTdAmeritradeWatchlistProvider(
             this IServiceCollection services)
         {

@@ -33,7 +33,7 @@ namespace TdAmeritrade.Financials.Functional.Tests.Utilities
 
             services.Configure<TdAmeritradeOptions>(x =>
             {
-                x.account_number = options[nameof(TdAmeritradeOptions)].account_number;
+                x.account_number = options![nameof(TdAmeritradeOptions)].account_number;
                 x.client_id = options[nameof(TdAmeritradeOptions)].client_id;
                 x.refresh_token = options[nameof(TdAmeritradeOptions)].refresh_token;
             });

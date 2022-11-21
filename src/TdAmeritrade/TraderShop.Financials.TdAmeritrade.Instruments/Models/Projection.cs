@@ -2,6 +2,9 @@
 using Ardalis.SmartEnum;
 
 namespace TraderShop.Financials.TdAmeritrade.Instruments.Models;
+/// <summary>
+/// 
+/// </summary>
 public abstract class Projection : SmartEnum<Projection>
 {
     /// <summary>
@@ -32,6 +35,11 @@ public abstract class Projection : SmartEnum<Projection>
     /// </summary>
     public static readonly Projection Fundamental = new FundamentalType();
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="name"></param>
+    /// <param name="value"></param>
     public Projection(string name, int value) : base(name, value)
     {
     }

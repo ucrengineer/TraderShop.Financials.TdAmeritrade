@@ -3,12 +3,17 @@ using TraderShop.Financials.TdAmeritrade.Orders.Models;
 
 namespace TraderShop.Financials.TdAmeritrade.Orders.Services
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public interface ITdAmeritradeOrdersProvider
     {
         /// <summary>
         /// Get a specific order for a specific account.
         /// </summary>
+        /// <param name="accountId"></param>
         /// <param name="orderId"></param>
+        /// <param name="cancellationToken"></param>
         /// <returns></returns>
         Task<Order> GetOrder(string accountId, string orderId, CancellationToken cancellationToken = default);
 
@@ -28,7 +33,9 @@ namespace TraderShop.Financials.TdAmeritrade.Orders.Services
         /// <para>Place an order for a specific account. Order throttle limits may apply.</para>
         /// <see href="https://developer.tdameritrade.com/content/place-order-samples">see official documentation</see>
         /// </summary>
+        /// <param name="accountId"></param>
         /// <param name="order"></param>
+        /// <param name="cancellationToken"></param>
         /// <returns></returns>
         Task<int> PlaceOrder<T>(string accountId, T order, CancellationToken cancellationToken = default) where T : IBaseOrder;
 
@@ -52,7 +59,7 @@ namespace TraderShop.Financials.TdAmeritrade.Orders.Services
         /// </summary>
         /// <param name="accountId"></param>
         /// <param name="orderId"></param>
-        /// <param name="cancelToken"></param>
+        /// <param name="cancellationToken"></param>
         /// <returns></returns>
         Task<int> CancelOrder(string accountId, string orderId, CancellationToken cancellationToken = default);
     }

@@ -2,6 +2,9 @@
 
 namespace TraderShop.Financials.TdAmeritrade.Movers.Services
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public interface ITdAmeritradeMoverProvider
     {
         /// <summary>

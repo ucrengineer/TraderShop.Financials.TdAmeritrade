@@ -29,7 +29,8 @@
 
         public AuthServiceDemo(ITdAmericaritradeAuthService authService)
         {
-            _authService = authService;
+
+            _authService = authService ?? throw new ArgumentNullException(nameof(authService));
         }
 
         public async Task Returns_Bearer_Token_Successfully()
@@ -60,4 +61,4 @@
 ```
 ## Description
 
-Must have a valid Refresh Token and ClientId to use throught the TdAmeritrade library. The bear token is stored until it expires using IMemoryCache. Also basic models that are used throughout the project are located in the Models folder. 
+Must have a valid Refresh Token and ClientId to use the TdAmeritrade library. The bear token is stored until it expires using IMemoryCache. Also basic models that are used throughout the project are located in the Models project. 

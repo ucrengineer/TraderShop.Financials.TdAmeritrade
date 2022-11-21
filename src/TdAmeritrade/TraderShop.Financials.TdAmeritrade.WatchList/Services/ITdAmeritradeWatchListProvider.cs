@@ -2,23 +2,32 @@
 
 namespace TraderShop.Financials.TdAmeritrade.WatchList.Services
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public interface ITdAmeritradeWatchlistProvider
     {
         /// <summary>
         /// Create watchlist for specific account.This method does not verify that the symbol or asset type are valid.
         /// </summary>
+        /// <param name="accountId"></param>
+        /// <param name="watchlist"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         Task<int> CreateWatchlist(string accountId, CreatedWatchlist watchlist, CancellationToken cancellationToken = default);
         /// <summary>
         /// Delete watchlist for a specific account.
         /// </summary>
+        /// <param name="accountId"></param>
+        /// <param name="watchlistId"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         Task<int> DeleteWatchlist(string accountId, string watchlistId, CancellationToken cancellationToken = default);
         /// <summary>
         /// Specific watchlist for a specific account.
         /// </summary>
+        /// <param name="accountId"></param>
+        /// <param name="watchlistId"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         Task<RequestedWatchlist> GetWatchlist(string accountId, string watchlistId, CancellationToken cancellationToken = default);
@@ -31,12 +40,15 @@ namespace TraderShop.Financials.TdAmeritrade.WatchList.Services
         /// <summary>
         /// All watchlists of an account.
         /// </summary>
+        /// <param name="accountId"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         Task<RequestedWatchlist[]> GetWatchlistsForSingleAccounts(string accountId, CancellationToken cancellationToken = default);
         /// <summary>
         /// Replace watchlist for a specific account. This method does not verify that the symbol or asset type are valid.
         /// </summary>
+        /// <param name="accountId"></param>
+        /// <param name="watchlist"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         Task<int> ReplaceWatchlist(string accountId, ReplacementWatchlist watchlist, CancellationToken cancellationToken = default);
@@ -45,6 +57,8 @@ namespace TraderShop.Financials.TdAmeritrade.WatchList.Services
         /// Partially update watchlist for a specific account: change watchlist name, add to the beginning/end of a watchlist, update or delete items in a watchlist. This method does not verify that the symbol or asset type are valid.
         /// </para>
         /// </summary>
+        /// <param name="accountId"></param>
+        /// <param name="watchlist"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         Task<int> UpdateWatchlist(string accountId, UpdatedWatchlist watchlist, CancellationToken cancellationToken = default);

@@ -5,8 +5,16 @@ using TraderShop.Financials.TdAmeritrade.TransactionHistory.Services.Impl;
 
 namespace TraderShop.Financials.TdAmeritrade.TransactionHistory.DependencyInjection
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class TdAmeritradeTransactionHistoryServiceCollectionExtensions
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="services"></param>
+        /// <returns></returns>
         public static IServiceCollection AddTdAmeritradeTransactionHistoryProvider(this IServiceCollection services)
         {
             services.AddFinancialsAbstractionsServices();

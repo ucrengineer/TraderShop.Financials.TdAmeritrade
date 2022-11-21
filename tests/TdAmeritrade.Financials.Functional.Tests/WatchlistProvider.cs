@@ -21,10 +21,12 @@ namespace TdAmeritrade.Financials.Functional.Tests
         }
 
         [Fact]
-        public async void Create_Watchlist_SuccessfullyAsync()
+        public async void Create_Get_Delete_SuccessfullyAsync()
         {
+            var testWatchlistName = new Guid().ToString();
+
             // arrange
-            var newWatchlist = new CreatedWatchlist(name: "apiTest",
+            var newWatchlist = new CreatedWatchlist(name: $"{testWatchlistName}",
                 watchlistItems: new[]
                 {
                     new WatchlistItem
@@ -48,14 +50,17 @@ namespace TdAmeritrade.Financials.Functional.Tests
 
             // assert
             Assert.Equal(0, result);
-        }
 
-        [Fact]
-        public async void Delete_Watchlist_SuccessfullyAsync()
-        {
-            var result = await _watchlistProvider.DeleteWatchlist(_options.account_number, "1930659840");
+            var watchlists = await _watchlistProvider.GetWatchlistsForSingleAccounts(_options.account_number);
 
-            Assert.Equal(0, result);
+            foreach (var watchlist in watchlists)
+            {
+                if (watchlist.Name == testWatchlistName)
+                {
+                    var deleteResult = await _watchlistProvider.DeleteWatchlist(watchlist.AccountId, watchlist.WatchlistId);
+                    Assert.Equal(0, deleteResult);
+                }
+            }
         }
 
         [Fact]

@@ -41,7 +41,7 @@ namespace TdAmeritrade.Financials.Functional.Tests
         [Fact]
         public async Task Return_Instruments_Successfully()
         {
-            var result = await _instrumentProvider.GetInstruments("app,tigr", Projection.SymbolSearch);
+            var result = await _instrumentProvider.GetInstruments("app,tigr", Projection.Fundamental);
 
             Assert.NotNull(result);
 
