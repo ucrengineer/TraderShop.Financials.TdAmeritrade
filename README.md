@@ -1,5 +1,5 @@
 # Unofficial TdAmeritrade API Library
-
+## This library has NOT been updated for [Trader API Schwab Integration](https://developer.tdameritrade.com/content/trader-api-schwab-integration-guide-june-2023-update)
 <img src="https://img.shields.io/github/issues/ucrengineer/TraderShop.Financials"
     alt = "home screen"
     style = "float: left"/>
